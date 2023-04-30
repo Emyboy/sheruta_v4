@@ -5,6 +5,8 @@ import Link from 'next/link'
 
 type Props = {}
 
+let link = `/request/join-paddy/bungalow/lekki/234`;
+
 export default function EachRequest({ }: Props) {
   return (
     <article className='bg-white p-4 border-b border-1 rounded-sm flex flex-col gap-4'>
@@ -22,7 +24,7 @@ export default function EachRequest({ }: Props) {
       </div>
       <div>
         <address className='text-theme flex gap-2 items-center'><SlLocationPin /> Lekki County Homes, Lekki</address>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi nisi doloribus placeat officiis optio. Natus tempora at accusantium <span className='text-theme'>Read More..</span></p>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi nisi doloribus placeat officiis optio. Natus tempora at accusantium <Link href={link} className='text-theme'>Read More..</Link></p>
       </div>
       <div className='flex justify-between items-center'>
         <div className="flex items-center gap-2">
@@ -68,7 +70,7 @@ const CommentSection = () => {
   </div>
 }
 
-const EachComment = () => {
+export const EachComment = () => {
   return <>
     <hr className='my-2' />
     <div className='flex items-center'>
