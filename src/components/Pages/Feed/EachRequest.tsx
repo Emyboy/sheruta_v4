@@ -12,8 +12,8 @@ export default function EachRequest({ }: Props) {
         <div className='flex items-center gap-2'>
           <img src='/assets/img/user.jpg' alt='profile' className='h-12 w-12 rounded-full' />
           <div>
-            <h6>The Person Name</h6>
-            <small>@TheUserName</small>
+            <h6 className='font-medium'>The Person Name</h6>
+            <small className='text-dark_lighter'>@TheUserName</small>
           </div>
         </div>
         <button className='text-dark_lighter'>

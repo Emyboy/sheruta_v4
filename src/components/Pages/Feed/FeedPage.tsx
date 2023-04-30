@@ -8,7 +8,7 @@ export default function FeedPage({ }: Props) {
         <>
 
             {
-                new Array(40).fill(null).map(val => {
+                new Array(4).fill(null).map(val => {
                     return <EachRequest />
                 })
             }
