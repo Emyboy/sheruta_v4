@@ -4,19 +4,19 @@
 @tailwind utilities;
 
 * {
-  font-family: 'Poppins', sans-serif;
+	font-family: 'Poppins', sans-serif;
+	transition: all 0.1s ease-in-out !important;
 }
 
-#__next{
-  min-height: 100vh;
+#__next {
+	min-height: 100vh;
 }
 
 .bg-img {
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
 }
-
 
 /* :root {
   --foreground-rgb: 0, 0, 0;

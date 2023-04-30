@@ -23,17 +23,17 @@ export default function EachRequest({ }: Props) {
         </button>
       </div>
       <div>
-        <address className='text-theme flex gap-2 items-center'><SlLocationPin /> Lekki County Homes, Lekki</address>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi nisi doloribus placeat officiis optio. Natus tempora at accusantium <Link href={link} className='text-theme'>Read More..</Link></p>
+        <address className='text-theme flex gap-2 items-center text-sm'><SlLocationPin /> Lekki County Homes, Lekki</address>
+        <p className='text-sm'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi nisi doloribus placeat officiis optio. Natus tempora at accusantium <Link href={link} className='text-theme'>Read More..</Link></p>
       </div>
       <div className='flex justify-between items-center'>
         <div className="flex items-center gap-2">
-          <div className='bg-accent_light px-2 rounded-lg'>For Share</div>
-          <div className='bg-theme_lighter px-2 rounded-lg'>Bungalow</div>
+          <div className='bg-orange-100 text-orange-500 px-2 rounded-lg text-sm'>For Share</div>
+          <div className='bg-green-100 text-green-500 px-2 rounded-lg text-sm'>Bungalow</div>
         </div>
-        <div className='px-2 rounded-lg border-1 border'>Private Room</div>
+        <div className='px-2 rounded-lg border-1 border text-sm text-dark_light'>Private Room</div>
       </div>
-      <div className='flex items-center gap-1 h-52'>
+      <div className='flex items-center gap-1 h-56 lg:h-72'>
         <div className="p-2 w-1/2 h-full rounded-lg bg-img" style={{ backgroundImage: `url("/assets/img/room-1.jpg")` }}></div>
         <div className="w-1/2 h-full gap-1 flex flex-col">
           <div className="h-1/2 bg-img rounded-lg" style={{ backgroundImage: `url("/assets/img/room-3.jpg")` }}></div>
@@ -41,12 +41,12 @@ export default function EachRequest({ }: Props) {
         </div>
       </div>
       <div className='flex justify-between'>
-        <div className="flex items-center gap-3">
-          <button className='text-dark_lighter flex gap-1 items-center hover:text-theme'><HiOutlinePhone /><small>34.4k</small></button>
-          <button className='text-dark_lighter flex gap-1 items-center hover:text-theme'><HiOutlineChat /><small>22</small></button>
-          <button className='text-dark_lighter flex gap-1 items-center hover:text-theme'><HiOutlineBookmark /><small>73</small></button>
+        <div className="flex items-center gap-4">
+          <button className='text-dark_lighter flex gap-1 items-center hover:text-theme'><HiOutlinePhone size={20} /><small>34.4k</small></button>
+          <button className='text-dark_lighter flex gap-1 items-center hover:text-theme'><HiOutlineChat size={20} /><small>22</small></button>
+          <button className='text-dark_lighter flex gap-1 items-center hover:text-theme'><HiOutlineBookmark size={20} /><small>73</small></button>
         </div>
-        <div className="flex">
+        <div className="flex items-center">
           <b>N1,230,000</b>
           <small className='text-dark_lighter'>/monthly</small>
         </div>
