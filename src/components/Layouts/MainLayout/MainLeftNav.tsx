@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
-import { HiOutlineArrowRightOnRectangle, HiOutlineBanknotes, HiOutlinePlayCircle, HiOutlineRocketLaunch, HiOutlineWallet, HiOutlineWrenchScrewdriver } from 'react-icons/hi2'
+import { HiOutlineArrowRightOnRectangle, HiOutlineBanknotes, HiOutlinePlayCircle, HiOutlineRocketLaunch, HiOutlineVideoCamera, HiOutlineWallet, HiOutlineWrenchScrewdriver } from 'react-icons/hi2'
 import classnames from 'classnames'
 import { IconBaseProps } from 'react-icons'
 
@@ -23,10 +23,12 @@ export default function MainLeftNav({ }: Props) {
       <nav className="my-8">
         <ul>
           <EachNav Icon={(p: IconBaseProps) => <HiOutlineRocketLaunch {...p} />} active name='Get Started' />
+          <EachNav Icon={(p: IconBaseProps) => <HiOutlineVideoCamera {...p} />} active={false} name='Inspections' />
           <EachNav Icon={(p: IconBaseProps) => <HiOutlineBanknotes {...p} />} active={false} name='Buy Tokens' />
           <EachNav Icon={(p: IconBaseProps) => <HiOutlineWallet {...p} />} active={false} name='Wallet' />
           <EachNav Icon={(p: IconBaseProps) => <HiOutlinePlayCircle {...p} />} active={false} name='How It Works' />
           <EachNav Icon={(p: IconBaseProps) => <HiOutlineWrenchScrewdriver {...p} />} active={false} name='Settings' />
+          <hr className='mb-3' />
           <EachNav Icon={(p: IconBaseProps) => <HiOutlineArrowRightOnRectangle {...p} />} active={false} name='Logout' />
         </ul>
       </nav>

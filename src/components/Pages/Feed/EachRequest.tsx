@@ -24,7 +24,9 @@ export default function EachRequest({ }: Props) {
       </div>
       <div>
         <address className='text-theme flex gap-2 items-center text-sm'><SlLocationPin /> Lekki County Homes, Lekki</address>
-        <p className='text-sm'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi nisi doloribus placeat officiis optio. Natus tempora at accusantium <Link href={link} className='text-theme'>Read More..</Link></p>
+        <Link href={link}>
+          <p className='text-sm'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi nisi doloribus placeat officiis optio. Natus tempora at accusantium <span className='text-theme'>Read More..</span></p>
+        </Link>
       </div>
       <div className='flex justify-between items-center'>
         <div className="flex items-center gap-2">

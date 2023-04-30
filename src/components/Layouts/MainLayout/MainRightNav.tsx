@@ -1,25 +1,38 @@
 import Link from 'next/link'
 import React from 'react'
-import { HiOutlineChatBubbleBottomCenterText } from 'react-icons/hi2'
+import { HiOutlineChatBubbleBottomCenterText, HiOutlineUsers } from 'react-icons/hi2'
 
 type Props = {}
 
 export default function MainRightNav({ }: Props) {
     return (
         <div>
-            <div className='border-b border-1 p-4 '>
-                <div className='text-dark_light flex items-center gap-2 font-medium'>
-                    <HiOutlineChatBubbleBottomCenterText className='text-theme' size={25} /> <h6>Unread Message <span className='text-theme'>3</span></h6>
+            <div className="">
+                <div className='border-b border-1 p-4 '>
+                    <div className='text-dark_light flex items-center gap-2 font-medium'>
+                        <HiOutlineChatBubbleBottomCenterText className='text-theme' size={25} /> <h6>Unread Message <span className='text-theme'>3</span></h6>
+                    </div>
                 </div>
+                <ul>
+                    <EachConversation />
+                    <EachConversation />
+                    <EachConversation />
+                    <EachConversation />
+                </ul>
+                <p className='cursor-pointer text-sm text-theme text-center py-4'>See More</p>
             </div>
-            <ul>
-                <EachConversation />
-                <EachConversation />
-                <EachConversation />
-                <EachConversation />
-                <EachConversation />
-            </ul>
-            <p className='cursor-pointer text-sm text-theme text-center py-4'>See More</p>
+            <div className="">
+                <div className='border-b border-1 p-4 '>
+                    <div className='text-dark_light flex items-center gap-2 font-medium'>
+                        <HiOutlineUsers className='text-theme' size={25} /> <h6>Matches <span className='text-theme'>82</span></h6>
+                    </div>
+                </div>
+                <ul>
+                    <EachConversation />
+                    <EachConversation />
+                </ul>
+                <p className='cursor-pointer text-sm text-theme text-center py-4'>See More</p>
+            </div>
         </div>
     )
 }
