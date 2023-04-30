@@ -83,7 +83,7 @@ export const EachComment = () => {
             <button className='text-dark_lighter'>
               <SlOptions />
             </button></div>
-          <p className='text-dark_lighter mb-3'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint voluptates quidem deleniti eaq ullam?</p>
+          <p className='text-dark_lighter mb-3 text-sm'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint voluptates quidem deleniti eaq ullam?</p>
           <article className='flex gap-2 ml-3'>
             <img src='/assets/img/user.jpg' alt='avatar' className='w-9 h-9 rounded-full' />
             <div>
@@ -94,7 +94,7 @@ export const EachComment = () => {
                 </button>
               </div>
 
-              <p className='text-dark_lighter'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint voluptates quidem deleniti eaq ullam?</p>
+              <p className='text-dark_lighter'>Lorem text-sm ipsum dolor sit amet consectetur adipisicing elit. Sint voluptates quidem deleniti eaq ullam?</p>
             </div>
           </article>
         </div>
