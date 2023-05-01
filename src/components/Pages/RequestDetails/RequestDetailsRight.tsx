@@ -7,7 +7,7 @@ type Props = {}
 export default function RequestDetailsRight({ }: Props) {
     return (
         <>
-            <div className="bg-background- w-screen lg:w-1/3 lg:max-h-screen lg:overflow-auto">
+            <div className="bg-background w-screen lg:w-1/3 lg:max-h-screen lg:overflow-auto">
                 <div className="bg-background h-12 shadow-md lg:shadow-sm sticky top-0">
                     <RequestDetailsTab />
                 </div>
