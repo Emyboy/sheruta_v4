@@ -1,5 +1,5 @@
 import React from 'react'
-import { HiOutlineBookmark, HiOutlineChatBubbleOvalLeftEllipsis, HiOutlineEnvelope, HiOutlineMapPin, HiOutlinePhone, HiOutlineShare } from 'react-icons/hi2'
+import { HiOutlineBookmark, HiOutlineChatBubbleOvalLeftEllipsis, HiOutlineEnvelope, HiOutlineMapPin, HiOutlinePhone, HiOutlineQuestionMarkCircle, HiOutlineShare, HiOutlineWallet } from 'react-icons/hi2'
 
 type Props = {}
 
@@ -39,6 +39,24 @@ export default function RequestDetailsDescription({ }: Props) {
                     <div className='bg-green-100 text-green-500 px-2 rounded-lg text-sm'>Bungalow</div>
                 </div>
                 <div className='px-2 rounded-lg border-1 border text-sm text-dark_light'>Private Room</div>
+            </div>
+            <div className="flex-col flex lg:flex-row gap-1">
+                <div className="lg:w-1/2 p-3 bg-orange-100 rounded-sm flex gap-2 flex-col">
+                    <div className="flex gap-2 items-center">
+                        <HiOutlineQuestionMarkCircle className='text-orange-400' size={20} />
+                        <h6 className='text-sm font-semibold'>How It Works</h6>
+                    </div>
+                    <p className='text-xs'>Join Paddy allows apartment seekers find
+                        and share apartments/room by splitting bills.</p>
+                </div>
+                <div className="lg:w-1/2 p-3 bg-theme_transparent rounded-sm flex gap-2 flex-col">
+                    <div className="flex gap-2 items-center">
+                        <HiOutlineWallet className='text-theme' size={20} />
+                        <h6 className='text-sm font-semibold'>Payment Details</h6>
+                    </div>
+                    <p className='text-xs'>View Payment Summary and what to do before making payments.
+                        view Details</p>
+                </div>
             </div>
         </section>
     )
