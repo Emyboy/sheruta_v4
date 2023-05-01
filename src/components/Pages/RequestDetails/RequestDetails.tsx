@@ -1,6 +1,7 @@
 import React from 'react'
 import { EachComment } from '../Feed/EachRequest'
 import RequestDetailsLeft from './RequestDetailsLeft'
+import RequestDetailsRight from './RequestDetailsRight'
 
 type Props = {}
 
@@ -20,20 +21,7 @@ export default function RequestDetails({ }: Props) {
                     'https://99designs-blog.imgix.net/blog/wp-content/uploads/2020/03/slower.gif?auto=format&q=60&fit=max&w=930',
                     'https://i.pinimg.com/originals/cd/59/d6/cd59d626dc86397fe45080e6e9c7027d.gif'
                 ]} />
-                <div className="bg-background w-screen lg:w-1/3 lg:max-h-screen lg:overflow-auto">
-                    <div className="bg-white h-16 shadow-sm sticky top-0">
-
-                    </div>
-                    <div className="flex-1 p-5">
-                        <EachComment />
-                        <EachComment />
-                        <EachComment />
-                        <EachComment />
-                        <EachComment />
-                        <EachComment />
-                    </div>
-                    <div className="bg-white h-16 shadow-sm sticky bottom-0"></div>
-                </div>
+                <RequestDetailsRight />
             </div></>
     )
 }
