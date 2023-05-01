@@ -8,7 +8,7 @@ type Props = {}
 export default function RequestDetails({ }: Props) {
     return (
         <>
-            <div className='bg-yellow-100 h-screen- flex-col lg:flex-row' style={{ display: 'flex' }}>
+            <div className='h-screen- flex-col lg:flex-row' style={{ display: 'flex' }}>
                 <RequestDetailsLeft images={[
                     'https://media.tenor.com/nR7090FSI7oAAAAC/apartment-renovation.gif',
                     'https://genhq.com/wp-content/uploads/2018/01/MillenialsvsBBR.gif',
