@@ -2,12 +2,13 @@ import React from 'react'
 import { SlOptions, SlLocationPin } from 'react-icons/sl'
 import { HiOutlineBookmark, HiOutlineChat, HiOutlinePhone } from 'react-icons/hi'
 import Link from 'next/link'
+import { HiPlay } from 'react-icons/hi2'
 
 type Props = {}
 
-let link = `/request/join-paddy/bungalow/lekki/234`;
 
 export default function EachRequest({ }: Props) {
+  let link = `/request/join-paddy/bungalow/lekki/234`;
   return (
     <article className='bg-white p-4 border-b border-1 rounded-sm flex flex-col gap-4'>
       <div className="flex justify-between items-center">
@@ -36,10 +37,19 @@ export default function EachRequest({ }: Props) {
         <div className='px-2 rounded-lg border-1 border text-sm text-dark_light'>Private Room</div>
       </div>
       <div className='flex items-center gap-1 h-56 lg:h-72'>
-        <div className="p-2 w-1/2 h-full rounded-lg bg-img" style={{ backgroundImage: `url("/assets/img/room-1.jpg")` }}></div>
+        <Link href={link} className="cursor-pointer p-2 w-1/2 h-full rounded-lg bg-img flex flex-col justify-center items-center" style={{ backgroundImage: `url("/assets/img/room-1.jpg")` }}>
+          <div className='text-3xl hover:text-4xl p-4 bg-dark_transparent text-white rounded-full shadow-md'>
+            <HiPlay />
+          </div>
+        </Link>
         <div className="w-1/2 h-full gap-1 flex flex-col">
-          <div className="h-1/2 bg-img rounded-lg" style={{ backgroundImage: `url("/assets/img/room-3.jpg")` }}></div>
-          <div className="h-1/2 bg-img rounded-lg" style={{ backgroundImage: `url("/assets/img/room-2.jpg")` }}></div>
+          <div className="cursor-pointer h-1/2 bg-img rounded-lg" style={{ backgroundImage: `url("/assets/img/room-3.jpg")` }}></div>
+          <Link href={link} className="cursor-pointer h-1/2 bg-img rounded-lg flex flex-col justify-center items-center" style={{ backgroundImage: `url("/assets/img/room-2.jpg")` }}>
+            <div className='text-xl hover:text-2xl p-4 bg-dark_transparent text-white rounded-full shadow-md'>
+              3+
+            </div>
+          </Link>
+
         </div>
       </div>
       <div className='flex justify-between'>
@@ -74,7 +84,10 @@ const CommentSection = () => {
 
 export const EachComment = () => {
   return <>
-    <hr className='my-2' />
+    <div className="flex gap-3 items-center">
+      <small className='text-dark_lighter text-xs'>Questions</small>
+      <hr className='my-2 flex-1' />
+    </div>
     <div className='flex items-center'>
       <article className='flex gap-2'>
         <img src='/assets/img/user.jpg' alt='avatar' className='w-9 h-9 rounded-full' />
@@ -82,24 +95,31 @@ export const EachComment = () => {
           <div className="flex justify-between"><h6 className='font-medium'>The person name</h6>
             <button className='text-dark_lighter'>
               <SlOptions />
-            </button></div>
-          <p className='text-dark_lighter mb-3 text-sm'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint voluptates quidem deleniti eaq ullam?</p>
-          <article className='flex gap-2 ml-3'>
-            <img src='/assets/img/user.jpg' alt='avatar' className='w-9 h-9 rounded-full' />
-            <div>
-              <div className="flex justify-between">
-                <h6 className='font-medium'>The person name</h6>
-                <button className='text-dark_lighter'>
-                  <SlOptions />
-                </button>
-              </div>
-
-              <p className='text-dark_lighter'>Lorem text-sm ipsum dolor sit amet consectetur adipisicing elit. Sint voluptates quidem deleniti eaq ullam?</p>
-            </div>
-          </article>
+            </button>
+          </div>
+          <p className='text-dark_lighter mb-4 text-sm'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint voluptates quidem deleniti eaq ullam?</p>
+          <div className="flex flex-col gap-2">
+            <EachReply />
+          </div>
         </div>
       </article>
     </div>
     <Link href={'/'} className='text-theme text-center text-sm'>Show More</Link>
   </>
+}
+
+const EachReply = () => {
+  return <article className='flex gap-2 ml-3'>
+    <img src='/assets/img/user.jpg' alt='avatar' className='w-9 h-9 rounded-full' />
+    <div>
+      <div className="flex justify-between">
+        <h6 className='font-medium'>The person name</h6>
+        <button className='text-dark_lighter'>
+          <SlOptions />
+        </button>
+      </div>
+
+      <p className='text-dark_lighter text-sm'>Lorem text-sm ipsum dolor sit amet consectetur adipisicing elit. Sint voluptates quidem deleniti eaq ullam?</p>
+    </div>
+  </article>
 }

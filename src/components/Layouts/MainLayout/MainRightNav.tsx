@@ -19,7 +19,7 @@ export default function MainRightNav({ }: Props) {
                     <EachConversation />
                     <EachConversation />
                 </ul>
-                <p className='cursor-pointer text-sm text-theme text-center py-4'>See More</p>
+                <p className='cursor-pointer text-xs text-theme text-center py-4'>See More</p>
             </div>
             <div className="">
                 <div className='border-b border-1 p-4 '>
@@ -31,7 +31,7 @@ export default function MainRightNav({ }: Props) {
                     <EachConversation />
                     <EachConversation />
                 </ul>
-                <p className='cursor-pointer text-sm text-theme text-center py-4'>See More</p>
+                <p className='cursor-pointer text-xs text-theme text-center py-4'>See More</p>
             </div>
         </div>
     )

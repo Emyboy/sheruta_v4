@@ -30,6 +30,7 @@ module.exports = {
       dark: "#111717",
       dark_light: "#414545",
       dark_lighter: "#707474",
+      dark_transparent: "#0d180f75",
 
       inactive: "#CFD1D1",
 
