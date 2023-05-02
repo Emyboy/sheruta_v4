@@ -12,7 +12,7 @@ export default function RequestDetailsRight({ }: Props) {
                 <div className="bg-background shadow-sm h-12 border-b  sticky top-0">
                     <RequestDetailsTab />
                 </div>
-                <div className="flex-1 px-5 pt-5  h-full- pb-20">
+                <div className="flex-1 px-5 pt-5  h-full pb-20">
                     <div className="flex flex-col gap-10">
                         <RequestDetailsDescription />
                         <Amenities />
