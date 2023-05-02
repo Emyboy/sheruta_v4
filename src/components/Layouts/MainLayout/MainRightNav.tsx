@@ -4,7 +4,7 @@ import { HiOutlineChatBubbleBottomCenterText, HiOutlineUsers } from 'react-icons
 
 type Props = {}
 
-export default function MainRightNav({ }: Props) {
+export default function ffMainRightNav({ }: Props) {
     return (
         <div>
             <div className="">

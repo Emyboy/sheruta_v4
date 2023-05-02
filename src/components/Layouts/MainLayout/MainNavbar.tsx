@@ -18,7 +18,7 @@ export default function MainNavbar({ }: Props) {
                     <nav className='hidden lg:visible lg:flex items-center gap-2'>
                         <EachNav Icon={(p: IconBaseProps) => <HiOutlineHome {...p} />} active />
                         <EachNav Icon={(p: IconBaseProps) => <HiPlus {...p} />} active={false} />
-                        <EachNav Icon={(p: IconBaseProps) => <HiOutlineBell {...p} />} active={false} />
+                        <EachNav Icon={(p: IconBaseProps) => <HiOutlineBell {...p} />} active={false} link='/notification' />
                         <EachNav Icon={(p: IconBaseProps) => <HiMagnifyingGlass {...p} />} active={false} />
                     </nav>
 
@@ -37,8 +37,8 @@ export default function MainNavbar({ }: Props) {
     )
 }
 
-const EachNav = ({ active, Icon }: { active: boolean, Icon: any }) => {
-    return <Link className={classNames({ "text-accent bg-theme_transparent": active }, { "text-white border border-1 border-theme_transparent": !active }, 'hover:bg-theme_transparent hover:text-accent_light h-12 w-12 rounded-lg flex justify-center items-center ')} href={`/`}>
+const EachNav = ({ active, Icon, link }: { active: boolean, Icon: any, link?: string }) => {
+    return <Link className={classNames({ "text-accent bg-theme_transparent": active }, { "text-white border border-1 border-theme_transparent": !active }, 'hover:bg-theme_transparent hover:text-accent_light h-12 w-12 rounded-lg flex justify-center items-center ')} href={link || `/`}>
         <Icon size={25} />
     </Link>
 }
