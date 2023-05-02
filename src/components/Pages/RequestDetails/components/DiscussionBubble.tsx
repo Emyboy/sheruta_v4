@@ -19,7 +19,7 @@ export default function DiscussionBubble({ replay }: Props) {
                                 <HiEllipsisHorizontal size={25} />
                             </button>
                         </div>
-                        <p className='text-sm'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque placeat quam dicta excepturi temporibus sed laboriosam, ex alias hic quia quasi harum nobis tenetur. Fuga ipsam ipsum laboriosam nulla dolore.</p>
+                        <p className='text-sm'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque placeat qux alias hi.</p>
                         <div className="flex justify-between text-dark_lighter">
                             <small>20 mins ago</small>
                         </div>
