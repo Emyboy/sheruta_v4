@@ -9,7 +9,7 @@ export default function DiscussionTab({ }: Props) {
             <div className="flex flex-col gap-3">
                 <DiscussionBubble />
                 <div className="pl-16">
-                    <DiscussionBubble />
+                    <DiscussionBubble replay />
                 </div>
             </div>
             <DiscussionBubble />
@@ -17,7 +17,7 @@ export default function DiscussionTab({ }: Props) {
             <div className="flex flex-col gap-3">
                 <DiscussionBubble />
                 <div className="pl-16">
-                    <DiscussionBubble />
+                    <DiscussionBubble replay />
                 </div>
             </div>
             <DiscussionBubble />
