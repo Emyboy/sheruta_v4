@@ -1,6 +1,6 @@
 import React from 'react'
 import RequestDetailsLeft from './RequestDetailsLeft'
-import RequestDetailsRight from './RequestDetailsRight'
+import RequestDetailsRight from './RequestDetailsRight/RequestDetailsRight'
 
 type Props = {}
 

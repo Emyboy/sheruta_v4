@@ -1,28 +1,34 @@
-import React from 'react'
-import RequestDetailsTab from './RequestDetailsTab'
-import RequestDetailsDescription from './components/RequestDetailsDescription'
-import Amenities from './components/Amenities'
-import HouseRules from './components/HouseRules'
-import Facilities from './components/Facilities'
-import MapDetails from './components/MapDetails'
+import React, { useState } from 'react'
+import _Tab, { TabUIBaseProps } from '@/packages/ui/_Tab'
+import SummaryTab from './Tabs/SummaryTab'
+import DiscussionTab from './Tabs/DiscussionTab'
 
 type Props = {}
 
 export default function RequestDetailsRight({ }: Props) {
+    const tabs: TabUIBaseProps[] = [
+        {
+            id: 'summary',
+            name: 'Summary',
+        },
+        {
+            id: 'discussion',
+            name: 'Discussion',
+        }
+    ];
+    const [activeTab, setActiveTab] = useState<number>(0)
     return (
         <>
             <div className="bg-white w-screen lg:w-1/3 lg:max-h-screen lg:overflow-auto">
                 <div className="bg-background shadow-sm h-12 border-b  sticky top-0">
-                    <RequestDetailsTab />
+                    <_Tab tabs={tabs} activeTab={tabs[activeTab].id} onTabChange={tab => setActiveTab(tab)} />
                 </div>
                 <div className="flex-1 px-5 pt-5  h-full- pb-20">
-                    <div className="flex flex-col gap-10 min-h-screen">
-                        <RequestDetailsDescription />
-                        <Amenities />
-                        <Facilities />
-                        <HouseRules />
-                        <MapDetails />
-                    </div>
+                    {[
+
+                        <SummaryTab />,
+                        <DiscussionTab />
+                    ][activeTab]}
                 </div>
                 <div className="bg-white px-2 h-16 shadow-lg border-1 border-t lg:sticky fixed w-screen lg:w-full bottom-0 flex justify-between items-center">
                     <div className="flex flex-col">
