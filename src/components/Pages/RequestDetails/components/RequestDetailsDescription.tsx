@@ -1,5 +1,5 @@
 import React from 'react'
-import { HiOutlineBookmark, HiOutlineChatBubbleOvalLeftEllipsis, HiOutlineEnvelope, HiOutlineMapPin, HiOutlinePhone, HiOutlineQuestionMarkCircle, HiOutlineShare, HiOutlineWallet } from 'react-icons/hi2'
+import { HiOutlineBookmark, HiOutlineChatBubbleOvalLeftEllipsis, HiOutlineEnvelope, HiOutlineMapPin, HiOutlinePhone, HiOutlineQuestionMarkCircle, HiOutlineShare, HiOutlineCheckCircle } from 'react-icons/hi2'
 
 type Props = {}
 
@@ -51,8 +51,8 @@ export default function RequestDetailsDescription({ }: Props) {
                 </div>
                 <div className="lg:w-1/2 p-3 bg-theme_transparent rounded-sm flex gap-2 flex-col">
                     <div className="flex gap-2 items-center">
-                        <HiOutlineWallet className='text-theme' size={20} />
-                        <h6 className='text-sm font-semibold'>Payment Details</h6>
+                        <HiOutlineCheckCircle className='text-theme' size={20} />
+                        <h6 className='text-sm font-semibold'>Available</h6>
                     </div>
                     <p className='text-xs'>View Payment Summary and what to do before making payments.
                         view Details</p>
