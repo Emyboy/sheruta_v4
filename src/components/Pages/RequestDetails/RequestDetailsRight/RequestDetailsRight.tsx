@@ -14,6 +14,10 @@ export default function RequestDetailsRight({ }: Props) {
         {
             id: 'discussion',
             name: 'Discussion',
+        },
+        {
+            id: 'payment',
+            name: 'Breakdown',
         }
     ];
     const [activeTab, setActiveTab] = useState<number>(0)
@@ -25,7 +29,6 @@ export default function RequestDetailsRight({ }: Props) {
                 </div>
                 <div className="flex-1 px-5 pt-5  h-full- pb-20">
                     {[
-
                         <SummaryTab />,
                         <DiscussionTab />
                     ][activeTab]}
@@ -35,7 +38,7 @@ export default function RequestDetailsRight({ }: Props) {
                         <small className='text-dark_lighter'>Rent per room</small>
                         <figure className='font-bold text-lg'>N45,000,000</figure>
                     </div>
-                    <button className='bg-dark text-white px-6 py-3 rounded-md'>Reserve Room</button>
+                    <button className='bg-dark text-white px-6 py-3 rounded-md' onClick={() => setActiveTab(tabs.length - 1)}>Reserve Room</button>
                 </div>
             </div>
         </>
