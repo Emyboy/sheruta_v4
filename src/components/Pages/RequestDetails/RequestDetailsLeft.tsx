@@ -22,7 +22,7 @@ export default function RequestDetailsLeft({ images }: Props) {
                 <div className='p-2 w-full flex gap-3 justify-center- h-16 lg:h-1/6 overflow-x-auto bg-img'>
                     {/* <div className='cursor-pointer bg-img h-full rounded-md ' style={{ minWidth: '100px' }}  /> */}
                     {images.map(src => {
-                        return <div className={classNames({ "outline outline-3 text-green-400": currentPreview === src }, ' cursor-pointer bg-img h-full rounded-md lg:w-36')} style={{ backgroundImage: `url(${src})`, minWidth: '70px' }} onClick={() => setCurrentPreview(src)} />
+                        return <div className={classNames({ "outline outline-4 lg:outline-3 text-green-400": currentPreview === src }, ' cursor-pointer bg-img h-full rounded-md lg:w-36')} style={{ backgroundImage: `url(${src})`, minWidth: '70px' }} onClick={() => setCurrentPreview(src)} />
                     })}
                 </div>
             </div>
