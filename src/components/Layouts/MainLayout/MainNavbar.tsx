@@ -34,10 +34,10 @@ export default function MainNavbar({ }: Props) {
                 </div>
             </header> */}
             <header className='bg-dark h-16 flex items-center justify-center fixed left-0 right-0 z-50 '>
-                <_Container className="flex  justify-between px-5 lg:px-0 w-full">
+                <_Container className="flex  justify-between px-4 lg:px-0 w-full">
                     <Link href={`/`} className='flex items-center gap-2'>
-                        <img alt='brand' src={`/icon_green.png`} className='w-7 sm:w-10' />
-                        <img alt='brand' src={`/logo_text_white.png`} className='w-20 sm:w-32' />
+                        <img alt='brand' src={`/icon_green.png`} className='w-6 md:w-7' />
+                        <img alt='brand' src={`/logo_text_white.png`} className='w-24' />
                     </Link>
                     <nav className='hidden lg:visible lg:flex items-center gap-2'>
                         <EachNav Icon={(p: IconBaseProps) => <HiOutlineHome {...p} />} active />
@@ -50,7 +50,7 @@ export default function MainNavbar({ }: Props) {
                         <Link onClick={() => alert('hi')} href='/' className='hidden sm:visible md:flex outline-1 outline px-5 py-2 rounded-lg text-theme_light text-md hover:bg-theme hover:text-white hover:outline-none'>
                             Post Request
                         </Link>
-                        <Link href='/login' className='bg-theme  text-white px-6 py-2 text-md rounded-lg hover:bg-theme_light'>
+                        <Link href='/login' className='bg-theme  text-white md:px-6 md:py-2 rounded-lg hover:bg-theme_light text-lg px-5 py-1'>
                             Login
                         </Link>
                     </nav>
