@@ -4,7 +4,7 @@ import { IconBaseProps } from 'react-icons'
 import { HiBellAlert, HiHome, HiOutlineBell, HiOutlineHome, HiOutlineUser, HiOutlineWallet, HiPlus, HiUser, HiWallet } from 'react-icons/hi2'
 
 type Props = {
-  activePage: string
+  activePage?: string
 }
 
 export default function MainFooter({ }: Props) {
