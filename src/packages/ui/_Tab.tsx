@@ -30,11 +30,12 @@ export default function _Tab({ tabs, activeTab, onTabChange }: Props) {
 }
 
 const EachTab = ({ title, active, onTabChange }: { title: string, active?: boolean, onTabChange: () => void }) => {
-    return <li className='h-full' onClick={onTabChange}>
+    return <li className='h-full flex flex-col' onClick={onTabChange}>
         <span
-            className={classNames({ "border-theme font-semibold bg-white ": active }, { "border-background font-normal text-dark_lighter bg-background": !active }, 'border-b-4  h-full py-2 px-4 flex flex-col justify-center items-center w-fit text-sm hover:border-theme hover:bg-white hover:font-semibold cursor-pointer')}
+            className={classNames({"bg-white ":active},{ "border-background font-normal text-dark_lighter bg-background": !active }, 'border-b-4  h-full py-2 px-4 flex flex-col justify-center items-center w-fit text-sm hover:border-theme hover:bg-white hover:font-semibold cursor-pointer')}
         >
             <span>{title}</span>
         </span>
+        {active && <span className="h-1 bg-green-400"></span>}
     </li>
 }
