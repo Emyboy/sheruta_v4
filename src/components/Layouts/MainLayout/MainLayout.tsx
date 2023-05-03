@@ -20,7 +20,7 @@ export default function MainLayout({ centerComponent, leftComponent, rightCompon
                 <_Container className='flex h-full- justify-between '>
                     <aside className='border-r border-1 w-1/3 hidden lg:visible justify-end lg:flex bg-purple-200- ' >
                         <div className='bg-green-100- fixed  h-96 w-56'>
-                            
+
                             {leftComponent}
                         </div>
                     </aside>
@@ -29,7 +29,7 @@ export default function MainLayout({ centerComponent, leftComponent, rightCompon
                     </main>
                     <div className='border-l border-1 w-1/3 hidden lg:visible justify-start lg:flex bg-purple-200- '>
                         <div className='bg-green-100- fixed  h-96 w-56'>
-                            
+
                             {rightComponent}
                         </div>
                     </div>
