@@ -1,5 +1,6 @@
 
 import React from 'react'
+import _Container from '@/packages/ui/_Container'
 
 import MainNavbar from './MainNavbar'
 import MainFooter from './MainFooter'
@@ -12,11 +13,11 @@ type Props = {
 
 export default function MainLayout({ centerComponent, leftComponent, rightComponent }: Props) {
     return (
-        <div className=' '>
+        <>
             <MainNavbar />
 
             <div className='bg-background- flex-1 overflow-y-auto flex justify-center pb-16'>
-                <div className='flex h-full- justify-between w-screen lg:w-screen xl:w-2/3  px-0'>
+                <_Container className='flex h-full- justify-between '>
                     <aside className='border-r border-1 w-1/3 hidden lg:visible justify-end lg:flex bg-purple-200- ' >
                         <div className='bg-green-100- fixed  h-96 w-56'>
                             
@@ -32,10 +33,10 @@ export default function MainLayout({ centerComponent, leftComponent, rightCompon
                             {rightComponent}
                         </div>
                     </div>
-                </div>
+                </_Container>
             </div>
             <MainFooter />
-        </div>
+        </>
     )
 }
 
