@@ -19,7 +19,10 @@ export default function MainFooter({ }: Props) {
       <HiOutlineUser /> */}
       <EachNav
         title='Home'
-        onClick={() => setActivePage('home')}
+        onClick={() => {
+          setActivePage('home')
+          router.push('/')
+        }}
         active={activePage === 'home'}
         ActiveIcon={(p: IconBaseProps) => <HiHome {...p} />}
         Icon={(p: IconBaseProps) => <HiOutlineHome {...p} />}
