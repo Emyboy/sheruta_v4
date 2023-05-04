@@ -1,4 +1,5 @@
 import classNames from 'classnames'
+import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { IconBaseProps } from 'react-icons'
 import { HiBellAlert, HiHome, HiOutlineBell, HiOutlineHome, HiOutlineUser, HiOutlineWallet, HiPlus, HiUser, HiWallet } from 'react-icons/hi2'
@@ -9,6 +10,8 @@ type Props = {
 
 export default function MainFooter({ }: Props) {
   const [activePage, setActivePage] = useState<string>('home')
+  const router = useRouter();
+
   return (
     <footer className="bg-dark h-16 items-center fixed bottom-0 py-3 px-2 z-50 w-full visible lg:hidden text-gray-300 text-3xl flex justify-between">
       {/* <HiOutlineHome />
@@ -44,7 +47,10 @@ export default function MainFooter({ }: Props) {
       />
       <EachNav
         title='Profile'
-        onClick={() => setActivePage('profile')}
+        onClick={() => {
+          setActivePage('profile')
+          router.push('/user/johnDoe')
+        }}
         active={activePage === 'profile'}
         ActiveIcon={(p: IconBaseProps) => <HiUser {...p} />}
         Icon={(p: IconBaseProps) => <HiOutlineUser {...p} />}
