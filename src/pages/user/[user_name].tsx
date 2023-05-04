@@ -4,6 +4,6 @@ import React from 'react'
 
 export default function UserProfile() {
   return (
-      <MainLayout centerComponent={<ProfilePage />} />
+      <MainLayout centerComponent={<ProfilePage />} activePage='profile' />
   )
 }

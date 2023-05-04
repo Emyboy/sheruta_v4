@@ -10,12 +10,14 @@ type Props = {
 	leftComponent?: React.ReactElement
 	centerComponent: React.ReactElement
 	rightComponent?: React.ReactElement
+	activePage?: 'home' | 'activities' | 'upload' | 'profile' | 'wallet'
 }
 
 export default function MainLayout({
 	centerComponent,
 	leftComponent,
 	rightComponent,
+	activePage
 }: Props) {
 	return (
 		<>
@@ -36,7 +38,7 @@ export default function MainLayout({
 					</div>
 				</_Container>
 			</div>
-			<MainFooter />
+			<MainFooter activePage={activePage} />
 		</>
 	)
 }
