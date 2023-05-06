@@ -32,7 +32,7 @@ export default function ProfileHero({}: Props) {
 						<h6 className="text-sm">Financial Manager</h6>
 					</div>
 					<div className=" flex flex-row gap-3 items-center justify-center md:justify-start">
-						<button className="flex gap-2 text-dark_light items-center border py-2 px-3 rounded-lg hover:bg-theme_light hover:text-white border-dark_light">
+						<button className="flex gap-2 text-dark_light items-center border py-2 px-3 rounded-lg border-dark_light">
 							<HiOutlineEnvelope size={25} />
 						</button>
 						<button className="flex gap-2 text-white items-center py-2 px-3 rounded-lg bg-dark">

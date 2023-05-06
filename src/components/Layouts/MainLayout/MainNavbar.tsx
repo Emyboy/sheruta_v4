@@ -34,7 +34,7 @@ export default function MainNavbar({ }: Props) {
                 </div>
             </header> */}
             <header className='bg-dark h-16 flex items-center justify-center fixed left-0 right-0 z-50 '>
-                <_Container className="flex  justify-between px-4 lg:px-0 w-full">
+                <_Container className="flex  justify-between px-4 w-full">
                     <Link href={`/`} className='flex items-center gap-2'>
                         <img alt='brand' src={`/icon_green.png`} className='w-6 md:w-7' />
                         <img alt='brand' src={`/logo_text_white.png`} className='w-24' />

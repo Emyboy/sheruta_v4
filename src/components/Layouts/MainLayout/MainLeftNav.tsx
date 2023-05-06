@@ -9,7 +9,7 @@ type Props = {}
 export default function MainLeftNav({ }: Props) {
   return (
     <div className='p-3'>
-      <div className='flex gap-2'>
+      <Link href={`/user/user13234`} className='flex gap-2'>
         <img
           src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
           alt='avatar'
@@ -19,7 +19,7 @@ export default function MainLeftNav({ }: Props) {
           <p className='font-medium'>First Name</p>
           <small className='text-dark_lighter'>@theUserName</small>
         </div>
-      </div>
+      </Link>
       <nav className="my-8">
         <ul>
           <EachNav Icon={(p: IconBaseProps) => <HiOutlineRocketLaunch {...p} />} active name='Get Started' />

@@ -26,13 +26,13 @@ export default function MainLayout({
 			<div className="bg-background- flex-1 overflow-y-auto flex justify-center pb-16">
 				<_Container className="flex h-full- justify-between ">
 					<aside className="border-r border-1 w-1/3 hidden lg:visible justify-end lg:flex bg-purple-200- ">
-						<div className="bg-green-100- fixed  h-96 w-56">
+						<div className="bg-green-100- fixed  h-96 w-60">
 							{leftComponent || <MainLeftNav />}
 						</div>
 					</aside>
 					<main className="lg:w-2/3 w-screen py-3">{centerComponent}</main>
 					<div className="border-l border-1 w-1/3 hidden lg:visible justify-start lg:flex bg-purple-200- ">
-						<div className="bg-green-100- fixed  h-96 w-56">
+						<div className="bg-green-100- fixed  h-96 w-60">
 							{rightComponent || <MainRightNav />}
 						</div>
 					</div>
