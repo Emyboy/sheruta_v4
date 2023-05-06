@@ -7,7 +7,7 @@ type Props = {}
 export default function FeedPage({ }: Props) {
     return (
 			<>
-				<div className="px-2">
+				<div className="px-3">
 					{new Array(4).fill(null).map((val) => {
 						return <EachRequest />
 					})}
