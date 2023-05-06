@@ -13,7 +13,7 @@ export default function MainFooter({ activePage }: Props) {
   const router = useRouter();
 
   return (
-		<footer className="bg-dark h-16 items-center fixed bottom-0 py-3 px-2 z-50 w-full visible lg:hidden text-gray-300 text-3xl flex justify-between">
+		<footer className="bg-dark h-16 items-center fixed bottom-0 py-3 px-4 z-50 w-full visible lg:hidden text-gray-300 text-3xl flex justify-between">
 			{/* <HiOutlineHome />
       <HiPlus />
       <HiOutlineUser /> */}
