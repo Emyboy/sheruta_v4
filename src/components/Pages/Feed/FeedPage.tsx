@@ -6,16 +6,15 @@ type Props = {}
 
 export default function FeedPage({ }: Props) {
     return (
-        <>
-
-            {
-                new Array(4).fill(null).map(val => {
-                    return <EachRequest />
-                })
-            }
-            <div className="flex justify-center py-9">
-                <_Spinner />
-            </div>
-        </>
-    )
+			<>
+				<div className="px-2">
+					{new Array(4).fill(null).map((val) => {
+						return <EachRequest />
+					})}
+				</div>
+				<div className="flex justify-center py-9">
+					<_Spinner />
+				</div>
+			</>
+		)
 }
