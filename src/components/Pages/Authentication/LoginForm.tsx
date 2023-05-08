@@ -5,7 +5,7 @@ type Props = {}
 
 export default function LoginForm({}: Props) {
 	return (
-		<div className="w-screen lg:w-1/2 flex flex-col gap-4">
+		<div className="w-screen lg:w-3/5 flex flex-col gap-4">
 			<div className="flex flex-col gap-1">
 				<h1 className="text-lg font-semibold">Create your Account </h1>
 				<p className="text-sm text-dark_lighter">
@@ -13,9 +13,31 @@ export default function LoginForm({}: Props) {
 				</p>
 			</div>
 			<form className="flex flex-col gap-3">
-				<_FormInputGroup />
-				<_FormInputGroup />
-				<_FormInputGroup />
+				<_FormInputGroup
+					placeholder='John'
+					label="First Name"
+					onChange={(e) => console.log(e.target.value)}
+				/>
+				<_FormInputGroup
+					placeholder='Doe'
+					label="Last Name"
+					onChange={(e) => console.log(e.target.value)}
+				/>
+				<_FormInputGroup
+					placeholder='JohnDoe@mail.com'
+					label="Email"
+					onChange={(e) => console.log(e.target.value)}
+				/>
+				<_FormInputGroup
+					placeholder='+234 83748574763'
+					label="Phone Number"
+					onChange={(e) => console.log(e.target.value)}
+				/>
+				<_FormInputGroup
+					placeholder='* * * * * * *'
+					label="Password"
+					onChange={(e) => console.log(e.target.value)}
+				/>
 				<div className="flex items-center">
 					<input
 						id="default-checkbox"
@@ -30,7 +52,7 @@ export default function LoginForm({}: Props) {
 						Remember Me
 					</label>
 				</div>
-				<button className="bg-theme text-white rounded-md p-2 w-full hover:bg-theme_light">
+				<button className="bg-theme text-white rounded-md px-2 py-3 w-full hover:bg-theme_light">
 					Login
 				</button>
 			</form>
