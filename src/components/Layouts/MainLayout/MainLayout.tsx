@@ -8,7 +8,7 @@ import MainRightNav from './MainRightNav'
 
 type Props = {
 	leftComponent?: React.ReactElement
-	centerComponent: React.ReactElement
+	centerComponent?: React.ReactElement
 	rightComponent?: React.ReactElement
 	activePage?: 'home' | 'activities' | 'upload' | 'profile' | 'wallet'
 }
@@ -21,7 +21,7 @@ export default function MainLayout({
 }: Props) {
 	return (
 		<>
-			<MainNavbar />
+			<MainNavbar activePage={activePage} />
 
 			<div className="bg-background- flex-1 overflow-y-auto flex justify-center pb-16">
 				<_Container className="flex h-full- justify-between ">

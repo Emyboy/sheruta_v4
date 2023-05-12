@@ -1,32 +1,41 @@
 import React from 'react'
 import _FormInputGroup from '@/packages/ui/_FormInputGroup'
-import { HiOutlineEnvelope, HiOutlineKey } from 'react-icons/hi2'
 
 type Props = {}
 
 export default function LoginForm({}: Props) {
 	return (
-		<form className="flex flex-col gap-5">
+		<form className="flex flex-col gap-3">
 			<div className="flex flex-col gap-1">
-				<h1 className="text-lg font-semibold">Login To your Account </h1>
+				<h1 className="text-lg font-semibold">Create your Account </h1>
 				<p className="text-sm text-dark_lighter">
-					Login to the community and find your roommate.
+					Join the community and find your Paddy
 				</p>
 			</div>
+			<_FormInputGroup
+				placeholder="John"
+				label="First Name"
+				onChange={(e) => console.log(e.target.value)}
+			/>
+			<_FormInputGroup
+				placeholder="Doe"
+				label="Last Name"
+				onChange={(e) => console.log(e.target.value)}
+			/>
 			<_FormInputGroup
 				placeholder="JohnDoe@mail.com"
 				label="Email"
 				onChange={(e) => console.log(e.target.value)}
-				name="email"
-				leftAddon={<HiOutlineEnvelope size={20} />}
+			/>
+			<_FormInputGroup
+				placeholder="+234 83748574763"
+				label="Phone Number"
+				onChange={(e) => console.log(e.target.value)}
 			/>
 			<_FormInputGroup
 				placeholder="* * * * * * *"
 				label="Password"
 				onChange={(e) => console.log(e.target.value)}
-				name="password"
-				type="password"
-				leftAddon={<HiOutlineKey size={20} />}
 			/>
 			<div className="flex items-center">
 				<input
