@@ -22,46 +22,48 @@ export default function MainNavbar({ activePage }: Props) {
 	return (
 		<>
 			<header className="bg-dark h-16 flex items-center justify-center fixed left-0 right-0 z-50 ">
-				<_Container className="flex  justify-between px-4 w-full">
-					<Link href={`/`} className="flex items-center gap-2">
-						<img alt="brand" src={`/icon_green.png`} className="w-6 md:w-7" />
-						<img alt="brand" src={`/logo_text_white.png`} className="w-24" />
-					</Link>
-					<nav className="hidden lg:visible lg:flex items-center gap-2">
-						<EachNav
-							Icon={(p: IconBaseProps) => <HiOutlineHome {...p} />}
-							active={activePage === 'home'}
-						/>
-						<EachNav
-							Icon={(p: IconBaseProps) => <HiPlus {...p} />}
-							active={activePage === 'update'}
-						/>
-						<EachNav
-							Icon={(p: IconBaseProps) => <HiOutlineBell {...p} />}
-							active={activePage === 'activities'}
-							link="/activities"
-						/>
-						<EachNav
-							Icon={(p: IconBaseProps) => <HiMagnifyingGlass {...p} />}
-							active={activePage === 'search'}
-						/>
-					</nav>
-
-					<div className="flex items-center gap-2">
-						<Link
-							href="/"
-							className="hidden sm:visible md:flex outline-1 outline px-5 py-2 rounded-lg text-theme_light text-md hover:bg-theme hover:text-white hover:outline-none"
-						>
-							Post Request
+				<div className="w-full lg:w-3/4">
+					<div className="flex  justify-between px-4 w-full">
+						<Link href={`/`} className="flex items-center gap-2">
+							<img alt="brand" src={`/icon_green.png`} className="w-6 md:w-7" />
+							<img alt="brand" src={`/logo_text_white.png`} className="w-24" />
 						</Link>
-						<button
-							onClick={() => dispatch(setViewState({ show_login: true }))}
-							className="bg-theme  text-white md:px-6 md:py-2 rounded-lg hover:bg-theme_light text-lg px-5 py-1"
-						>
-							Login
-						</button>
+						<nav className="hidden lg:visible lg:flex items-center gap-2">
+							<EachNav
+								Icon={(p: IconBaseProps) => <HiOutlineHome {...p} />}
+								active={activePage === 'home'}
+							/>
+							<EachNav
+								Icon={(p: IconBaseProps) => <HiPlus {...p} />}
+								active={activePage === 'update'}
+							/>
+							<EachNav
+								Icon={(p: IconBaseProps) => <HiOutlineBell {...p} />}
+								active={activePage === 'activities'}
+								link="/activities"
+							/>
+							<EachNav
+								Icon={(p: IconBaseProps) => <HiMagnifyingGlass {...p} />}
+								active={activePage === 'search'}
+							/>
+						</nav>
+
+						<div className="flex items-center gap-2">
+							<Link
+								href="/"
+								className="hidden sm:visible md:flex outline-1 outline px-5 py-2 rounded-lg text-theme_light text-md hover:bg-theme hover:text-white hover:outline-none"
+							>
+								Post Request
+							</Link>
+							<button
+								onClick={() => dispatch(setViewState({ show_login: true }))}
+								className="bg-theme  text-white md:px-6 md:py-2 rounded-lg hover:bg-theme_light text-lg px-5 py-1"
+							>
+								Login
+							</button>
+						</div>
 					</div>
-				</_Container>
+				</div>
 			</header>
 			<div className="h-16" />
 		</>
