@@ -3,6 +3,7 @@ import React from 'react'
 import classNames from 'classnames'
 import Link from 'next/link'
 import {
+	HiBars3CenterLeft,
 	HiMagnifyingGlass,
 	HiOutlineBell,
 	HiOutlineHome,
@@ -24,6 +25,9 @@ export default function MainNavbar({ activePage }: Props) {
 			<header className="bg-dark h-16 flex items-center justify-center fixed left-0 right-0 z-50 ">
 				<div className="w-full lg:w-3/4">
 					<div className="flex  justify-between px-4 w-full">
+						<button className="sm:hidden visible md:flex rounded-lg text-gray-400 text-3xl">
+							<HiBars3CenterLeft />
+						</button>
 						<Link href={`/`} className="flex items-center gap-2">
 							<img alt="brand" src={`/icon_green.png`} className="w-6 md:w-7" />
 							<img alt="brand" src={`/logo_text_white.png`} className="w-24" />
