@@ -3,10 +3,12 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 
 export interface ViewState {
 	show_login: boolean
+	show_left_panel: boolean
 }
 
 const initialState: ViewState = {
 	show_login: false,
+	show_left_panel: false,
 }
 
 export const viewSlice = createSlice({

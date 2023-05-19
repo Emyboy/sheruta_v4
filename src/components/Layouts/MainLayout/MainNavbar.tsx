@@ -8,11 +8,13 @@ import {
 	HiOutlineBell,
 	HiOutlineHome,
 	HiPlus,
+	HiXMark,
 } from 'react-icons/hi2'
 import { IconBaseProps } from 'react-icons'
 import _Container from '@/packages/ui/_Container'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setViewState } from '@/redux/features/view.slice'
+import { AppStore } from '@/interface/index.interface'
 
 type Props = {
 	activePage: any
@@ -20,14 +22,20 @@ type Props = {
 
 export default function MainNavbar({ activePage }: Props) {
 	const dispatch = useDispatch()
+	const { show_left_panel } = useSelector((state: AppStore) => state.view)
 	return (
 		<>
 			<header className="bg-dark h-16 flex items-center justify-center fixed left-0 right-0 z-50 ">
 				<div className="w-full lg:w-3/4">
 					<div className="flex  justify-between px-4 w-full">
-						<button className="sm:hidden visible md:flex rounded-lg text-gray-400 text-3xl">
-							<HiBars3CenterLeft />
-						</button>
+						<div
+							className="md:hidden visible rounded-lg text-gray-400 text-3xl flex-col flex justify-center"
+							onClick={() =>
+								dispatch(setViewState({ show_left_panel: !show_left_panel }))
+							}
+						>
+							{show_left_panel ? <HiXMark /> : <HiBars3CenterLeft />}
+						</div>
 						<Link href={`/`} className="flex items-center gap-2">
 							<img alt="brand" src={`/icon_green.png`} className="w-6 md:w-7" />
 							<img alt="brand" src={`/logo_text_white.png`} className="w-24" />
