@@ -7,11 +7,9 @@ type Props = {
 }
 
 export default function _Modal(props: Props & ModalProps) {
-	if (!props.show) {
-		return null
-	}
+	
 	return (
-		<Modal show={true} onClose={props.onClose} {...props} position="bottom">
+		<Modal show={props.show} onClose={props.onClose} {...props} position="bottom">
 			{/* <Modal.Header>Terms of Service</Modal.Header> */}
 			<div className="p-5">
 				{props.onClose && (
