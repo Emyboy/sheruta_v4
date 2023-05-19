@@ -69,7 +69,7 @@ export default function MainNavbar({ activePage }: Props) {
 							</Link>
 							<button
 								onClick={() => dispatch(setViewState({ show_login: true }))}
-								className="bg-theme  text-white md:px-6 md:py-2 rounded-lg hover:bg-theme_light text-lg px-5 py-1"
+								className="md:bg-theme text-theme md:text-white md:px-6 md:py-2 rounded-lg hover:bg-theme_light text-lg px-0 py-1"
 							>
 								Login
 							</button>
