@@ -9,13 +9,15 @@ import {
 	HiHome,
 	HiOutlineBell,
 	HiOutlineChatBubbleOvalLeftEllipsis,
+	HiOutlineChevronUp,
 	HiOutlineHome,
+	HiOutlineMegaphone,
 	HiOutlineUser,
-	HiOutlineWallet,
 	HiPlus,
 	HiUser,
-	HiWallet,
 } from 'react-icons/hi2'
+import { IoImageOutline } from 'react-icons/io5'
+import { BsLamp } from 'react-icons/bs'
 
 type Props = {
 	activePage?: string
@@ -24,58 +26,111 @@ type Props = {
 export default function MainFooter({ activePage }: Props) {
 	// const [activePage, setActivePage] = useState<string>('home')
 	const router = useRouter()
+	const [showUploadMenu, setShowUploadMenu] = useState(false)
 
 	return (
-		<footer className="bg-dark h-16 items-center fixed bottom-0 py-3 px-4 z-50 w-full visible lg:hidden text-gray-400 text-3xl flex justify-between">
-			{/* <HiOutlineHome />
+		<div className="visible lg:hidden">
+			<div
+				// style={{ bottom: showUploadMenu ? 70 : -900}}
+				onClick={() => setShowUploadMenu(false)}
+				className={classNames(
+					' fixed p-2 bottom-16 z-50 w-screen h-screen flex flex-col justify-end animate__fast animate__animated',
+					{
+						'animate__slideInUp  ': showUploadMenu,
+					},
+					{
+						'animate__slideOutDown  ': !showUploadMenu,
+					}
+				)}
+			>
+				<div className="bg-dark rounded-lg p-5 shadow flex flex-col ">
+					<EachAddOptions
+						title="Upload Room"
+						Icon={(p) => <IoImageOutline {...p} />}
+					/>
+					<EachAddOptions
+						title="Upload Request"
+						Icon={(p) => <HiOutlineMegaphone {...p} />}
+					/>
+					<EachAddOptions
+						title="Upload Furniture"
+						Icon={(p) => <BsLamp {...p} />}
+					/>
+				</div>
+			</div>
+			<footer className="bg-dark h-16 items-center fixed bottom-0 py-3 px-4 z-50 w-full  text-gray-400 text-3xl flex justify-between">
+				{/* <HiOutlineHome />
       <HiPlus />
       <HiOutlineUser /> */}
-			<EachNav
-				title="Home"
-				onClick={() => {
-					router.push('/')
-				}}
-				active={activePage === 'home'}
-				ActiveIcon={(p: IconBaseProps) => <HiHome {...p} />}
-				Icon={(p: IconBaseProps) => <HiOutlineHome {...p} />}
-			/>
-			<EachNav
-				title="Activities"
-				onClick={() => router.push('/activities')}
-				active={activePage === 'activities'}
-				ActiveIcon={(p: IconBaseProps) => <HiBellAlert {...p} />}
-				Icon={(p: IconBaseProps) => <HiOutlineBell {...p} />}
-				count={12}
-			/>
-			<EachNav
-				title="Upload"
-				onClick={() => {}}
-				active={activePage === 'upload'}
-				ActiveIcon={(p: IconBaseProps) => <HiPlus {...p} />}
-				Icon={(p: IconBaseProps) => <HiPlus {...p} />}
-			/>
-			<EachNav
-				title="Messages"
-				onClick={() => router.push('/messages')}
-				active={activePage === 'messages'}
-				ActiveIcon={(p: IconBaseProps) => (
-					<HiChatBubbleOvalLeftEllipsis {...p} />
-				)}
-				Icon={(p: IconBaseProps) => (
-					<HiOutlineChatBubbleOvalLeftEllipsis {...p} />
-				)}
-				count={8}
-			/>
-			<EachNav
-				title="Profile"
-				onClick={() => {
-					router.push('/user/johnDoe')
-				}}
-				active={activePage === 'profile'}
-				ActiveIcon={(p: IconBaseProps) => <HiUser {...p} />}
-				Icon={(p: IconBaseProps) => <HiOutlineUser {...p} />}
-			/>
-		</footer>
+				<EachNav
+					title="Home"
+					onClick={() => {
+						router.push('/')
+					}}
+					active={activePage === 'home'}
+					ActiveIcon={(p: IconBaseProps) => <HiHome {...p} />}
+					Icon={(p: IconBaseProps) => <HiOutlineHome {...p} />}
+				/>
+				<EachNav
+					title="Activities"
+					onClick={() => router.push('/activities')}
+					active={activePage === 'activities'}
+					ActiveIcon={(p: IconBaseProps) => <HiBellAlert {...p} />}
+					Icon={(p: IconBaseProps) => <HiOutlineBell {...p} />}
+					count={12}
+				/>
+				<EachNav
+					title="Upload"
+					onClick={() => setShowUploadMenu(!showUploadMenu)}
+					active={showUploadMenu}
+					ActiveIcon={(p: IconBaseProps) => <HiOutlineChevronUp {...p} />}
+					Icon={(p: IconBaseProps) => <HiPlus {...p} />}
+				/>
+				<EachNav
+					title="Messages"
+					onClick={() => router.push('/messages')}
+					active={activePage === 'messages'}
+					ActiveIcon={(p: IconBaseProps) => (
+						<HiChatBubbleOvalLeftEllipsis {...p} />
+					)}
+					Icon={(p: IconBaseProps) => (
+						<HiOutlineChatBubbleOvalLeftEllipsis {...p} />
+					)}
+					count={8}
+				/>
+				<EachNav
+					title="Profile"
+					onClick={() => {
+						router.push('/user/johnDoe')
+					}}
+					active={activePage === 'profile'}
+					ActiveIcon={(p: IconBaseProps) => <HiUser {...p} />}
+					Icon={(p: IconBaseProps) => <HiOutlineUser {...p} />}
+				/>
+			</footer>
+		</div>
+	)
+}
+
+const EachAddOptions = ({
+	Icon,
+	title,
+}: {
+	Icon: (p: any) => React.ReactElement
+	title: string
+}) => {
+	return (
+		<div className="flex gap-3 py-3">
+			<div className="text-xl flex flex-col justify-center-">
+				<Icon className="text-theme" size={35} />
+			</div>
+			<div className="flex flex-col">
+				<h6 className="text-dark_lighter font-semibold">{title}</h6>
+				<p className="text-dark_lighter text-sm font-light">
+					Lorem ipsum dolor sit, amet consectetur adipisicing elit.{' '}
+				</p>
+			</div>
+		</div>
 	)
 }
 
