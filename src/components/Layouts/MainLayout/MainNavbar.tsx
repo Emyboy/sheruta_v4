@@ -26,7 +26,7 @@ export default function MainNavbar({ activePage }: Props) {
 	return (
 		<>
 			<header className="bg-dark h-16 flex items-center justify-center fixed left-0 right-0 z-50 ">
-				<div className="w-full lg:w-3/4">
+				<div className="w-full md:w-4/5 xl:w-3/5">
 					<div className="flex  justify-between px-4 w-full">
 						<div
 							className="md:hidden visible rounded-lg text-gray-400 text-3xl flex-col flex justify-center"
@@ -60,10 +60,10 @@ export default function MainNavbar({ activePage }: Props) {
 							/>
 						</nav>
 
-						<div className="flex items-center gap-2">
+						<div className="md:flex items-center gap-2 hidden sm:visible ">
 							<Link
 								href="/"
-								className="hidden sm:visible md:flex outline-1 outline px-5 py-2 rounded-lg text-theme_light text-md hover:bg-theme hover:text-white hover:outline-none"
+								className=" md:flex outline-1 outline px-5 py-2 rounded-lg text-theme_light text-md hover:bg-theme hover:text-white hover:outline-none"
 							>
 								Post Request
 							</Link>
@@ -74,6 +74,9 @@ export default function MainNavbar({ activePage }: Props) {
 								Login
 							</button>
 						</div>
+						<Link href={`/search`}>
+							<HiMagnifyingGlass className="md:hidden visible rounded-lg text-gray-400 text-3xl flex-col flex justify-center" />
+						</Link>
 					</div>
 				</div>
 			</header>

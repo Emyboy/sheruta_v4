@@ -3,17 +3,29 @@ import classNames from 'classnames'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { IconBaseProps } from 'react-icons'
-import { HiBellAlert, HiHome, HiOutlineBell, HiOutlineHome, HiOutlineUser, HiOutlineWallet, HiPlus, HiUser, HiWallet } from 'react-icons/hi2'
+import {
+	HiBellAlert,
+	HiChatBubbleOvalLeftEllipsis,
+	HiHome,
+	HiOutlineBell,
+	HiOutlineChatBubbleOvalLeftEllipsis,
+	HiOutlineHome,
+	HiOutlineUser,
+	HiOutlineWallet,
+	HiPlus,
+	HiUser,
+	HiWallet,
+} from 'react-icons/hi2'
 
 type Props = {
-  activePage?: string
+	activePage?: string
 }
 
 export default function MainFooter({ activePage }: Props) {
-  // const [activePage, setActivePage] = useState<string>('home')
-  const router = useRouter();
+	// const [activePage, setActivePage] = useState<string>('home')
+	const router = useRouter()
 
-  return (
+	return (
 		<footer className="bg-dark h-16 items-center fixed bottom-0 py-3 px-4 z-50 w-full visible lg:hidden text-gray-400 text-3xl flex justify-between">
 			{/* <HiOutlineHome />
       <HiPlus />
@@ -28,11 +40,11 @@ export default function MainFooter({ activePage }: Props) {
 				Icon={(p: IconBaseProps) => <HiOutlineHome {...p} />}
 			/>
 			<EachNav
-				title="Wallet"
-				onClick={() => router.push('/wallet')}
-				active={activePage === 'wallet'}
-				ActiveIcon={(p: IconBaseProps) => <HiWallet {...p} />}
-				Icon={(p: IconBaseProps) => <HiOutlineWallet {...p} />}
+				title="Activities"
+				onClick={() => router.push('/activities')}
+				active={activePage === 'activities'}
+				ActiveIcon={(p: IconBaseProps) => <HiBellAlert {...p} />}
+				Icon={(p: IconBaseProps) => <HiOutlineBell {...p} />}
 			/>
 			<EachNav
 				title="Upload"
@@ -42,11 +54,15 @@ export default function MainFooter({ activePage }: Props) {
 				Icon={(p: IconBaseProps) => <HiPlus {...p} />}
 			/>
 			<EachNav
-				title="Activities"
-				onClick={() => router.push('/activities')}
-				active={activePage === 'activities'}
-				ActiveIcon={(p: IconBaseProps) => <HiBellAlert {...p} />}
-				Icon={(p: IconBaseProps) => <HiOutlineBell {...p} />}
+				title="Messages"
+				onClick={() => router.push('/messages')}
+				active={activePage === 'messages'}
+				ActiveIcon={(p: IconBaseProps) => (
+					<HiChatBubbleOvalLeftEllipsis {...p} />
+				)}
+				Icon={(p: IconBaseProps) => (
+					<HiOutlineChatBubbleOvalLeftEllipsis {...p} />
+				)}
 			/>
 			<EachNav
 				title="Profile"
@@ -62,20 +78,29 @@ export default function MainFooter({ activePage }: Props) {
 }
 
 const EachNav = ({
-  active,
-  ActiveIcon,
-  Icon,
-  onClick,
-  title
+	active,
+	ActiveIcon,
+	Icon,
+	onClick,
+	title,
 }: {
-  active: boolean
-  ActiveIcon: (p: any) => React.ReactElement
-  Icon: (p: any) => React.ReactElement
-  onClick: () => void,
-  title: string
+	active: boolean
+	ActiveIcon: (p: any) => React.ReactElement
+	Icon: (p: any) => React.ReactElement
+	onClick: () => void
+	title: string
 }) => {
-  return <div className={classNames({ "text-theme_light": active }, "flex flex-col items-center gap-1")}>
-    <button onClick={onClick} className={''}>{active ? <ActiveIcon size={27} /> : <Icon size={27} />}</button>
-    <small className='text-xs font-light'>{title}</small>
-  </div>
+	return (
+		<div
+			className={classNames(
+				{ 'text-theme_light': active },
+				'flex flex-col items-center gap-1'
+			)}
+		>
+			<button onClick={onClick} className={''}>
+				{active ? <ActiveIcon size={27} /> : <Icon size={27} />}
+			</button>
+			<small className="text-xs font-light">{title}</small>
+		</div>
+	)
 }

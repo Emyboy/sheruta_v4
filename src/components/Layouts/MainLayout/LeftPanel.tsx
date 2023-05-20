@@ -22,10 +22,10 @@ export default ({ leftComponent }: { leftComponent: any }) => {
 	return (
 		<>
 			<aside
-				className="border-r border-1 z-50 md:z-0 justify-end lg:flex  bg-white md:bg-none  md:h-auto h-screen w-72 shadow-lg md:shadow-none md:w-1/3"
+				className="border-r border-1  md:w-1/3 justify-end md:z-0 md:relative md:min-h-fit lg:flex  || bg-white min-h-screen bg-red-100- fixed w-72 z-50"
 				style={{ left: show_left_panel ? 0 : -500,  }}
 			>
-				<div className="bg-green-100- fixed  h-96 w-60">
+				<div className="bg-green-100- md:fixed  h-96 w-ful md:w-60">
 					{leftComponent || <MainLeftNav />}
 				</div>
 			</aside>

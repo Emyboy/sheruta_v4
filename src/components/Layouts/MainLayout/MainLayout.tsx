@@ -13,7 +13,7 @@ type Props = {
 	leftComponent?: React.ReactElement
 	centerComponent?: React.ReactElement
 	rightComponent?: React.ReactElement
-	activePage?: 'home' | 'activities' | 'upload' | 'profile' | 'wallet'
+	activePage?: 'home' | 'activities' | 'upload' | 'profile' | 'wallet' | 'messages' 
 }
 
 export default function MainLayout({
@@ -25,12 +25,13 @@ export default function MainLayout({
 	return (
 		<>
 			<MainNavbar activePage={activePage} />
-
 			<div className="bg-background- flex-1 overflow-y-auto flex justify-center pb-16">
 				<_Container className="flex h-full- justify-between ">
 					<LeftPanel leftComponent={leftComponent} />
-					<main className="lg:w-2/3 w-screen py-3">{centerComponent}</main>
-					<div className="border-l border-1 w-1/3 hidden lg:visible justify-start lg:flex bg-purple-200- ">
+					<main className="xl:w-1/3 lg:w-4/5 w-screen py-3">
+						{centerComponent}
+					</main>
+					<div className="border-l border-1 w-1/3 hidden lg:visible justify-start lg:flex  ">
 						<div className="bg-green-100- fixed  h-96 w-60">
 							{rightComponent || <MainRightNav />}
 						</div>
