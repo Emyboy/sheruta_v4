@@ -45,6 +45,7 @@ export default function MainFooter({ activePage }: Props) {
 				active={activePage === 'activities'}
 				ActiveIcon={(p: IconBaseProps) => <HiBellAlert {...p} />}
 				Icon={(p: IconBaseProps) => <HiOutlineBell {...p} />}
+				count={12}
 			/>
 			<EachNav
 				title="Upload"
@@ -63,6 +64,7 @@ export default function MainFooter({ activePage }: Props) {
 				Icon={(p: IconBaseProps) => (
 					<HiOutlineChatBubbleOvalLeftEllipsis {...p} />
 				)}
+				count={8}
 			/>
 			<EachNav
 				title="Profile"
@@ -83,12 +85,14 @@ const EachNav = ({
 	Icon,
 	onClick,
 	title,
+	count,
 }: {
 	active: boolean
 	ActiveIcon: (p: any) => React.ReactElement
 	Icon: (p: any) => React.ReactElement
 	onClick: () => void
 	title: string
+	count?: number
 }) => {
 	return (
 		<div
@@ -97,6 +101,11 @@ const EachNav = ({
 				'flex flex-col items-center gap-1'
 			)}
 		>
+			{count && count > 0 ? (
+				<span className="bg-danger absolute text-white text-xs rounded-full px-1 ml-6">
+					{count}
+				</span>
+			) : null}
 			<button onClick={onClick} className={''}>
 				{active ? <ActiveIcon size={27} /> : <Icon size={27} />}
 			</button>
