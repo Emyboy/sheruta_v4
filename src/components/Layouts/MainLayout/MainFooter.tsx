@@ -125,7 +125,7 @@ const EachAddOptions = ({
 				<Icon className="text-theme" size={35} />
 			</div>
 			<div className="flex flex-col">
-				<h6 className="text-dark_lighter font-semibold">{title}</h6>
+				<h6 className="text-gray-400 font-semibold">{title}</h6>
 				<p className="text-dark_lighter text-sm font-light">
 					Lorem ipsum dolor sit, amet consectetur adipisicing elit.{' '}
 				</p>
