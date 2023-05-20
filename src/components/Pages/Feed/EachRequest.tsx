@@ -113,7 +113,7 @@ const CommentSection = () => {
 				<img src="/assets/img/user.jpg" className="w-9 h-9 rounded-full" />
 				<input
 					placeholder="Ask your question (Ex. is this available?)"
-					className="bg-background w-full outline-none"
+					className="bg-background w-full outline-none text-sm md:text-md"
 				/>
 				<button className="bg-dark text-white rounded-full px-3 py-1">
 					Send
