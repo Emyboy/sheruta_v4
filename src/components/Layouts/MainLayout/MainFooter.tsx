@@ -31,7 +31,7 @@ export default function MainFooter({ activePage }: Props) {
 	return (
 		<div className="visible lg:hidden">
 			<div
-				style={{ bottom: showUploadMenu ? 70 : -243 }}
+				style={{ bottom: showUploadMenu ? 70 : -293 }}
 				onClick={() => setShowUploadMenu(false)}
 				className={classNames(
 					'fixed p-2 bottom-16 z-50 w-screen h-screen flex flex-col justify-end  animate__animated',
