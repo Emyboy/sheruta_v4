@@ -34,12 +34,12 @@ export default function MainFooter({ activePage }: Props) {
 				// style={{ bottom: showUploadMenu ? 70 : -900}}
 				onClick={() => setShowUploadMenu(false)}
 				className={classNames(
-					' fixed p-2 bottom-16 z-50 w-screen h-screen flex flex-col justify-end animate__fast animate__animated',
+					' fixed p-2 bottom-16 z-50 w-screen h-screen flex flex-col justify-end  animate__animated',
 					{
-						'animate__slideInUp  ': showUploadMenu,
+						'animate__slideInUp  animate__faster': showUploadMenu,
 					},
 					{
-						'animate__slideOutDown  ': !showUploadMenu,
+						'animate__slideOutDown  animate__fast-': !showUploadMenu,
 					}
 				)}
 			>
