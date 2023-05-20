@@ -35,12 +35,12 @@ export default function MainFooter({ activePage }: Props) {
 				onClick={() => setShowUploadMenu(false)}
 				className={classNames(
 					'fixed p-2 bottom-16 z-50 w-screen h-screen flex flex-col justify-end  animate__animated',
-					{
-						'animate__slideInUp  animate__faster': showUploadMenu,
-					},
-					{
-						'animate__slideOutDown  animate__delay-2s-': !showUploadMenu,
-					}
+					// {
+					// 	'animate__slideInUp  animate__faster': showUploadMenu,
+					// },
+					// {
+					// 	'animate__slideOutDown  animate__delay-2s-': !showUploadMenu,
+					// }
 				)}
 			>
 				<div className="bg-dark rounded-lg p-5 shadow flex flex-col ">
