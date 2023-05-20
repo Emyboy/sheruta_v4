@@ -11,13 +11,12 @@ import {
 	HiOutlineChatBubbleOvalLeftEllipsis,
 	HiOutlineChevronUp,
 	HiOutlineHome,
-	HiOutlineMegaphone,
 	HiOutlineUser,
 	HiPlus,
 	HiUser,
 } from 'react-icons/hi2'
-import { IoImageOutline } from 'react-icons/io5'
-import { BsLamp } from 'react-icons/bs'
+import FooterUploadOptions from './FooterUploadOptions'
+
 
 type Props = {
 	activePage?: string
@@ -27,35 +26,19 @@ export default function MainFooter({ activePage }: Props) {
 	// const [activePage, setActivePage] = useState<string>('home')
 	const router = useRouter()
 	const [showUploadMenu, setShowUploadMenu] = useState(false)
+	const [footerOptions, setFooterOptions] = useState('upload')
 
 	return (
 		<div className="visible lg:hidden">
 			<div
-				style={{ bottom: showUploadMenu ? 70 : -293 }}
+				style={{ bottom: showUploadMenu ? 70 : -893 }}
 				onClick={() => setShowUploadMenu(false)}
 				className={classNames(
-					'fixed p-2 bottom-16 z-50 w-screen h-screen flex flex-col justify-end  animate__animated',
-					// {
-					// 	'animate__slideInUp  animate__faster': showUploadMenu,
-					// },
-					// {
-					// 	'animate__slideOutDown  animate__delay-2s-': !showUploadMenu,
-					// }
+					'fixed p-1 bottom-16 z-50 w-screen h-screen flex flex-col justify-end  animate__animated',
 				)}
 			>
-				<div className="bg-dark rounded-lg p-5 shadow flex flex-col ">
-					<EachAddOptions
-						title="Room"
-						Icon={(p) => <IoImageOutline {...p} />}
-					/>
-					<EachAddOptions
-						title="Request"
-						Icon={(p) => <HiOutlineMegaphone {...p} />}
-					/>
-					<EachAddOptions
-						title="Furniture"
-						Icon={(p) => <BsLamp {...p} />}
-					/>
+				<div className="bg-dark rounded-xl shadow">
+					<FooterUploadOptions />
 				</div>
 			</div>
 			<footer className="bg-dark h-16 items-center fixed bottom-0 py-3 px-4 z-50 w-full  text-gray-400 text-3xl flex justify-between">
@@ -112,27 +95,7 @@ export default function MainFooter({ activePage }: Props) {
 	)
 }
 
-const EachAddOptions = ({
-	Icon,
-	title,
-}: {
-	Icon: (p: any) => React.ReactElement
-	title: string
-}) => {
-	return (
-		<div className="flex gap-3 py-3">
-			<div className="text-xl flex flex-col justify-center-">
-				<Icon className="text-theme" size={35} />
-			</div>
-			<div className="flex flex-col">
-				<h6 className="text-gray-400 font-semibold">{title}</h6>
-				<p className="text-dark_lighter text-sm font-light">
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit.{' '}
-				</p>
-			</div>
-		</div>
-	)
-}
+
 
 const EachNav = ({
 	active,

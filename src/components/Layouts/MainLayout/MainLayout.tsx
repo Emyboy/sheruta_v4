@@ -2,8 +2,8 @@ import React from 'react'
 import _Container from '@/packages/ui/_Container'
 
 import MainNavbar from './MainNavbar'
-import MainFooter from './MainFooter'
-import MainLeftNav from './MainLeftNav'
+import MainFooter from './MainFooter/MainFooter'
+// import MainLeftNav from './MainLeftNav'
 import MainRightNav from './MainRightNav'
 import LeftPanel from './LeftPanel'
 
