@@ -6,7 +6,7 @@ export default function ProfileAbout({}: Props) {
 	return (
 		<section className="flex flex-col gap-5">
 			<div className="flex flex-col gap-2">
-				<h6 className='text-lg'>About Me</h6>
+				<h6 className='text-lg mb-2'>About Me</h6>
 				<p className='text-sm'>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit, ex
 					sapiente inventore tempore repellendus aliquam corrupti incidunt

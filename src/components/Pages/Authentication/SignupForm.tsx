@@ -7,7 +7,7 @@ export default function LoginForm({}: Props) {
 	return (
 		<form className="flex flex-col gap-3">
 			<div className="flex flex-col gap-1">
-				<h1 className="text-lg font-semibold">Create your Account </h1>
+				<h1 className="text-lg font-semibold">Register your Account </h1>
 				<p className="text-sm text-dark_lighter">
 					Join the community and find your Paddy
 				</p>
@@ -28,7 +28,7 @@ export default function LoginForm({}: Props) {
 				onChange={(e) => console.log(e.target.value)}
 			/>
 			<_FormInputGroup
-				placeholder="+234 83748574763"
+				placeholder="+234 12345...."
 				label="Phone Number"
 				onChange={(e) => console.log(e.target.value)}
 			/>

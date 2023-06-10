@@ -7,7 +7,7 @@ export default function ProfileSocials({}: Props) {
 	return (
 		<section>
 			<div className="flex flex-col gap-2">
-				<h6 className="text-lg">Socials Media</h6>
+				<h6 className="text-lg mb-2">Socials Media</h6>
 				<div className="flex flex-wrap gap-2">
 					{new Array(4).fill(null).map((val) => {
 						return <EachSocial />

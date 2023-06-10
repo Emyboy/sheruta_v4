@@ -1,11 +1,11 @@
 'use client'
 import React from 'react'
-import LoginForm from './LoginForm'
+import RegisterForm from './SignupForm'
 
-export default function LoginPage() {
+export default function RegisterPage() {
 	return (
 		<div className="px-4 flex justify-center my-10">
-			<LoginForm />
+			<RegisterForm />
 		</div>
 	)
 }

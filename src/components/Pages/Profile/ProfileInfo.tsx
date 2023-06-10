@@ -5,7 +5,7 @@ type Props = {}
 export default function ProfileInfo({}: Props) {
 	return (
 		<section className="flex flex-col gap-2">
-			<h6 className='text-lg'>Additional Information</h6>
+			<h6 className='text-lg mb-2'>Additional Information</h6>
 			<div className="flex flex-wrap gap-4 md:gap-4 justify-between">
 				{new Array(8).fill(null).map((val) => {
 					return <EachInfo />

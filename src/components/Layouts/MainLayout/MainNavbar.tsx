@@ -17,15 +17,22 @@ import { setViewState } from '@/redux/features/view.slice'
 import { AppStore } from '@/interface/index.interface'
 
 type Props = {
-	activePage: any
+	activePage: any,
+	className?: string
 }
 
-export default function MainNavbar({ activePage }: Props) {
+export default function MainNavbar({ activePage, className }: Props) {
 	const dispatch = useDispatch()
 	const { show_left_panel } = useSelector((state: AppStore) => state.view)
 	return (
 		<>
-			<header className="bg-dark h-16 left-0 right-0 z-50 flex justify-center fixed">
+			<header
+				className={classNames(
+					'bg-dark h-16 left-0 right-0 z-50 flex justify-center ',
+					{ '': className },
+					{ fixed: !className }
+				)}
+			>
 				<div className="justify-between xl:w-3/5 md:w-5/6 sm:w-full w-full items-center flex px-5 md:px-0">
 					<div
 						className="md:hidden visible rounded-lg text-gray-400 text-3xl flex-col flex justify-center"
@@ -61,24 +68,25 @@ export default function MainNavbar({ activePage }: Props) {
 
 					<div className="md:flex items-center gap-2 hidden sm:visible ">
 						<Link
-							href="/"
+							href="/register"
 							className=" md:flex outline-1 outline px-5 py-2 rounded-lg text-theme_light text-md hover:bg-theme hover:text-white hover:outline-none"
 						>
 							Post Request
 						</Link>
-						<button
-							onClick={() => dispatch(setViewState({ show_login: true }))}
+						<Link
+							href={`/login`}
+							// onClick={() => dispatch(setViewState({ show_login: true }))}
 							className="md:bg-theme text-theme md:text-white md:px-6 md:py-2 rounded-lg hover:bg-theme_light text-lg px-0 py-1"
 						>
 							Login
-						</button>
+						</Link>
 					</div>
 					<Link href={`/search`} className="md:hidden visible">
 						<HiMagnifyingGlass className="md:hidden visible rounded-lg text-gray-400 text-3xl flex-col flex justify-center" />
 					</Link>
 				</div>
 			</header>
-			<div className="h-16" />
+			{!className && <div className="h-16" />}
 		</>
 	)
 }
