@@ -25,59 +25,57 @@ export default function MainNavbar({ activePage }: Props) {
 	const { show_left_panel } = useSelector((state: AppStore) => state.view)
 	return (
 		<>
-			<header className="bg-dark h-16 flex items-center justify-center fixed left-0 right-0 z-50 ">
-				<div className="w-full md:w-4/5 xl:w-3/5">
-					<div className="flex  justify-between px-4 w-full">
-						<div
-							className="md:hidden visible rounded-lg text-gray-400 text-3xl flex-col flex justify-center"
-							onClick={() =>
-								dispatch(setViewState({ show_left_panel: !show_left_panel }))
-							}
-						>
-							{show_left_panel ? <HiXMark /> : <HiBars3CenterLeft />}
-						</div>
-						<Link href={`/`} className="flex items-center gap-2">
-							<img alt="brand" src={`/icon_green.png`} className="w-6 md:w-7" />
-							<img alt="brand" src={`/logo_text_white.png`} className="w-24" />
-						</Link>
-						<nav className="hidden lg:visible lg:flex items-center gap-2">
-							<EachNav
-								Icon={(p: IconBaseProps) => <HiOutlineHome {...p} />}
-								active={activePage === 'home'}
-							/>
-							<EachNav
-								Icon={(p: IconBaseProps) => <HiPlus {...p} />}
-								active={activePage === 'update'}
-							/>
-							<EachNav
-								Icon={(p: IconBaseProps) => <HiOutlineBell {...p} />}
-								active={activePage === 'activities'}
-								link="/activities"
-							/>
-							<EachNav
-								Icon={(p: IconBaseProps) => <HiMagnifyingGlass {...p} />}
-								active={activePage === 'search'}
-							/>
-						</nav>
-
-						<div className="md:flex items-center gap-2 hidden sm:visible ">
-							<Link
-								href="/"
-								className=" md:flex outline-1 outline px-5 py-2 rounded-lg text-theme_light text-md hover:bg-theme hover:text-white hover:outline-none"
-							>
-								Post Request
-							</Link>
-							<button
-								onClick={() => dispatch(setViewState({ show_login: true }))}
-								className="md:bg-theme text-theme md:text-white md:px-6 md:py-2 rounded-lg hover:bg-theme_light text-lg px-0 py-1"
-							>
-								Login
-							</button>
-						</div>
-						<Link href={`/search`}>
-							<HiMagnifyingGlass className="md:hidden visible rounded-lg text-gray-400 text-3xl flex-col flex justify-center" />
-						</Link>
+			<header className="bg-dark h-16 left-0 right-0 z-50 flex justify-center fixed">
+				<div className="justify-between xl:w-3/5 md:w-5/6 sm:w-full w-full items-center flex px-5 md:px-0">
+					<div
+						className="md:hidden visible rounded-lg text-gray-400 text-3xl flex-col flex justify-center"
+						onClick={() =>
+							dispatch(setViewState({ show_left_panel: !show_left_panel }))
+						}
+					>
+						{show_left_panel ? <HiXMark /> : <HiBars3CenterLeft />}
 					</div>
+					<Link href={`/`} className="flex items-center gap-2">
+						<img alt="brand" src={`/icon_green.png`} className="w-6 md:w-7" />
+						<img alt="brand" src={`/logo_text_white.png`} className="w-24" />
+					</Link>
+					<nav className="hidden lg:visible lg:flex items-center gap-2">
+						<EachNav
+							Icon={(p: IconBaseProps) => <HiOutlineHome {...p} />}
+							active={activePage === 'home'}
+						/>
+						<EachNav
+							Icon={(p: IconBaseProps) => <HiPlus {...p} />}
+							active={activePage === 'update'}
+						/>
+						<EachNav
+							Icon={(p: IconBaseProps) => <HiOutlineBell {...p} />}
+							active={activePage === 'activities'}
+							link="/activities"
+						/>
+						<EachNav
+							Icon={(p: IconBaseProps) => <HiMagnifyingGlass {...p} />}
+							active={activePage === 'search'}
+						/>
+					</nav>
+
+					<div className="md:flex items-center gap-2 hidden sm:visible ">
+						<Link
+							href="/"
+							className=" md:flex outline-1 outline px-5 py-2 rounded-lg text-theme_light text-md hover:bg-theme hover:text-white hover:outline-none"
+						>
+							Post Request
+						</Link>
+						<button
+							onClick={() => dispatch(setViewState({ show_login: true }))}
+							className="md:bg-theme text-theme md:text-white md:px-6 md:py-2 rounded-lg hover:bg-theme_light text-lg px-0 py-1"
+						>
+							Login
+						</button>
+					</div>
+					<Link href={`/search`} className="md:hidden visible">
+						<HiMagnifyingGlass className="md:hidden visible rounded-lg text-gray-400 text-3xl flex-col flex justify-center" />
+					</Link>
 				</div>
 			</header>
 			<div className="h-16" />
