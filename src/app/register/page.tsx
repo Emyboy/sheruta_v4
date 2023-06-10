@@ -1,6 +1,5 @@
 'use client'
 import MainNavbar from '@/components/Layouts/MainLayout/MainNavbar'
-import LoginPage from '@/components/Pages/Authentication/LoginPage'
 import React from 'react'
 import _Container from '@/packages/ui/_Container'
 import RegisterPage from '@/components/Pages/Authentication/RegisterPage'

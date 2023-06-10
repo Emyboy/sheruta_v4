@@ -13,11 +13,13 @@ export default function LoginForm({}: Props) {
 				</p>
 			</div>
 			<_FormInputGroup
+				name='first_name'
 				placeholder="John"
 				label="First Name"
 				onChange={(e) => console.log(e.target.value)}
 			/>
 			<_FormInputGroup
+				name='last_name'
 				placeholder="Doe"
 				label="Last Name"
 				onChange={(e) => console.log(e.target.value)}

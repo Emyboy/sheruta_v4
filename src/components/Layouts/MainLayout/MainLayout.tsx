@@ -28,7 +28,7 @@ export default function MainLayout({
 			<div className="bg-background- flex-1 overflow-y-auto flex justify-center pb-16">
 				<_Container className="flex h-full- justify-between ">
 					<LeftPanel leftComponent={leftComponent} />
-					<main className="xl:w-1/3 lg:w-4/5 w-screen py-3">
+					<main className="xl:w-1/3 lg:w-4/5 w-screen py-3-">
 						{centerComponent}
 					</main>
 					<div className="border-l border-1 w-1/3 hidden lg:visible justify-start lg:flex  ">
