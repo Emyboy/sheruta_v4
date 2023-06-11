@@ -6,18 +6,24 @@ import MainLeftNav from './MainLeftNav'
 import { setViewState } from '@/redux/features/view.slice'
 
 
-export default ({ leftComponent }: { leftComponent: any }) => {
+export default ({
+	leftComponent,
+	activePage,
+}: {
+	leftComponent: any
+	activePage?: string
+}) => {
 	const { show_left_panel } = useSelector((state: AppStore) => state.view)
 	const dispatch = useDispatch()
 
 	useEffect(() => {
-		if(window && window.innerWidth > 500){
+		if (window && window.innerWidth > 500) {
 			dispatch(setViewState({ show_left_panel: true }))
-		}else {
+		} else {
 			dispatch(setViewState({ show_left_panel: false }))
 		}
 		console.log(window.innerWidth)
-	},[])
+	}, [])
 
 	return (
 		<>
@@ -26,7 +32,7 @@ export default ({ leftComponent }: { leftComponent: any }) => {
 				style={{ left: show_left_panel ? 0 : -500 }}
 			>
 				<div className="bg-green-100- md:fixed  h-96 w-ful md:w-60">
-					{leftComponent || <MainLeftNav />}
+					{leftComponent || <MainLeftNav activePage={activePage} />}
 				</div>
 			</aside>
 			{show_left_panel && (

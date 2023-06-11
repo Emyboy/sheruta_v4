@@ -3,6 +3,6 @@ import React from 'react'
 
 type Props = {}
 
-export default function MessagesPage({}: Props) {
+export default function ConversationDetails({}: Props) {
 	return <MessagesComponent />
 }

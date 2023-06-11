@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 import { HiCalendarDays, HiMapPin, HiOutlineXCircle } from 'react-icons/hi2'
 
@@ -7,9 +8,12 @@ export default function EachInspection({}: Props) {
 	return (
 		<>
 			<div className="p-4 flex flex-col gap-5">
-				<h5 className="font-medium text-sm">
-					With <span className="text-theme">First Nam</span>
-				</h5>
+				<Link href={`/user/user-1234k`}>
+					<h5 className="font-medium text-sm">
+						Virtual inspection With{' '}
+						<span className="text-theme">First Name</span>
+					</h5>
+				</Link>
 				<div className="flex flex-wrap gap-2 justify-between">
 					<span className="text-dark_lighter text-sm flex gap-2 items-center">
 						<HiCalendarDays className="text-lg" /> 12 March by 03:30 PM

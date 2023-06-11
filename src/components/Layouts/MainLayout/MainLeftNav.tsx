@@ -12,9 +12,9 @@ import {
 import classnames from 'classnames'
 import { IconBaseProps } from 'react-icons'
 
-type Props = {}
+type Props = { activePage?: string }
 
-export default function MainLeftNav({}: Props) {
+export default function MainLeftNav({ activePage }: Props) {
 	return (
 		<div className="p-3">
 			<Link href={`/user/user13234`} className="flex gap-2">
@@ -31,15 +31,15 @@ export default function MainLeftNav({}: Props) {
 			<nav className="my-8">
 				<ul>
 					<EachNav
-            link='/start'
+						link="/start"
 						Icon={(p: IconBaseProps) => <HiOutlineRocketLaunch {...p} />}
-						active
+						active={activePage === 'start'}
 						name="Get Started"
 					/>
 					<EachNav
-            link='/inspections'
+						link="/inspections"
 						Icon={(p: IconBaseProps) => <HiOutlineVideoCamera {...p} />}
-						active={false}
+						active={activePage === 'inspections'}
 						name="Inspections"
 					/>
 					<EachNav
