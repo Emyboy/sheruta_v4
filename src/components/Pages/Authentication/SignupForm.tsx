@@ -9,7 +9,7 @@ import {
 	HiOutlineUser,
 } from 'react-icons/hi2'
 import Link from 'next/link'
-import { Spinner } from 'flowbite-react'
+import _Button from '@/packages/ui/_Button'
 
 type Props = {}
 
@@ -47,8 +47,11 @@ export default function LoginForm({}: Props) {
 					Join the community and find your Paddy
 				</p>
 			</div>
+
 			<_FormInputGroup
+				required
 				name="first_name"
+				id="first_name"
 				placeholder="John"
 				label="First Name"
 				onChange={(e) =>
@@ -58,7 +61,9 @@ export default function LoginForm({}: Props) {
 			/>
 
 			<_FormInputGroup
+				required
 				name="last_name"
+				id="last_name"
 				placeholder="Doe"
 				label="Last Name"
 				onChange={(e) =>
@@ -67,24 +72,30 @@ export default function LoginForm({}: Props) {
 				leftAddon={<HiOutlineUser size={20} />}
 			/>
 			<_FormInputGroup
+				required
 				placeholder="JohnDoe@mail.com"
 				label="Email"
 				onChange={(e) => setEmail(e.target.value.trim().toLowerCase())}
 				name="email"
+				id="email"
 				leftAddon={<HiOutlineEnvelope size={20} />}
 			/>
 			<_FormInputGroup
+				required
 				placeholder="+234 12345...."
 				label="Phone Number"
 				type="number"
 				name="phone_number"
+				id="phone_number"
 				onChange={(e) => setPhoneNumber(parseInt(e.target.value.trim()))}
 				leftAddon={<HiOutlinePhone size={20} />}
 			/>
 			<_FormInputGroup
+				required
 				placeholder="* * * * * * *"
 				label="Password"
 				name="password"
+				id="password"
 				type={show ? 'text' : 'password'}
 				onChange={(e) => setPassword(e.target.value)}
 				rightAddon={
@@ -98,9 +109,9 @@ export default function LoginForm({}: Props) {
 				}
 				leftAddon={<HiOutlineLockClosed size={20} />}
 			/>
-			<button className="bg-theme text-white rounded-md px-2 py-3 w-full hover:bg-theme_light mt-">
-				<Spinner color='pink' />
-			</button>
+			<_Button isLoading={loading}>
+				Register
+			</_Button>
 			<p className="text-xs text-dark_lighter">
 				Already have an account?{' '}
 				<Link href={`/login`} className="text-theme font-bold">
