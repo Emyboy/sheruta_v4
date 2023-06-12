@@ -24,10 +24,11 @@ export default function _FormInputGroup({
 }: Props) {
 	return (
 		<div>
-			{label && <label className="text-sm text-dark_lighter">{label}</label>}
+			{label && <label htmlFor={name} className="text-sm text-dark_lighter">{label}</label>}
 			<div className="rounded-md border border-dark_lighter px-2 py- flex gap-3 items-center text-dark_lighter">
-				{leftAddon && <div>{leftAddon}</div>}
+				{leftAddon && <div className="text-gray-400">{leftAddon}</div>}
 				<input
+					id={name}
 					name={name}
 					className="outline-none bg-none text-sm w-full h-11 border-0"
 					placeholder={placeholder}
@@ -35,7 +36,7 @@ export default function _FormInputGroup({
 					onChange={onChange}
 					type={type}
 				/>
-				{rightAddon && <div>{rightAddon}</div>}
+				{rightAddon && <div className="text-gray-400">{rightAddon}</div>}
 			</div>
 		</div>
 	)

@@ -1,11 +1,46 @@
-import React from 'react'
+import React, { useState } from 'react'
 import _FormInputGroup from '@/packages/ui/_FormInputGroup'
+import {
+	HiOutlineEnvelope,
+	HiOutlineEye,
+	HiOutlineEyeSlash,
+	HiOutlineLockClosed,
+	HiOutlinePhone,
+	HiOutlineUser,
+} from 'react-icons/hi2'
+import Link from 'next/link'
+import { Spinner } from 'flowbite-react'
 
 type Props = {}
 
 export default function LoginForm({}: Props) {
+	const [show, setShow] = useState(false)
+	const [loading, setLoading] = useState(false)
+
+	const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
+	const [first_name, setFirstName] = useState('')
+	const [last_name, setLastName] = useState('')
+	const [phone_number, setPhoneNumber] = useState<number>()
+
+	const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
+		try {
+			e.preventDefault();
+			const data = {
+				email,
+				password,
+				first_name,
+				last_name,
+				phone_number
+			}
+			console.log(data)
+		} catch (error) {
+			return Promise.reject(error)
+		}
+	}
+
 	return (
-		<form className="flex flex-col gap-3">
+		<form className="flex flex-col gap-3" onSubmit={handleSubmit}>
 			<div className="flex flex-col gap-1">
 				<h1 className="text-lg font-semibold">Register your Account </h1>
 				<p className="text-sm text-dark_lighter">
@@ -13,49 +48,65 @@ export default function LoginForm({}: Props) {
 				</p>
 			</div>
 			<_FormInputGroup
-				name='first_name'
+				name="first_name"
 				placeholder="John"
 				label="First Name"
-				onChange={(e) => console.log(e.target.value)}
+				onChange={(e) =>
+					setFirstName(e.target.value.toLowerCase().split(' ')[0].trim())
+				}
+				leftAddon={<HiOutlineUser size={20} />}
 			/>
+
 			<_FormInputGroup
-				name='last_name'
+				name="last_name"
 				placeholder="Doe"
 				label="Last Name"
-				onChange={(e) => console.log(e.target.value)}
+				onChange={(e) =>
+					setLastName(e.target.value.toLowerCase().split(' ')[0].trim())
+				}
+				leftAddon={<HiOutlineUser size={20} />}
 			/>
 			<_FormInputGroup
 				placeholder="JohnDoe@mail.com"
 				label="Email"
-				onChange={(e) => console.log(e.target.value)}
+				onChange={(e) => setEmail(e.target.value.trim().toLowerCase())}
+				name="email"
+				leftAddon={<HiOutlineEnvelope size={20} />}
 			/>
 			<_FormInputGroup
 				placeholder="+234 12345...."
 				label="Phone Number"
-				onChange={(e) => console.log(e.target.value)}
+				type="number"
+				name="phone_number"
+				onChange={(e) => setPhoneNumber(parseInt(e.target.value.trim()))}
+				leftAddon={<HiOutlinePhone size={20} />}
 			/>
 			<_FormInputGroup
 				placeholder="* * * * * * *"
 				label="Password"
-				onChange={(e) => console.log(e.target.value)}
+				name="password"
+				type={show ? 'text' : 'password'}
+				onChange={(e) => setPassword(e.target.value)}
+				rightAddon={
+					<span onClick={() => setShow(!show)} className="cursor-pointer">
+						{show ? (
+							<HiOutlineEyeSlash size={20} />
+						) : (
+							<HiOutlineEye size={20} />
+						)}
+					</span>
+				}
+				leftAddon={<HiOutlineLockClosed size={20} />}
 			/>
-			<div className="flex items-center">
-				<input
-					id="default-checkbox"
-					type="checkbox"
-					value=""
-					className="w-4 h-4 text-theme bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-				/>
-				<label
-					htmlFor="default-checkbox"
-					className="ml-2 text-sm  text-dark_lighter"
-				>
-					Remember Me
-				</label>
-			</div>
-			<button className="bg-theme text-white rounded-md px-2 py-3 w-full hover:bg-theme_light">
-				Login
+			<button className="bg-theme text-white rounded-md px-2 py-3 w-full hover:bg-theme_light mt-">
+				<Spinner color='pink' />
 			</button>
+			<p className="text-xs text-dark_lighter">
+				Already have an account?{' '}
+				<Link href={`/login`} className="text-theme font-bold">
+					Login
+				</Link>
+			</p>
 		</form>
 	)
 }

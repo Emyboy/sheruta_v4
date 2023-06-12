@@ -15,7 +15,7 @@ export default function Login() {
 						backgroundImage: `url(https://images.pexels.com/photos/7208925/pexels-photo-7208925.jpeg?auto=compress&cs=tinysrgb&w=1600)`,
 					}}
 				></div>
-				<div className="w-screen md:w-1/2 flex flex-col justify-center">
+				<div className="w-screen md:w-1/2 flex flex-col justify-center px-10 lg:px-36 xl:px-56 md:py-20">
 					<RegisterPage />
 				</div>
 			</div>
