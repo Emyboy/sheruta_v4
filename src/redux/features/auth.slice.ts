@@ -30,5 +30,4 @@ export const authSlice = createSlice({
 export const { setAuthState } = authSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
-
 export default authSlice.reducer

@@ -10,10 +10,13 @@ import {
 } from 'react-icons/hi2'
 import Link from 'next/link'
 import _Button from '@/packages/ui/_Button'
+import { useMutation } from 'react-query'
+import axios from 'axios'
+import { User } from '@/interface/auth.interface'
 
 type Props = {}
 
-export default function LoginForm({}: Props) {
+export default function RegisterForm({}: Props) {
 	const [show, setShow] = useState(false)
 	const [loading, setLoading] = useState(false)
 
@@ -23,18 +26,37 @@ export default function LoginForm({}: Props) {
 	const [last_name, setLastName] = useState('')
 	const [phone_number, setPhoneNumber] = useState<number>()
 
-	const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
+	const createUserMutation = useMutation(async (formData: Partial<User>) => {
 		try {
-			e.preventDefault();
+			const result = await axios(
+				process.env.NEXT_PUBLIC_API_URL + '/auth/local/register',
+				{
+					method: 'POST',
+					data: formData,
+				}
+			)
+			return result.data
+		} catch (error) {
+			return error
+		}
+	})
+
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+		try {
+			e.preventDefault()
 			const data = {
 				email,
 				password,
-				first_name,
-				last_name,
-				phone_number
+				first_name: first_name.replace(/[^\w\s]/gi, ''),
+				last_name: last_name.replace(/[^\w\s]/gi, ''),
+				phone_number: String(phone_number),
+				username: `user` + String(Date.now()).slice(5),
+				last_seen: new Date().toJSON()
 			}
 			console.log(data)
+			createUserMutation.mutate(data)
 		} catch (error) {
+			console.log('RESULT ERROR: ' + error)
 			return Promise.reject(error)
 		}
 	}
@@ -109,9 +131,7 @@ export default function LoginForm({}: Props) {
 				}
 				leftAddon={<HiOutlineLockClosed size={20} />}
 			/>
-			<_Button isLoading={loading}>
-				Register
-			</_Button>
+			<_Button isLoading={createUserMutation.isLoading}>Register</_Button>
 			<p className="text-xs text-dark_lighter">
 				Already have an account?{' '}
 				<Link href={`/login`} className="text-theme font-bold">
