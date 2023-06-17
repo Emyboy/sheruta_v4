@@ -16,6 +16,8 @@ import {
 	HiUser,
 } from 'react-icons/hi2'
 import FooterUploadOptions from './FooterUploadOptions'
+import { useDispatch } from 'react-redux'
+import { setMessagingState } from '@/redux/features/message.slice'
 
 
 type Props = {
@@ -26,7 +28,7 @@ export default function MainFooter({ activePage }: Props) {
 	// const [activePage, setActivePage] = useState<string>('home')
 	const router = useRouter()
 	const [showUploadMenu, setShowUploadMenu] = useState(false)
-	const [footerOptions, setFooterOptions] = useState('upload')
+	const dispatch = useDispatch()
 
 	return (
 		<div className="lg:hidden block">
@@ -71,7 +73,7 @@ export default function MainFooter({ activePage }: Props) {
 				/>
 				<EachNav
 					title="Messages"
-					onClick={() => router.push('/messages')}
+					onClick={() => dispatch(setMessagingState({ show_messaging: true }))}
 					active={activePage === 'messages'}
 					ActiveIcon={(p: IconBaseProps) => (
 						<HiChatBubbleOvalLeftEllipsis {...p} />

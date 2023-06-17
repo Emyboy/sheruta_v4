@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React from 'react'
 import {
 	HiOutlineChevronDown,
 	HiOutlineChevronLeft,
@@ -7,17 +7,25 @@ import {
 } from 'react-icons/hi2'
 import ConversationList from './ConversationList'
 import MessageDetails from './MessageDetails/MessageDetails'
+import classNames from 'classnames'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppStore } from '@/interface/index.interface'
+import { setMessagingState } from '@/redux/features/message.slice'
 
 export default function MessagingPopup() {
-	const [show, setShow] = useState(false)
-	let height = show ? '70vh' : 0
-
-	const [conversationID, setConversationID] = useState<string>('')
+	const { show_messaging, active_conversation } = useSelector(
+		(state: AppStore) => state.message
+	)
+	const dispatch = useDispatch()
 
 	return (
 		<div
-			className="fixed hidden lg:block z-50"
-			style={{ bottom: '0', right: 30, width: '450px' }}
+			className={classNames(
+				'fixed hidden- lg:block  right-0 md:right-5 w-screen md:w-[31rem]',
+				{ '-bottom-16 md:bottom-0': !show_messaging },
+				{ 'bottom-0': show_messaging }
+			)}
+			style={{ zIndex: 80 }}
 		>
 			<div
 				className="bg-dark flex justify-between text-white items-center px-5"
@@ -28,8 +36,12 @@ export default function MessagingPopup() {
 				}}
 			>
 				<div className="flex gap-4 items-center">
-					{conversationID && (
-						<button onClick={() => setConversationID('')}>
+					{active_conversation && (
+						<button
+							onClick={() =>
+								dispatch(setMessagingState({ active_conversation: null }))
+							}
+						>
 							<HiOutlineChevronLeft className="text-lg" />
 						</button>
 					)}
@@ -37,8 +49,13 @@ export default function MessagingPopup() {
 						Messages <div className="badge font-bold">5</div>
 					</h6>
 				</div>
-				<button onClick={() => setShow(!show)}>
-					{show ? (
+				<button
+					onClick={() => {
+						dispatch(setMessagingState({ show_messaging: !show_messaging }))
+						// dispatch(setMessagingState({ active_conversation: null }))
+					}}
+				>
+					{show_messaging ? (
 						<HiOutlineChevronDown className="text-lg" />
 					) : (
 						<HiOutlineChevronUp className="text-lg" />
@@ -46,13 +63,23 @@ export default function MessagingPopup() {
 				</button>
 			</div>
 			<div
-				className="bg-white flex-1 bottom-0 shadow-lg overflow-y-auto"
-				style={{ height: height, maxHeight: height }}
+				className={classNames(
+					'bg-white flex-1 bottom-0 shadow-lg overflow-y-auto',
+					{ 'h-[80vh] md:h-[70vh]': show_messaging },
+					{ 'h-[0vh]': !show_messaging }
+				)}
+				// style={{ height: height, maxHeight: height }}
 			>
-				{conversationID ? (
+				{active_conversation ? (
 					<MessageDetails />
 				) : (
-					<ConversationList setConversation={setConversationID} />
+					<ConversationList
+						setConversation={(conversation_id) =>
+							dispatch(
+								setMessagingState({ active_conversation: conversation_id })
+							)
+						}
+					/>
 				)}
 			</div>
 		</div>

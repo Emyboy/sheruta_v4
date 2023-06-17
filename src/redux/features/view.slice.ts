@@ -16,7 +16,7 @@ export const viewSlice = createSlice({
 	initialState,
 	reducers: {
 		setViewState: (state: any, action: PayloadAction<any>): any => {
-			return action.payload
+			return { ...state, ...action.payload }
 		},
 	},
 })

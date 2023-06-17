@@ -3,7 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import { EmailSettings, PersonalInfo, User } from '@/interface/auth.interface'
 
 // Define a type for the slice state
-interface AuthState {
+export interface AuthState {
 	user: User | null
 	personal_info: PersonalInfo | null
 	email_settings: EmailSettings | null
@@ -18,11 +18,10 @@ const initialState: AuthState = {
 
 export const authSlice = createSlice({
 	name: 'auth',
-	// `createSlice` will infer the state type from the `initialState` argument
 	initialState,
 	reducers: {
-		setAuthState: (state, action: PayloadAction) => {
-			return action.payload
+		setAuthState: (state, action: PayloadAction<any>) => {
+			return { ...state, ...action.payload }
 		},
 	},
 })
