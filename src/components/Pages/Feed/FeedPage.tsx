@@ -18,7 +18,7 @@ export default function FeedPage({}: Props) {
 					)
 				})}
 			</div>
-			<div className="flex justify-center py-9">
+			<div className="flex justify-center pt-9 pb-36">
 				<_Spinner />
 			</div>
 		</>
