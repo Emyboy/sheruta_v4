@@ -27,7 +27,7 @@ export default function MainNavbar({ activePage, className }: Props) {
 
 	return (
 		<header className="h-16 bg-dark fixed top-0 right-0 left-0 z-50">
-			<div className="flex w-screen mx-auto md:w-5/6 xl:w-2/3 h-full justify-between px-5 md:px-0">
+			<div className="flex w-screen mx-auto md:w-5/6 xl:w-2/3 h-full justify-between px-3 md:px-0">
 				<div className="w-60 sticky top-16 h-full items-center flex">
 					<Link href={`/`} className="flex items-center gap-2">
 						<img alt="brand" src={`/icon_green.png`} className="w-6 md:w-7" />

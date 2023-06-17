@@ -44,7 +44,7 @@ export default function MainLayout({
 
 const Aside = ({ children }: { children: any }) => {
 	return (
-		<aside className="hidden lg:block w-60 sticky top-16 h-full">
+		<aside className="hidden lg:block w-60 sticky top-20 h-full">
 			{children}
 		</aside>
 	)

@@ -3,6 +3,7 @@ import React from 'react'
 import {
 	HiOutlineArrowRightOnRectangle,
 	HiOutlineBanknotes,
+	HiOutlineBookmark,
 	HiOutlinePlayCircle,
 	HiOutlineRocketLaunch,
 	HiOutlineVideoCamera,
@@ -16,7 +17,7 @@ type Props = { activePage?: string }
 
 export default function MainLeftNav({ activePage }: Props) {
 	return (
-		<div className="p-3">
+		<div className="px-3">
 			<Link href={`/user/user13234`} className="flex gap-2">
 				<img
 					src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
@@ -41,6 +42,12 @@ export default function MainLeftNav({ activePage }: Props) {
 						Icon={(p: IconBaseProps) => <HiOutlineVideoCamera {...p} />}
 						active={activePage === 'inspections'}
 						name="Inspections"
+					/>
+					<EachNav
+						link="/inspections"
+						Icon={(p: IconBaseProps) => <HiOutlineBookmark {...p} />}
+						active={activePage === 'bookmarks'}
+						name="Bookmarks"
 					/>
 					<EachNav
 						Icon={(p: IconBaseProps) => <HiOutlineBanknotes {...p} />}
