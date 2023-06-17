@@ -28,6 +28,8 @@ export default function MainNavbar({ activePage, className }: Props) {
 
 	return (
 		<>
+			<MobileLeftPanel />
+
 			<header className="h-16 bg-dark fixed top-0 right-0 left-0 z-50">
 				<div className="flex w-screen mx-auto md:w-5/6 xl:w-2/3 h-full justify-between px-3 md:px-0">
 					<div className="md:w-60 sticky top-16 h-full md:items-center justify-between flex gap-4 w-full">
@@ -67,7 +69,7 @@ export default function MainNavbar({ activePage, className }: Props) {
 						<Link
 							href={`/login`}
 							// onClick={() => dispatch(setViewState({ show_login: true }))}
-							className="md:bg-theme text-theme md:text-white md:px-6 md:py-2 rounded-lg hover:bg-theme_light text-lg px-0 py-1"
+							className="md:bg-theme text-theme md:text-white md:px-6 md:py-2 rounded-lg md:hover:bg-theme_light text-lg px-0 py-1"
 						>
 							Login
 						</Link>

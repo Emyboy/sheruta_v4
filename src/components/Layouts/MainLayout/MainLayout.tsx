@@ -24,7 +24,6 @@ export default function MainLayout({
 }: Props) {
 	return (
 		<>
-			<MobileLeftPanel />
 			<div className="min-h-screen flex flex-col">
 				<MainNavbar activePage={''} />
 				<div className="flex w-screen md:mx-auto md:w-5/6 xl:w-2/3">
