@@ -8,7 +8,7 @@ type Props = {}
 export default function FeedPage({}: Props) {
 	return (
 		<>
-			<div className="px-3">
+			<div className='flex flex-col gap-4'>
 				{new Array(4).fill(null).map((_, i) => {
 					return (
 						<>

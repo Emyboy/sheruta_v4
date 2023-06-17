@@ -8,7 +8,7 @@ type Props = {
 
 export default function _Container({ className, children }: Props) {
   return (
-		<div className={classNames(`w-screen md:w-5/6 ${className}`)}>
+		<div className={classNames(`w-screen  lg:w-5/6 mx-auto ${className}`)}>
 			{children}
 		</div>
 	)

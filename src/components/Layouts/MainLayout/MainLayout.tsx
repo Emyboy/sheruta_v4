@@ -4,10 +4,9 @@ import _Container from '@/packages/ui/_Container'
 import MainNavbar from './MainNavbar'
 import MainFooter from './MainFooter/MainFooter'
 // import MainLeftNav from './MainLeftNav'
-import MainRightNav from './MainRightNav'
-import LeftPanel from './LeftPanel'
-
-
+import MainRightNav from './DELETE_MainRightNav'
+// import LeftPanel from './DELETE_LeftPanel'
+import MainLeftNav from './MainLeftNav'
 
 type Props = {
 	leftComponent?: React.ReactElement
@@ -24,22 +23,29 @@ export default function MainLayout({
 }: Props) {
 	return (
 		<>
-			<MainNavbar activePage={activePage} />
-			<div className="bg-background- flex-1 overflow-y-auto flex justify-center pb-16">
-				<_Container className="flex h-full- justify-between ">
-					<LeftPanel leftComponent={leftComponent} activePage={activePage} />
-					<main className="xl:w-1/3 lg:w-4/5 w-screen py-3-">
+			<div className="min-h-screen flex flex-col">
+				<MainNavbar activePage={''} />
+				<div className="flex w-screen md:mx-auto md:w-5/6 xl:w-2/3">
+					<Aside>
+						{leftComponent || <MainLeftNav activePage={activePage} />}
+					</Aside>
+					<main
+						className="flex-1 top-16 md:relative mt-20 md:mt-5"
+					>
 						{centerComponent}
 					</main>
-					<div className="border-l border-1 w-1/3 hidden lg:visible justify-start lg:flex  ">
-						<div className="bg-green-100- fixed  h-96 w-60">
-							{rightComponent || <MainRightNav />}
-						</div>
-					</div>
-				</_Container>
+					<Aside>{rightComponent || <MainRightNav />}</Aside>
+				</div>
 			</div>
 			<MainFooter activePage={activePage} />
 		</>
 	)
 }
 
+const Aside = ({ children }: { children: any }) => {
+	return (
+		<aside className="hidden lg:block w-60 sticky top-16 h-full">
+			{children}
+		</aside>
+	)
+}

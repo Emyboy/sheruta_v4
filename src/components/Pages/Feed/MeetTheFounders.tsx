@@ -3,7 +3,7 @@ import { HiOutlinePlayCircle } from 'react-icons/hi2'
 
 export default function MeetTheFounders() {
 	return (
-		<div className="py-4 flex flex-col gap-4">
+		<div className="flex flex-col">
 			<div
 				className="h-60  text-white rounded-lg bg-img justify-center flex items-center relative"
 				style={{

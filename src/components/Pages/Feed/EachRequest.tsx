@@ -12,8 +12,10 @@ type Props = {}
 
 export default function EachRequest({}: Props) {
 	let link = `/request/join-paddy/bungalow/lekki/234`
+
+
 	return (
-		<article className="bg-white py-4 border-b border-1 rounded-sm flex flex-col gap-4">
+		<article className="bg-white py-4 border-b border-1 rounded-sm flex flex-col gap-4 px-3 lg:px-5">
 			<div className="flex justify-between items-center">
 				<Link href={'/user/user-1234'} className="flex items-center gap-2">
 					<img

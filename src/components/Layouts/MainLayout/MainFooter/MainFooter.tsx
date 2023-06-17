@@ -29,12 +29,12 @@ export default function MainFooter({ activePage }: Props) {
 	const [footerOptions, setFooterOptions] = useState('upload')
 
 	return (
-		<div className="visible lg:hidden">
+		<div className="lg:hidden block">
 			<div
 				style={{ bottom: showUploadMenu ? 70 : -893 }}
 				onClick={() => setShowUploadMenu(false)}
 				className={classNames(
-					'fixed p-1 bottom-16 z-50 w-screen h-screen flex flex-col justify-end  animate__animated',
+					'fixed p-1 bottom-16 z-50 w-screen h-screen flex flex-col justify-end  animate__animated'
 				)}
 			>
 				<div className="bg-dark rounded-xl shadow">

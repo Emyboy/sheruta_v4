@@ -8,9 +8,11 @@
 	transition: all 0.4s ease-in-out !important;
 }
 
-#__next {
+html,body{height:100%}
+
+/* #__next {
 	min-height: 100vh;
-}
+} */
 
 .bg-img {
 	background-position: center;

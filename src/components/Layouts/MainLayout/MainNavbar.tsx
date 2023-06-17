@@ -17,23 +17,65 @@ import { setViewState } from '@/redux/features/view.slice'
 import { AppStore } from '@/interface/index.interface'
 
 type Props = {
-	activePage: any,
+	activePage: any
 	className?: string
 }
 
 export default function MainNavbar({ activePage, className }: Props) {
 	const dispatch = useDispatch()
 	const { show_left_panel } = useSelector((state: AppStore) => state.view)
+
+	return (
+		<header className="h-16 bg-dark fixed top-0 right-0 left-0 z-50">
+			<div className="flex w-screen mx-auto md:w-5/6 xl:w-2/3 h-full justify-between px-5 md:px-0">
+				<div className="w-60 sticky top-16 h-full items-center flex">
+					<Link href={`/`} className="flex items-center gap-2">
+						<img alt="brand" src={`/icon_green.png`} className="w-6 md:w-7" />
+						<img alt="brand" src={`/logo_text_white.png`} className="w-24" />
+					</Link>
+				</div>
+				<div className="hidden flex-1 lg:flex relative shadow h-full justify-center gap-5 items-center">
+					<EachNav
+						Icon={(p: IconBaseProps) => <HiOutlineHome {...p} />}
+						active={activePage === 'home'}
+					/>
+					<EachNav
+						Icon={(p: IconBaseProps) => <HiPlus {...p} />}
+						active={activePage === 'update'}
+					/>
+					<EachNav
+						Icon={(p: IconBaseProps) => <HiOutlineBell {...p} />}
+						active={activePage === 'activities'}
+						link="/activities"
+					/>
+					<EachNav
+						Icon={(p: IconBaseProps) => <HiMagnifyingGlass {...p} />}
+						active={activePage === 'search'}
+					/>
+				</div>
+				<div className="w-60 sticky top-16 h-full items-center flex justify-end">
+					<Link
+						href={`/login`}
+						// onClick={() => dispatch(setViewState({ show_login: true }))}
+						className="md:bg-theme text-theme md:text-white md:px-6 md:py-2 rounded-lg hover:bg-theme_light text-lg px-0 py-1"
+					>
+						Login
+					</Link>
+				</div>
+			</div>
+		</header>
+	)
+
 	return (
 		<>
 			<header
 				className={classNames(
-					'bg-dark h-16 left-0 right-0 z-50 flex justify-center ',
+					'bg-dark h-16 left-0 right-0 z-50 flex fixed top-0 justify-center ',
 					{ '': className },
 					{ fixed: !className }
 				)}
 			>
-				<div className="justify-between xl:w-3/5 md:w-5/6 sm:w-full w-full items-center flex px-5 md:px-0">
+				<div className="justify-between xl:w-3/5 md:w-5/6- sm:w-full w-full items-center flex px-5 md:px-8">
 					<div
 						className="md:hidden visible rounded-lg text-gray-400 text-3xl flex-col flex justify-center"
 						onClick={() =>
@@ -86,7 +128,7 @@ export default function MainNavbar({ activePage, className }: Props) {
 					</Link>
 				</div>
 			</header>
-			{!className && <div className="h-16" />}
+			{/* {!className && <div className="h-16 top-0 " />} */}
 		</>
 	)
 }
