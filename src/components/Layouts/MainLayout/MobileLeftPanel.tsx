@@ -16,7 +16,7 @@ export default function MobileLeftPanel() {
 					zIndex: 100,
 					width: '75vw',
 					height: '100vh',
-					left: show_left_panel ? 0 : -500,
+					left: show_left_panel ? 0 : -2500,
 				}}
 				className="fixed bg-white pt-16 shadow-lg"
 			>

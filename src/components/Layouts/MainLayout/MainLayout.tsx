@@ -1,13 +1,10 @@
 import React from 'react'
 import _Container from '@/packages/ui/_Container'
-
 import MainNavbar from './MainNavbar'
 import MainFooter from './MainFooter/MainFooter'
-// import MainLeftNav from './MainLeftNav'
 import MainRightNav from './MainRightNav'
-// import LeftPanel from './DELETE_LeftPanel'
 import MainLeftNav from './MainLeftNav'
-import MobileLeftPanel from './MobileLeftPanel'
+import MessagingPopup from '@/components/Messaging/MessagingPopup'
 
 type Props = {
 	leftComponent?: React.ReactElement
@@ -36,6 +33,7 @@ export default function MainLayout({
 					<Aside>{rightComponent || <MainRightNav />}</Aside>
 				</div>
 			</div>
+			<MessagingPopup />
 			<MainFooter activePage={activePage} />
 		</>
 	)
