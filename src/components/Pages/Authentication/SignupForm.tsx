@@ -51,7 +51,7 @@ export default function RegisterForm({}: Props) {
 				last_name: last_name.replace(/[^\w\s]/gi, ''),
 				phone_number: String(phone_number),
 				username: `user` + String(Date.now()).slice(5),
-				last_seen: new Date().toJSON()
+				last_seen: new Date().toJSON(),
 			}
 			console.log(data)
 			createUserMutation.mutate(data)
@@ -132,12 +132,12 @@ export default function RegisterForm({}: Props) {
 				leftAddon={<HiOutlineLockClosed size={20} />}
 			/>
 			<_Button isLoading={createUserMutation.isLoading}>Register</_Button>
-			<p className="text-xs text-dark_lighter">
-				Already have an account?{' '}
-				<Link href={`/login`} className="text-theme font-bold">
+			<span className="text-sm">
+				{`Already have an account?`}{' '}
+				<Link href={`/login`} className="text-theme">
 					Login
-				</Link>
-			</p>
+				</Link>{' '}
+			</span>
 		</form>
 	)
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import _FormInputGroup from '@/packages/ui/_FormInputGroup'
 import { HiOutlineEnvelope, HiOutlineKey } from 'react-icons/hi2'
+import Link from 'next/link'
 
 type Props = {}
 
@@ -45,6 +46,12 @@ export default function LoginForm({}: Props) {
 			<button className="bg-theme text-white rounded-md px-2 py-3 w-full hover:bg-theme_light">
 				Login
 			</button>
+			<span className="text-sm">
+				{`Don't have an account?`}{' '}
+				<Link href={`/register`} className="text-theme">
+					Register
+				</Link>{' '}
+			</span>
 		</form>
 	)
 }

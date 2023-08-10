@@ -21,7 +21,7 @@ export default function MessagingPopup() {
 	return (
 		<div
 			className={classNames(
-				'fixed hidden- lg:block  right-0 md:right-5 w-screen md:w-[31rem]',
+				'fixed hidden- lg:block  right-0 md:right-5 w-screen md:w-[25rem]',
 				{ '-bottom-16 md:bottom-0': !show_messaging },
 				{ 'bottom-0': show_messaging }
 			)}
@@ -64,7 +64,7 @@ export default function MessagingPopup() {
 			</div>
 			<div
 				className={classNames(
-					'bg-white flex-1 bottom-0 shadow-lg overflow-y-auto',
+					'bg-white flex-1 bottom-0 border-x shadow-lg overflow-y-auto',
 					{ 'h-[80vh] md:h-[70vh]': show_messaging },
 					{ 'h-[0vh]': !show_messaging }
 				)}

@@ -3,8 +3,14 @@ import MainNavbar from '@/components/Layouts/MainLayout/MainNavbar'
 import React from 'react'
 import _Container from '@/packages/ui/_Container'
 import RegisterPage from '@/components/Pages/Authentication/RegisterPage'
+import AuthLayout from '@/components/Layouts/AuthLayout/AuthLayout'
 
 export default function Login() {
+	return (
+		<AuthLayout backgroundURL="https://images.pexels.com/photos/7208925/pexels-photo-7208925.jpeg?auto=compress&cs=tinysrgb&w=1600">
+			<RegisterPage />
+		</AuthLayout>
+	)
 	return (
 		<div className="flex flex-col min-h-screen">
 			<MainNavbar activePage={'login'} className="absolute" />
