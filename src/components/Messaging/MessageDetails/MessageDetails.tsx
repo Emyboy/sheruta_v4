@@ -2,13 +2,19 @@ import classNames from 'classnames'
 import Image from 'next/image'
 import React from 'react'
 import MessageDetailBody from './MessageDetailBody'
+import { HiOutlineChevronLeft } from 'react-icons/hi2'
 
-type Props = {}
+type Props = {
+	goBack: () => void
+}
 
-export default function MessageDetails({}: Props) {
+export default function MessageDetails({goBack}: Props) {
 	return (
-		<div className='flex flex-col h-full max-h-full'>
+		<div className="flex flex-col h-full max-h-full transition duration-300 ease-in-out">
 			<div className="flex border-b p-3 gap-3 items-center">
+				<button onClick={goBack}>
+					<HiOutlineChevronLeft className="text-lg text-dark_lighter" size={25} />
+				</button>
 				<div className="avatar">
 					<div className="w-10 rounded-full">
 						<Image
@@ -35,7 +41,7 @@ export default function MessageDetails({}: Props) {
 					</div>
 				</div>
 			</div>
-            <MessageDetailBody />
+			<MessageDetailBody />
 		</div>
 	)
 }

@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import EachConversation from './EachConversation'
+import classNames from 'classnames'
 
 type Props = {
 	setConversation: (conversation: any) => void
