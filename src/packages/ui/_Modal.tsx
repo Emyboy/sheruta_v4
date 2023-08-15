@@ -3,7 +3,7 @@ import React from 'react'
 import { HiOutlineXMark } from 'react-icons/hi2'
 
 type Props = {
-	children: any;
+	children: React.ReactElement | React.ReactElement[]
 }
 
 export default function _Modal(props: Props & ModalProps) {
