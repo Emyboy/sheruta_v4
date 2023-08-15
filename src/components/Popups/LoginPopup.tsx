@@ -1,7 +1,8 @@
 'use client'
 import React from 'react'
 import dynamic from 'next/dynamic'
-const _Modal = dynamic(() => import('@/packages/ui/_Modal'))
+// const _Modal = dynamic(() => import('@/packages/ui/_Modal'))
+import _Modal from '@/packages/ui/_Modal'
 import LoginForm from '../Pages/Authentication/LoginForm'
 import { useSelector } from 'react-redux'
 import { AppStore } from '@/interface/index.interface'
