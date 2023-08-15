@@ -32,7 +32,7 @@ export default function MessagingPopup() {
 	return (
 		<div
 			className={classNames(
-				'fixed hidden- lg:block  right-0 md:right-5 w-screen md:w-[25rem] cursor-pointer',
+				'fixed hidden- lg:block  right-0 md:right-5 w-screen md:w-[25rem]',
 				{ '-bottom-16 md:bottom-0': !show_messaging },
 				{ 'bottom-0': show_messaging }
 			)}
