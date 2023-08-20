@@ -1,12 +1,14 @@
 import React from 'react'
 import { BiLoaderAlt } from 'react-icons/bi'
 
-type Props = {}
+type Props = {
+	size?: number
+}
 
-export default function SSpinner({}: Props) {
+export default function SSpinner({size}: Props) {
 	return (
 		<span>
-			<BiLoaderAlt className="mx-0 animate-spin" />
+			<BiLoaderAlt className="mx-0 animate-spin" size={size || 16} />
 		</span>
 	)
   return (

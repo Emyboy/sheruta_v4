@@ -1,27 +1,37 @@
+import { ProfileData } from '@/app/user/[username]/user-profile-page'
+import STextToMarkdown from '@/packages/ui/STextToMarkdown'
 import React from 'react'
 
-type Props = {}
+type Props = {
+	profile: ProfileData
+}
 
-export default function ProfileAbout({}: Props) {
+export default function ProfileAbout({ profile }: Props) {
+	const { user_info, user } = profile
 	return (
 		<section className="flex flex-col gap-5">
 			<div className="flex flex-col gap-2">
-				<h6 className='text-lg mb-2'>About Me</h6>
-				<p className='text-sm'>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit, ex
-					sapiente inventore tempore repellendus aliquam corrupti incidunt
-					accusamus ducimus quidem tempora ab quod iusto ratione voluptates illo
-					nostrum maxime. Tempora.
-				</p>
+				<h6 className="text-lg mb-2">About Me</h6>
+				<div className="text-sm text-dark_lighter">
+					<STextToMarkdown
+						text={
+							user_info?.bio ||
+							`Hi there 👋🏽, my name is ${user?.first_name} and ${
+								user_info?.seeking
+									? "I'm looking for a flat to share"
+									: 'I have a flat to share'
+							}. Please feel free to reach out to me.`
+						}
+					/>
+				</div>
 			</div>
 			<div className="flex flex-wrap gap-3">
-				{new Array(8).fill(null).map((val) => {
-					return (
-						<span className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
-							Default
-						</span>
-					)
-				})}
+				{user_info?.habits &&
+					user_info?.habits.map((val) => {
+						return (
+							<span className="border border-gray-400 rounded-lg px-2 text-sm">{val.name}</span>
+						)
+					})}
 			</div>
 		</section>
 	)

@@ -12,6 +12,9 @@ import { setAuthState } from '@/redux/features/auth.slice'
 import { useRouter } from 'next/navigation'
 import VerifyEmail from './VerifyEmail'
 import { NewUser } from './SignupForm'
+import { UserInfoService } from '@/services/user-info.service'
+import SSpinner from '@/packages/ui/SSpinner'
+import { setWalletState } from '@/redux/features/wallet.slice'
 
 type Props = {}
 
@@ -20,9 +23,34 @@ export default function LoginForm({}: Props) {
 	const [password, setPassword] = useState('')
 	const router = useRouter()
 	const dispatch = useDispatch()
-	const [loginUser, { isLoading, error }] = useLoginMutation();
-	const [verify, setVerify] = useState(false);
-	const [newUser, setNewUser] = useState<NewUser | null>(null);
+	const [loginUser, { isLoading, error }] = useLoginMutation()
+	const [verify, setVerify] = useState(false)
+	const [newUser, setNewUser] = useState<NewUser | null>(null)
+	const [loading, setLoading] = useState(false)
+
+	let getAuthDependencies = async (user: any) => {
+		try {
+			setLoading(true)
+			let dep = await UserInfoService.getAuthDependencies()
+			let { user_info, email_setting, wallet } = await dep.data
+
+			dispatch(
+				setAuthState({
+					user,
+					user_info,
+					email_setting,
+				})
+			)
+			dispatch(
+				setWalletState({
+					wallet,
+				})
+			)
+			router.push('/')
+		} catch (error) {
+			getAuthDependencies(user)
+		}
+	}
 
 	let handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
@@ -38,12 +66,8 @@ export default function LoginForm({}: Props) {
 			} else {
 				const { user, jwt } = res.data
 				Cookies.set('sheruta_auth', jwt)
-				dispatch(
-					setAuthState({
-						user,
-					})
-				)
-				router.push('/')
+
+				await getAuthDependencies(user)
 			}
 		}
 	}
@@ -58,8 +82,16 @@ export default function LoginForm({}: Props) {
 		}
 	}, [error])
 
-	if(verify && newUser){
+	if (verify && newUser) {
 		return <VerifyEmail newUser={newUser} count={1} />
+	}
+
+	if (loading) {
+		return (
+			<center>
+				<SSpinner size={30} />
+			</center>
+		)
 	}
 
 	return (

@@ -13,7 +13,7 @@ export default function FeedPage({}: Props) {
 					return (
 						<>
 							{i === 2 && <MeetTheFounders />}
-							<EachRequest key={`feed-${i}`} />
+							{/* <EachRequest key={`feed-${i}`} /> */}
 						</>
 					)
 				})}

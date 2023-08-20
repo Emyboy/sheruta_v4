@@ -7,25 +7,31 @@ import {
 } from 'react-icons/hi'
 import Link from 'next/link'
 import { HiPlay } from 'react-icons/hi2'
+import { RoomRequest } from '@/interface/request.interface'
+import SAvatar from '@/packages/ui/SAvatar'
+import STextToMarkdown from '@/packages/ui/STextToMarkdown'
 
-type Props = {}
+type Props = {
+	request: RoomRequest
+}
 
-export default function EachRequest({}: Props) {
+export default function EachRequest({ request }: Props) {
 	let link = `/request/join-paddy/bungalow/lekki/234`
 
+	let author = request.user
+	let authorInfo = request.user_info
 
 	return (
 		<article className="bg-white py-4 border-b border-1 rounded-sm flex flex-col gap-4 px-3 lg:px-5">
 			<div className="flex justify-between items-center">
-				<Link href={'/user/user-1234'} className="flex items-center gap-2">
-					<img
-						src="/assets/img/user.jpg"
-						alt="profile"
-						className="h-11 w-11 rounded-full"
-					/>
+				<Link
+					href={`/user/${author?.username}`}
+					className="flex items-center gap-2"
+				>
+					<SAvatar userData={author} />
 					<div>
-						<h6 className="font-medium">The Person Name</h6>
-						<small className="text-dark_lighter">@TheUserName</small>
+						<h6 className="font-medium">{author.first_name}</h6>
+						<small className="text-dark_lighter">@{author.username}</small>
 					</div>
 				</Link>
 				<button className="text-dark_lighter">
@@ -34,14 +40,13 @@ export default function EachRequest({}: Props) {
 			</div>
 			<div>
 				<address className="text-theme flex gap-2 items-center text-sm">
-					<SlLocationPin /> Lekki County Homes, Lekki
+					<SlLocationPin /> {request.location_text}
 				</address>
 				<Link href={link}>
-					<p className="text-sm">
-						Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi nisi
-						doloribus placeat officiis optio. Natus tempora at accusantium{' '}
-						<span className="text-theme">Read More..</span>
-					</p>
+					<div className="h-[70px] overflow-hidden text-clip">
+						<STextToMarkdown text={request.request_text} />
+					</div>
+					<span className="text-theme">Read More..</span>
 				</Link>
 			</div>
 			<div className="flex justify-between items-center">

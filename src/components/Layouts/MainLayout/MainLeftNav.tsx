@@ -25,13 +25,15 @@ export default function MainLeftNav({ activePage }: Props) {
 	const dispatch = useDispatch();
 	return (
 		<div className="px-3">
-			<Link href={`/user/user13234`} className="flex gap-2">
-				{user && <SAvatar userData={user} />}
-				<div className="flex flex-col gap-0">
-					<p className="font-medium">{user?.first_name}</p>
-					<small className="text-dark_lighter">@{user?.username}</small>
-				</div>
-			</Link>
+			{user && (
+				<Link href={`/user/${user?.username}`} className="flex gap-2">
+					<SAvatar userData={user} />
+					<div className="flex flex-col gap-0">
+						<p className="font-medium">{user?.first_name}</p>
+						<small className="text-dark_lighter">@{user?.username}</small>
+					</div>
+				</Link>
+			)}
 			<nav className="my-8">
 				<ul>
 					<EachNav
@@ -73,7 +75,7 @@ export default function MainLeftNav({ activePage }: Props) {
 						name="Settings"
 					/>
 					<hr className="mb-3" />
-					<a href='/' onClick={() => dispatch(logout())}>
+					<a href="/" onClick={() => dispatch(logout())}>
 						<EachNav
 							Icon={(p: IconBaseProps) => (
 								<HiOutlineArrowRightOnRectangle {...p} />

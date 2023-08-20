@@ -1,20 +1,28 @@
-import MainLayout from '@/components/Layouts/MainLayout/MainLayout'
 import ProfilePage from '@/components/Pages/Profile/ProfilePage'
 import React from 'react'
-import _Container from '@/packages/ui/SContainer'
+import _Container, { SContentContainer } from '@/packages/ui/SContainer'
 import MainNavbar from '@/components/Layouts/MainLayout/MainNavbar'
+import { User, UserInfo } from '@/interface/auth.interface'
+import { RoomRequest } from '@/interface/request.interface'
 
-type Props = {}
+export interface ProfileData {
+	user: User
+	user_info: UserInfo
+	requests: RoomRequest[]
+}
 
-export default function UserProfilePage({}: Props) {
+type Props = {
+	profile: ProfileData
+}
+
+export default function UserProfilePage({ profile }: Props) {
 	return (
 		<>
 			<MainNavbar activePage={'profile'} />
-			<div className="flex justify-center py-10">
-				<div className="w-screen  md:w-3/4 xl:w-2/5">
-					<ProfilePage />
-				</div>
-			</div>
+
+			<SContentContainer>
+				<ProfilePage profile={profile} />
+			</SContentContainer>
 		</>
 	)
 	// return <MainLayout centerComponent={<ProfilePage />} activePage="profile" />

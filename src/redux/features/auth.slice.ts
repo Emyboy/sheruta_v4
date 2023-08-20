@@ -6,15 +6,15 @@ import Cookies from 'js-cookie'
 // Define a type for the slice state
 export interface AuthState {
 	user: User | null
-	personal_info: PersonalInfo | null
-	email_settings: EmailSettings | null
+	user_info: PersonalInfo | null
+	email_setting: EmailSettings | null
 }
 
 // Define the initial state using that type
 const initialState: AuthState = {
 	user: null,
-	personal_info: null,
-	email_settings: null,
+	user_info: null,
+	email_setting: null,
 }
 
 export const authSlice = createSlice({

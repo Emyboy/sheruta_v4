@@ -40,6 +40,7 @@ import {
 import { setupListeners } from '@reduxjs/toolkit/dist/query'
 import { authApi } from './services/auth.service'
 import { userInfoApi } from './services/user-info.service'
+import walletSlice from './features/wallet.slice'
 
 const persistConfig = {
 	key: 'root',
@@ -48,6 +49,8 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
 	auth: authSlice,
+	message: messageSlice,
+	wallet: walletSlice,
 })
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
@@ -55,7 +58,6 @@ export const store: any = configureStore({
 	reducer: {
 		app: persistedReducer,
 		view: viewSlice,
-		message: messageSlice,
 		// upload: uploadReducer,
 		// category: categoryReducer,
 		[authApi.reducerPath]: authApi.reducer,

@@ -14,7 +14,7 @@ import { setMessagingState } from '@/redux/features/message.slice'
 
 export default function MessagingPopup() {
 	const { show_messaging, active_conversation } = useSelector(
-		(state: AppStore) => state.message
+		(state: AppStore) => state.app.message
 	)
 	const dispatch = useDispatch()
 	const [selectedTab, setSelectedTab] = useState(0)

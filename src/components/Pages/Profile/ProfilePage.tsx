@@ -4,28 +4,31 @@ import ProfileAbout from './ProfileAbout'
 import ProfileInfo from './ProfileInfo'
 import ProfileSocials from './ProfileSocials'
 import EachRequest from '../Feed/EachRequest'
+import { ProfileData } from '@/app/user/[username]/user-profile-page'
 
 
-type Props = {}
+type Props = {
+	profile: ProfileData
+}
 
-export default function ProfilePage({}: Props) {
+export default function ProfilePage({profile}: Props) {
 	return (
 		<>
-			<div className="flex flex-col px-4 md:px-3 gap-5">
-				<ProfileHero />
+			<div className="flex flex-col px-2 md:px-3 gap-5">
+				<ProfileHero profile={profile} />
 				<hr className="mt-4" />
-				<ProfileAbout />
+				<ProfileAbout profile={profile} />
 				<hr className="mt-4" />
-				<ProfileInfo />
+				<ProfileInfo profile={profile} />
 				<hr className="mt-4" />
-				<ProfileSocials />
+				<ProfileSocials profile={profile} />
 				<hr className="mt-4" />
 				<section>
 					<div className="flex flex-col gap-2">
 						<h6 className="text-lg">Requests</h6>
 						<div className="flex flex-wrap gap-2">
-							{new Array(2).fill(null).map((val) => {
-								return <EachRequest />
+							{profile.requests && profile.requests.map((val) => {
+								return <EachRequest request={val} key={`request-${val?.id}`} />
 							})}
 						</div>
 					</div>

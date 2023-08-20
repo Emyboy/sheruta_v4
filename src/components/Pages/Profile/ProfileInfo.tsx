@@ -1,25 +1,42 @@
+import { ProfileData } from '@/app/user/[username]/user-profile-page'
 import React from 'react'
 
-type Props = {}
+type Props = {
+	profile: ProfileData
+}
 
-export default function ProfileInfo({}: Props) {
+export default function ProfileInfo({profile}: Props) {
+	const {user_info } = profile
+	console.log('THE INFO --', user_info)
 	return (
 		<section className="flex flex-col gap-2">
-			<h6 className='text-lg mb-2'>Additional Information</h6>
-			<div className="flex flex-wrap gap-4 md:gap-4 justify-between">
-				{new Array(8).fill(null).map((val) => {
-					return <EachInfo />
-				})}
+			<h6 className="text-lg mb-2">Additional Information</h6>
+			<div className="grid grid-cols-3 md:grid-cols-5 gap-4">
+				<EachInfo heading="Gender" value={user_info?.gender} />
+				<EachInfo heading="Share with" value={user_info?.seeking_gender} />
+				<EachInfo
+					heading="Seeking Ages"
+					value={`${user_info?.min_age_range || ''} to ${
+						user_info?.max_age_range || ''
+					}`}
+				/>
+				<EachInfo heading="Religion" value={user_info?.religion} />
+				<EachInfo heading="Employment" value={user_info?.employment_status} />
+				<EachInfo
+					heading="Location"
+					value={user_info?.location_keyword?.name}
+				/>
+				<EachInfo heading="State" value={user_info?.state?.name} />
 			</div>
 		</section>
 	)
 }
 
-const EachInfo = () => {
+const EachInfo = ({ heading, value }: { heading: string; value: string | null | undefined }) => {
 	return (
 		<div className="flex flex-col">
-			<h6 className="fw-bold">Preferred Location</h6>
-			<h6 className="text-dark_lighter font-light">Lekki, Phase 1</h6>
+			<h6 className="fw-bold">{heading}</h6>
+			<h6 className="text-dark_lighter font-light capitalize">{value || 'N/A'}</h6>
 		</div>
 	)
 }
