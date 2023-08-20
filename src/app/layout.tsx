@@ -1,27 +1,28 @@
-import  Providers  from './providers'
-
+import Providers from './providers'
 
 export const metadata = {
-  title: 'Sheruta NG',
-  description: 'Room for share in Lagos, Lekki and Abuja',
+	title: 'Sheruta NG',
+	description: 'Room for share in Lagos, Lekki and Abuja',
 }
 
 export default function RootLayout({
-  children,
+	children,
 }: {
-  children: React.ReactNode
+	children: React.ReactNode
 }) {
-  return (
-		<html lang="en" className="bg-gray-50">
-			<head>
-				<link
-					rel="stylesheet"
-					href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-				/>
-			</head>
-			<body>
-				<Providers>{children}</Providers>
-			</body>
-		</html>
+	return (
+		<>
+			<html lang="en" className="bg-gray-50">
+				<head>
+					<link
+						rel="stylesheet"
+						href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+					/>
+				</head>
+				<body>
+					<Providers>{children}</Providers>
+				</body>
+			</html>
+		</>
 	)
 }

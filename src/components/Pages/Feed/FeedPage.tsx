@@ -1,6 +1,6 @@
 import React from 'react'
 import EachRequest from './EachRequest'
-import _Spinner from '@/packages/ui/_Spinner'
+import _Spinner from '@/packages/ui/SSpinner'
 import MeetTheFounders from './MeetTheFounders'
 
 type Props = {}

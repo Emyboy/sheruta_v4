@@ -4,7 +4,10 @@ import { store } from '@/redux/store'
 import React from 'react'
 import { Provider } from 'react-redux'
 import { QueryClientProvider, QueryClient } from 'react-query'
+import { Toaster } from 'react-hot-toast'
 import '../styles/globals.css'
+
+
 
 const queryClient = new QueryClient()
 
@@ -13,6 +16,7 @@ export default function providers({ children }: any) {
 		<>
 			<QueryClientProvider client={queryClient}>
 				<Provider store={store}>
+					<Toaster />
 					<MasterPopups />
 					{children}
 				</Provider>

@@ -1,3 +1,4 @@
+'use client'
 import Link from 'next/link'
 import React from 'react'
 import {
@@ -12,21 +13,23 @@ import {
 } from 'react-icons/hi2'
 import classnames from 'classnames'
 import { IconBaseProps } from 'react-icons'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppStore } from '@/interface/index.interface'
+import SAvatar from '@/packages/ui/SAvatar'
+import { logout } from '@/redux/features/auth.slice'
 
 type Props = { activePage?: string }
 
 export default function MainLeftNav({ activePage }: Props) {
+	const { user } = useSelector((state: AppStore) => state.app.auth);
+	const dispatch = useDispatch();
 	return (
 		<div className="px-3">
 			<Link href={`/user/user13234`} className="flex gap-2">
-				<img
-					src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-					alt="avatar"
-					className="w-12 h-12 rounded-full"
-				/>
+				{user && <SAvatar userData={user} />}
 				<div className="flex flex-col gap-0">
-					<p className="font-medium">First Name</p>
-					<small className="text-dark_lighter">@theUserName</small>
+					<p className="font-medium">{user?.first_name}</p>
+					<small className="text-dark_lighter">@{user?.username}</small>
 				</div>
 			</Link>
 			<nav className="my-8">
@@ -70,13 +73,15 @@ export default function MainLeftNav({ activePage }: Props) {
 						name="Settings"
 					/>
 					<hr className="mb-3" />
-					<EachNav
-						Icon={(p: IconBaseProps) => (
-							<HiOutlineArrowRightOnRectangle {...p} />
-						)}
-						active={false}
-						name="Logout"
-					/>
+					<a href='/' onClick={() => dispatch(logout())}>
+						<EachNav
+							Icon={(p: IconBaseProps) => (
+								<HiOutlineArrowRightOnRectangle {...p} />
+							)}
+							active={false}
+							name="Logout"
+						/>
+					</a>
 				</ul>
 			</nav>
 		</div>
@@ -95,9 +100,8 @@ const EachNav = ({
 	link?: string
 }) => {
 	return (
-		<li>
-			<Link
-				href={link || `/`}
+		<li className='cursor-pointer'>
+			<span
 				className={classnames(
 					{
 						'font-medium border border-1 bg-theme_transparent border-theme_light':
@@ -108,7 +112,7 @@ const EachNav = ({
 				)}
 			>
 				<Icon size={25} /> <p>{name}</p>
-			</Link>
+			</span>
 		</li>
 	)
 }

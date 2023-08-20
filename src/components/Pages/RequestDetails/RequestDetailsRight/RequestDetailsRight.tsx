@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import _Tab, { TabUIBaseProps } from '@/packages/ui/_Tab'
-import _ChatInput from '@/packages/ui/_ChatInput'
+import _Tab, { TabUIBaseProps } from '@/packages/ui/STab'
+import _ChatInput from '@/packages/ui/SChatInput'
 import SummaryTab from './Tabs/SummaryTab'
 import DiscussionTab from './Tabs/DiscussionTab'
 import { HiChevronRight } from 'react-icons/hi2'

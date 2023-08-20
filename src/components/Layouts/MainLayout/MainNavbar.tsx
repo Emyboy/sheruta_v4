@@ -11,7 +11,7 @@ import {
 	HiXMark,
 } from 'react-icons/hi2'
 import { IconBaseProps } from 'react-icons'
-import _Container from '@/packages/ui/_Container'
+import _Container from '@/packages/ui/SContainer'
 import { useDispatch, useSelector } from 'react-redux'
 import { setViewState } from '@/redux/features/view.slice'
 import { AppStore } from '@/interface/index.interface'
@@ -25,6 +25,7 @@ type Props = {
 export default function MainNavbar({ activePage, className }: Props) {
 	const dispatch = useDispatch()
 	const { show_left_panel } = useSelector((state: AppStore) => state.view)
+	const { user } = useSelector((state: AppStore) => state.app.auth)
 
 	return (
 		<>
@@ -66,13 +67,23 @@ export default function MainNavbar({ activePage, className }: Props) {
 						/>
 					</div>
 					<div className="w-60 sticky top-16 h-full items-center flex justify-end">
-						<Link
-							href={`/login`}
-							// onClick={() => dispatch(setViewState({ show_login: true }))}
-							className="md:bg-theme text-theme md:text-white md:px-6 md:py-2 rounded-lg md:hover:bg-theme_light text-lg px-0 py-1"
-						>
-							Login
-						</Link>
+						{user ? (
+							<Link href={'/wallet'}>
+								<div>
+									<span className="text-theme">₦ 345,040</span>
+								</div>
+							</Link>
+						) : (
+							<>
+								<Link
+									href={`/login`}
+									// onClick={() => dispatch(setViewState({ show_login: true }))}
+									className="md:bg-theme text-theme md:text-white md:px-6 md:py-2 rounded-lg md:hover:bg-theme_light text-lg px-0 py-1"
+								>
+									Login
+								</Link>
+							</>
+						)}
 					</div>
 				</div>
 			</header>

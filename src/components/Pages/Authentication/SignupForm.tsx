@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import _FormInputGroup from '@/packages/ui/_FormInputGroup'
+import React, { useState, useEffect } from 'react'
+import _FormInputGroup from '@/packages/ui/SFormInputGroup'
 import {
 	HiOutlineEnvelope,
 	HiOutlineEye,
@@ -9,37 +9,31 @@ import {
 	HiOutlineUser,
 } from 'react-icons/hi2'
 import Link from 'next/link'
-import _Button from '@/packages/ui/_Button'
-import { useMutation } from 'react-query'
-import axios from 'axios'
+import _Button from '@/packages/ui/SButton'
+import { useRegisterMutation } from '@/redux/services/auth.service'
+import toast from 'react-hot-toast'
+import { useDispatch } from 'react-redux'
 import { User } from '@/interface/auth.interface'
 
-type Props = {}
+export type NewUser = {
+	user: User,
+	jwt: string
+}
+type Props = {
+	onRegister: (data: NewUser) => void
+}
 
-export default function RegisterForm({}: Props) {
+export default function RegisterForm({onRegister}: Props) {
 	const [show, setShow] = useState(false)
 	const [loading, setLoading] = useState(false)
 
+	const [register, { isLoading, error }] = useRegisterMutation()
+	const dispatch = useDispatch()
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const [first_name, setFirstName] = useState('')
 	const [last_name, setLastName] = useState('')
 	const [phone_number, setPhoneNumber] = useState<number>()
-
-	const createUserMutation = useMutation(async (formData: Partial<User>) => {
-		try {
-			const result = await axios(
-				process.env.NEXT_PUBLIC_API_URL + '/auth/local/register',
-				{
-					method: 'POST',
-					data: formData,
-				}
-			)
-			return result.data
-		} catch (error) {
-			return error
-		}
-	})
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		try {
@@ -54,12 +48,28 @@ export default function RegisterForm({}: Props) {
 				last_seen: new Date().toJSON(),
 			}
 			console.log(data)
-			createUserMutation.mutate(data)
+
+			const res: any = await register(data)
+			if ('data' in res) {
+				onRegister(res.data)
+			} else {
+				toast.error('')
+			}
 		} catch (error) {
 			console.log('RESULT ERROR: ' + error)
 			return Promise.reject(error)
 		}
 	}
+
+	useEffect(() => {
+		if (error) {
+			let err: any = error
+			toast.error(
+				err?.data?.error?.message?.replace('or Username', ' ') ||
+					'Error, please try again'
+			)
+		}
+	}, [error])
 
 	return (
 		<form className="flex flex-col gap-3" onSubmit={handleSubmit}>
@@ -131,7 +141,7 @@ export default function RegisterForm({}: Props) {
 				}
 				leftAddon={<HiOutlineLockClosed size={20} />}
 			/>
-			<_Button isLoading={createUserMutation.isLoading}>Register</_Button>
+			<_Button isLoading={isLoading}>Register</_Button>
 			<span className="text-sm">
 				{`Already have an account?`}{' '}
 				<Link href={`/login`} className="text-theme">

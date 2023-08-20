@@ -2,7 +2,7 @@ import React from 'react'
 import MainNavbar from '../MainLayout/MainNavbar'
 import MainLeftNav from '../MainLayout/MainLeftNav'
 import EachRequest from '@/components/Pages/Feed/EachRequest'
-import _Container from '@/packages/ui/_Container'
+import _Container from '@/packages/ui/SContainer'
 
 export default function TestLayout() {
 	return (

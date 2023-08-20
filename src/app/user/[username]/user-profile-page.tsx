@@ -1,7 +1,7 @@
 import MainLayout from '@/components/Layouts/MainLayout/MainLayout'
 import ProfilePage from '@/components/Pages/Profile/ProfilePage'
 import React from 'react'
-import _Container from '@/packages/ui/_Container'
+import _Container from '@/packages/ui/SContainer'
 import MainNavbar from '@/components/Layouts/MainLayout/MainNavbar'
 
 type Props = {}

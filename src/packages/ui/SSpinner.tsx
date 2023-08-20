@@ -1,10 +1,16 @@
 import React from 'react'
+import { BiLoaderAlt } from 'react-icons/bi'
 
 type Props = {}
 
-export default function _Spinner({}: Props) {
+export default function SSpinner({}: Props) {
+	return (
+		<span>
+			<BiLoaderAlt className="mx-0 animate-spin" />
+		</span>
+	)
   return (
-		<div role="status">
+		<div >
 			<svg
 				aria-hidden="true"
 				className="inline w-5 h-5 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-green-500"

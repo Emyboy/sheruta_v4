@@ -1,13 +1,69 @@
-import React from 'react'
-import _FormInputGroup from '@/packages/ui/_FormInputGroup'
+'use client'
+import React, { useState, useEffect } from 'react'
+import _FormInputGroup from '@/packages/ui/SFormInputGroup'
 import { HiOutlineEnvelope, HiOutlineKey } from 'react-icons/hi2'
 import Link from 'next/link'
+import { useLoginMutation } from '@/redux/services/auth.service'
+import _Button from '@/packages/ui/SButton'
+import toast from 'react-hot-toast'
+import Cookies from 'js-cookie'
+import { useDispatch } from 'react-redux'
+import { setAuthState } from '@/redux/features/auth.slice'
+import { useRouter } from 'next/navigation'
+import VerifyEmail from './VerifyEmail'
+import { NewUser } from './SignupForm'
 
 type Props = {}
 
 export default function LoginForm({}: Props) {
+	const [identifier, setIdentifier] = useState('')
+	const [password, setPassword] = useState('')
+	const router = useRouter()
+	const dispatch = useDispatch()
+	const [loginUser, { isLoading, error }] = useLoginMutation();
+	const [verify, setVerify] = useState(false);
+	const [newUser, setNewUser] = useState<NewUser | null>(null);
+
+	let handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault()
+		let data = {
+			identifier: identifier.toLowerCase().trim(),
+			password: password.trim(),
+		}
+		let res: any = await loginUser(data)
+		if ('data' in res) {
+			setNewUser(res.data)
+			if (!res.data.user.confirmed) {
+				setVerify(true)
+			} else {
+				const { user, jwt } = res.data
+				Cookies.set('sheruta_auth', jwt)
+				dispatch(
+					setAuthState({
+						user,
+					})
+				)
+				router.push('/')
+			}
+		}
+	}
+
+	useEffect(() => {
+		if (error) {
+			let err: any = error
+			toast.error(
+				err?.data?.error?.message?.replace('or Username', ' ') ||
+					'Error, please try again'
+			)
+		}
+	}, [error])
+
+	if(verify && newUser){
+		return <VerifyEmail newUser={newUser} count={1} />
+	}
+
 	return (
-		<form className="flex flex-col gap-5">
+		<form className="flex flex-col gap-5" onSubmit={handleSubmit}>
 			<div className="flex flex-col gap-1">
 				<h1 className="text-lg font-semibold">Login To your Account </h1>
 				<p className="text-sm text-dark_lighter">
@@ -17,14 +73,14 @@ export default function LoginForm({}: Props) {
 			<_FormInputGroup
 				placeholder="JohnDoe@mail.com"
 				label="Email"
-				onChange={(e) => console.log(e.target.value)}
+				onChange={(e) => setIdentifier(e.target.value)}
 				name="email"
 				leftAddon={<HiOutlineEnvelope size={20} />}
 			/>
 			<_FormInputGroup
 				placeholder="* * * * * * *"
 				label="Password"
-				onChange={(e) => console.log(e.target.value)}
+				onChange={(e) => setPassword(e.target.value)}
 				name="password"
 				type="password"
 				leftAddon={<HiOutlineKey size={20} />}
@@ -43,9 +99,12 @@ export default function LoginForm({}: Props) {
 					Remember Me
 				</label>
 			</div>
-			<button className="bg-theme text-white rounded-md px-2 py-3 w-full hover:bg-theme_light">
+			<_Button
+				className="bg-theme text-white rounded-md px-2 py-3 w-full hover:bg-theme_light"
+				isLoading={isLoading}
+			>
 				Login
-			</button>
+			</_Button>
 			<span className="text-sm">
 				{`Don't have an account?`}{' '}
 				<Link href={`/register`} className="text-theme">

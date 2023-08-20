@@ -16,13 +16,13 @@ export default function _FormInputGroup(props: Props) {
 					{label}
 				</label>
 			)}
-			<div className="rounded-md border border-dark_lighter px-2 py- flex gap-3 items-center text-dark_lighter">
-				{leftAddon && <div className="text-gray-400">{leftAddon}</div>}
+			<div className="bg-white rounded-md border border-dark_lighter flex gap-3 items-center text-dark_lighter">
+				{leftAddon && <div className="text-gray-400 pl-2">{leftAddon}</div>}
 				<input
 					{...rest}
-					className="outline-none bg-none text-sm w-full h-11 border-0"
+					className="rounded-md outline-none bg-none text-sm w-full h-11 border-0 px-2"
 				/>
-				{rightAddon && <div className="text-gray-400">{rightAddon}</div>}
+				{rightAddon && <div className="text-gray-400 mr-2">{rightAddon}</div>}
 			</div>
 		</div>
 	)

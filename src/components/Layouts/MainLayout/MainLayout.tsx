@@ -1,5 +1,5 @@
 import React from 'react'
-import _Container from '@/packages/ui/_Container'
+import _Container from '@/packages/ui/SContainer'
 import MainNavbar from './MainNavbar'
 import MainFooter from './MainFooter/MainFooter'
 import MainRightNav from './MainRightNav'
