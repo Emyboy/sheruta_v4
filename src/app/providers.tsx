@@ -6,21 +6,24 @@ import { Provider } from 'react-redux'
 import { QueryClientProvider, QueryClient } from 'react-query'
 import { Toaster } from 'react-hot-toast'
 import '../styles/globals.css'
-
-
+import { CacheProvider, ChakraProvider } from '@/components/ChakraUi'
 
 const queryClient = new QueryClient()
 
 export default function providers({ children }: any) {
 	return (
 		<>
-			<QueryClientProvider client={queryClient}>
-				<Provider store={store}>
-					<Toaster />
-					<MasterPopups />
-					{children}
-				</Provider>
-			</QueryClientProvider>
+			<CacheProvider>
+				<ChakraProvider>
+					<QueryClientProvider client={queryClient}>
+						<Provider store={store}>
+							<Toaster />
+							<MasterPopups />
+							{children}
+						</Provider>
+					</QueryClientProvider>
+				</ChakraProvider>
+			</CacheProvider>
 		</>
 	)
 }
