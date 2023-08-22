@@ -7,7 +7,6 @@ type Props = {
 
 export default function ProfileInfo({profile}: Props) {
 	const {user_info } = profile
-	console.log('THE INFO --', user_info)
 	return (
 		<section className="flex flex-col gap-2">
 			<h6 className="text-lg mb-2">Additional Information</h6>

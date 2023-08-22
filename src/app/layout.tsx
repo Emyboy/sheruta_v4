@@ -12,14 +12,14 @@ export default function RootLayout({
 }) {
 	return (
 		<>
-			<html lang="en" className="bg-gray-50">
+			<html lang="en" className="bg-background">
 				<head>
 					<link
 						rel="stylesheet"
 						href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
 					/>
 				</head>
-				<body>
+				<body className="bg-background">
 					<Providers>{children}</Providers>
 				</body>
 			</html>

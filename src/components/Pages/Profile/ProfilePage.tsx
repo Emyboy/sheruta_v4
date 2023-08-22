@@ -3,7 +3,7 @@ import ProfileHero from './ProfileHero'
 import ProfileAbout from './ProfileAbout'
 import ProfileInfo from './ProfileInfo'
 import ProfileSocials from './ProfileSocials'
-import EachRequest from '../Feed/EachRequest'
+import EachRequest from '../../EachRequest/EachRequest'
 import { ProfileData } from '@/app/user/[username]/user-profile-page'
 
 

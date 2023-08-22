@@ -38,6 +38,7 @@ export interface RoomRequest {
 	pay_frequency: PayFrequency
 	amenities: Amenity[]
 	category: Category
+	question_count: number
 }
 
 export interface RequestImage {

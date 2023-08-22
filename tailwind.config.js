@@ -7,7 +7,7 @@ module.exports = {
 		// 'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
 	],
 	daisyui: {
-		themes: ['light', ],
+		themes: ['light'],
 	},
 	theme: {
 		extend: {
@@ -45,8 +45,11 @@ module.exports = {
 			danger: '#FF4949',
 			danger_light: '#F2E1E1',
 
-			background: '#F4F4F4',
+			background: '#f4f4f4bd',
+			// background: '#F4F4F4',
 		},
 	},
-	// plugins: [require('flowbite/plugin'), require('daisyui')],
+	plugins: [require('flowbite/plugin'), 
+	// require('daisyui')
+],
 }

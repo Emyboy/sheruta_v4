@@ -23,6 +23,11 @@ export {
 	Grid,
 	GridItem,
 	ChakraProvider,
+	Menu,
+	MenuButton,
+	MenuList,
+	MenuItem,
+	Divider,
 } from '@chakra-ui/react'
 
 export { CacheProvider } from '@chakra-ui/next-js'

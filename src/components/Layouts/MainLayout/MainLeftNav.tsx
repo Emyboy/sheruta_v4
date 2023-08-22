@@ -17,7 +17,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { AppStore } from '@/interface/index.interface'
 import SAvatar from '@/packages/ui/SAvatar'
 import { logout } from '@/redux/features/auth.slice'
-import { Box } from '@/components/ChakraUi'
 
 type Props = { activePage?: string }
 
@@ -35,7 +34,7 @@ export default function MainLeftNav({ activePage }: Props) {
 					</div>
 				</Link>
 			)}
-			<Box py={'8'} className="my-8">
+			<div className="my-8">
 				<ul>
 					<EachNav
 						link="/start"
@@ -86,7 +85,7 @@ export default function MainLeftNav({ activePage }: Props) {
 						/>
 					</a>
 				</ul>
-			</Box>
+			</div>
 		</div>
 	)
 }

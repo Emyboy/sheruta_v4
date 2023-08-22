@@ -1,6 +1,6 @@
 import ProfilePage from '@/components/Pages/Profile/ProfilePage'
 import React from 'react'
-import _Container, { SContentContainer } from '@/packages/ui/SContainer'
+import _Container from '@/packages/ui/SContainer'
 import MainNavbar from '@/components/Layouts/MainLayout/MainNavbar'
 import { User, UserInfo } from '@/interface/auth.interface'
 import { RoomRequest } from '@/interface/request.interface'
@@ -20,9 +20,11 @@ export default function UserProfilePage({ profile }: Props) {
 		<>
 			<MainNavbar activePage={'profile'} />
 
-			<SContentContainer>
-				<ProfilePage profile={profile} />
-			</SContentContainer>
+			<div className="flex justify-center py-[100px]">
+				<div className="w-screen md:max-w-[696px] lg:max-w-[697px]">
+					<ProfilePage profile={profile} />
+				</div>
+			</div>
 		</>
 	)
 	// return <MainLayout centerComponent={<ProfilePage />} activePage="profile" />

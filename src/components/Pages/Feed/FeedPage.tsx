@@ -1,5 +1,5 @@
 import React from 'react'
-import EachRequest from './EachRequest'
+import EachRequest from '../../EachRequest/EachRequest'
 import _Spinner from '@/packages/ui/SSpinner'
 import MeetTheFounders from './MeetTheFounders'
 

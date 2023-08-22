@@ -1,5 +1,6 @@
 import React from 'react'
 import { HiPaperAirplane } from 'react-icons/hi2'
+import EachMessageBobble from './EachMessageBobble'
 
 type Props = {}
 
@@ -7,19 +8,11 @@ export default function MessageDetailBody({}: Props) {
 	return (
 		<>
 			<div className="bg-gray-100 flex-1 overflow-y-auto overflow-x-hidden flex flex-col gap-3">
-				{new Array(12).fill(null).map((_) => {
+				{new Array(6).fill(null).map((_) => {
 					return (
 						<div>
-							<div className="chat chat-start">
-								<div className="chat-bubble text-sm bg-white text-dark">
-									It's over Anakin, <br />I have the high ground.
-								</div>
-							</div>
-							<div className="chat chat-end">
-								<div className="chat-bubble text-sm">
-									You underestimate my power!
-								</div>
-							</div>
+							<EachMessageBobble isOutgoing />
+							<EachMessageBobble isOutgoing={false} />
 						</div>
 					)
 				})}

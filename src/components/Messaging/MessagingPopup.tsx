@@ -1,8 +1,7 @@
 'use client'
-import React, { useState } from 'react'
+import React from 'react'
 import {
 	HiOutlineChevronDown,
-	HiOutlineChevronLeft,
 	HiOutlineChevronUp,
 } from 'react-icons/hi2'
 import ConversationList from './ConversationList'
@@ -11,23 +10,13 @@ import classNames from 'classnames'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppStore } from '@/interface/index.interface'
 import { setMessagingState } from '@/redux/features/message.slice'
+// import {Box, Flex } from '@/components/ChakraUi'
 
 export default function MessagingPopup() {
 	const { show_messaging, active_conversation } = useSelector(
 		(state: AppStore) => state.app.message
 	)
 	const dispatch = useDispatch()
-	const [selectedTab, setSelectedTab] = useState(0)
-	const tabs = [
-		{
-			name: 'Conversations',
-			count: 3,
-		},
-		{
-			name: 'Flat Mates',
-			count: 6,
-		},
-	]
 
 	return (
 		<div
@@ -63,36 +52,6 @@ export default function MessagingPopup() {
 					)}
 				</button>
 			</div>
-			{!active_conversation && (
-				<div
-					className={classNames(
-						'bg-gray-200  flex justify-evenly transition duration-200 ease-in-out',
-						{ 'h-[40px]': show_messaging },
-						{ 'h-[0px]': !show_messaging }
-					)}
-				>
-					{show_messaging &&
-						tabs.map((tab, i) => {
-							return (
-								<div
-									key={tab.name}
-									onClick={() => setSelectedTab(i)}
-									className={classNames(
-										'w-[50%] flex justify-center items-center h-full cursor-pointer transition duration-100 ease-in-out',
-										{ 'bg-white font-semibold': selectedTab === i }
-									)}
-								>
-									<small className="flex items-center gap-2">
-										{tab.name}{' '}
-										{tab.count > 0 && (
-											<div className="rounded-full bg-danger text-white h-2 w-2"></div>
-										)}
-									</small>
-								</div>
-							)
-						})}
-				</div>
-			)}
 			<div
 				className={classNames(
 					'bg-white flex-1 bottom-0 border-x shadow-lg overflow-y-auto',
