@@ -29,7 +29,7 @@ type Props = {
 }
 
 export default function EachRequest({ request }: Props) {
-	let link = `/request/join-paddy/bungalow/lekki/234`
+	let link = `/request/${request.type}/${request.slug}/${request.id}`
 
 	let author = request.user
 	let authorInfo = request.user_info
@@ -144,26 +144,30 @@ export default function EachRequest({ request }: Props) {
 					</small>
 				</div>
 			</div>
-			<CommentSection />
+			<CommentSection requestData={request} />
 		</article>
 	)
 }
 
-const CommentSection = () => {
+const CommentSection = ({ requestData }: { requestData: RoomRequest }) => {
 	const { user } = useSelector((state: AppStore) => state.app.auth)
 	return (
 		<div className="flex flex-col gap-2">
-			<form className="flex bg-background rounded-full p-1 justify-between gap-3">
-				{user && <SAvatar userData={user} />}
-				<input
-					placeholder="Ask your question (Ex. is this available?)"
-					className="bg-background w-full outline-none text-sm md:text-md"
-				/>
-				<button className="bg-dark text-white rounded-full px-3 py-1">
-					Send
-				</button>
-			</form>
-			<div className="flex flex-col gap-5">{/* <EachComment /> */}</div>
+			{requestData?.user?.id !== user?.id && (
+				<form className="flex bg-background rounded-full p-1 justify-between gap-3">
+					{user && <SAvatar userData={user} />}
+					<input
+						placeholder="Ask your question (Ex. is this available?)"
+						className="bg-background w-full outline-none text-sm md:text-md"
+					/>
+					<button className="bg-dark text-white rounded-full px-3 py-1">
+						Send
+					</button>
+				</form>
+			)}
+			<div className="flex flex-col gap-5">
+				<EachComment />
+			</div>
 		</div>
 	)
 }

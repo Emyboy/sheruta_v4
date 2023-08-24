@@ -28,6 +28,7 @@ export {
 	MenuList,
 	MenuItem,
 	Divider,
+	Spinner
 } from '@chakra-ui/react'
 
 export { CacheProvider } from '@chakra-ui/next-js'
