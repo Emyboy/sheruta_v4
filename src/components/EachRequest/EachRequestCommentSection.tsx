@@ -17,7 +17,7 @@ export default function EachRequestCommentSection({
 
 	return (
 		<div className="flex flex-col gap-2">
-			{requestData?.user?.id !== user?.id || !user && (
+			{requestData?.user?.id !== user?.id  && user && (
 				<form className="flex bg-background rounded-full p-1 justify-between gap-3">
 					{user && <SAvatar userData={user} />}
 					<input

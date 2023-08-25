@@ -100,48 +100,48 @@ export default function EachRequest({ request }: Props) {
 				<Link
 					href={link}
 					className="cursor-pointer p-2 w-1/2 h-full rounded-lg bg-img flex flex-col justify-center items-center relative overflow-hidden"
-					// style={{ backgroundImage: `url(${request?.image_urls[0].url})` }}
+					style={{ backgroundImage: `url(${request?.image_urls[0].url})` }}
 				>
 					{request?.video_url && (
 						<div className="text-3xl hover:text-4xl p-4 bg-dark_transparent text-white rounded-full shadow-md relative z-10">
 							<HiPlay />
 						</div>
 					)}
-					<Image
+					{/* <Image
 						fill
 						src={request?.image_urls[0].url}
 						alt={`room for share in ${request?.location_keyword?.name}`}
 						className="relative"
-					/>
+					/> */}
 				</Link>
 				<div className="w-1/2 h-full gap-1 flex flex-col">
 					<div
 						className="cursor-pointer h-1/2 bg-img rounded-lg relative overflow-hidden"
-						// style={{ backgroundImage: `url(${request?.image_urls[1].url})` }}
+						style={{ backgroundImage: `url(${request?.image_urls[1].url})` }}
 					>
-						<Image
+						{/* <Image
 							fill
 							src={request?.image_urls[1].url}
 							alt={`room for share in ${request?.location_keyword?.name}`}
 							className="relative"
-						/>
+						/> */}
 					</div>
 					<Link
 						href={link}
 						className="cursor-pointer h-1/2 bg-img rounded-lg flex flex-col justify-center items-center relative overflow-hidden"
-						// style={{ backgroundImage: `url(${request?.image_urls[2].url})` }}
+						style={{ backgroundImage: `url(${request?.image_urls[2].url})` }}
 					>
 						{request?.image_urls?.length > 3 && (
 							<div className="text-xl hover:text-2xl p-4 bg-dark_transparent text-white rounded-full shadow-md z-10">
 								{request?.image_urls?.length - 3}+
 							</div>
 						)}
-						<Image
+						{/* <Image
 							fill
 							src={request?.image_urls[2].url}
 							alt={`room for share in ${request?.location_keyword?.name}`}
 							className="relative"
-						/>
+						/> */}
 					</Link>
 				</div>
 			</div>

@@ -4,6 +4,7 @@ import classNames from 'classnames'
 import Link from 'next/link'
 import {
 	HiBars3CenterLeft,
+	HiChevronDown,
 	HiMagnifyingGlass,
 	HiOutlineBell,
 	HiOutlineHome,
@@ -17,6 +18,8 @@ import { setViewState } from '@/redux/features/view.slice'
 import { AppStore } from '@/interface/index.interface'
 import MobileLeftPanel from './MobileLeftPanel'
 import { renderPricingFull } from '@/packages/utils/pricing.utils'
+import FooterUploadOptions from './MainFooter/FooterUploadOptions'
+import { useRouter } from 'next/navigation'
 
 type Props = {
 	activePage: any
@@ -25,26 +28,39 @@ type Props = {
 
 export default function MainNavbar({ activePage, className }: Props) {
 	const dispatch = useDispatch()
-	const { show_left_panel } = useSelector((state: AppStore) => state.view)
+	const { show_left_panel, show_upload_menu } = useSelector(
+		(state: AppStore) => state.view
+	)
 	const { wallet } = useSelector((state: AppStore) => state.app.wallet)
 	const { user } = useSelector((state: AppStore) => state.app.auth)
-
-	let walletTotal:string = wallet ? wallet?.total :"0"
+	const router = useRouter()
+	let walletTotal: string = wallet ? wallet?.total : '0'
 
 	return (
 		<>
 			<MobileLeftPanel />
+			<div
+				className={classNames(
+					'p-3  z-30 fixed left-0 right-0 lg:flex justify-center hidden',
+					{ 'top-[63px] min:h-[600px]': show_upload_menu },
+					{ 'top-[-163px] min:h-[0px]': !show_upload_menu }
+				)}
+			>
+				<div className="bg-dark rounded-xl shadow-lg md:w-[500px]">
+					<FooterUploadOptions />
+				</div>
+			</div>
 
 			<header className="h-16 bg-dark fixed top-0 right-0 left-0 z-50">
 				<div className="flex w-screen mx-auto md:w-5/6 xl:w-2/3 h-full justify-between px-3 md:px-0">
-						<div
-							className="lg:hidden visible rounded-lg text-gray-400 text-3xl flex-col flex justify-center"
-							onClick={() =>
-								dispatch(setViewState({ show_left_panel: !show_left_panel }))
-							}
-						>
-							{show_left_panel ? <HiXMark /> : <HiBars3CenterLeft />}
-						</div>
+					<div
+						className="lg:hidden visible rounded-lg text-gray-400 text-3xl flex-col flex justify-center"
+						onClick={() =>
+							dispatch(setViewState({ show_left_panel: !show_left_panel }))
+						}
+					>
+						{show_left_panel ? <HiXMark /> : <HiBars3CenterLeft />}
+					</div>
 					<div className="md:w-60 sticky top-16 h-full md:items-center lg:justify-between justify-center flex gap-4 w-full">
 						<Link href={`/`} className="flex items-center gap-2">
 							<img alt="brand" src={`/icon_green.png`} className="w-6 md:w-7" />
@@ -55,15 +71,19 @@ export default function MainNavbar({ activePage, className }: Props) {
 						<EachNav
 							Icon={(p: IconBaseProps) => <HiOutlineHome {...p} />}
 							active={activePage === 'home'}
+							onClick={() => router.push('/')}
 						/>
+
 						<EachNav
-							Icon={(p: IconBaseProps) => <HiPlus {...p} />}
-							active={activePage === 'update'}
+							onClick={() =>
+								dispatch(setViewState({ show_upload_menu: !show_upload_menu }))
+							}
+							Icon={(p: IconBaseProps) => show_upload_menu ? <HiChevronDown {...p} /> :  <HiPlus {...p} />}
+							active={activePage === 'upload'}
 						/>
 						<EachNav
 							Icon={(p: IconBaseProps) => <HiOutlineBell {...p} />}
 							active={activePage === 'activities'}
-							link="/activities"
 						/>
 						<EachNav
 							Icon={(p: IconBaseProps) => <HiMagnifyingGlass {...p} />}
@@ -95,28 +115,27 @@ export default function MainNavbar({ activePage, className }: Props) {
 			</header>
 		</>
 	)
-
 }
 
 const EachNav = ({
 	active,
 	Icon,
-	link,
+	onClick,
 }: {
 	active: boolean
 	Icon: any
-	link?: string
+	onClick?: () => void
 }) => {
 	return (
-		<Link
+		<div
+			onClick={onClick}
 			className={classNames(
 				{ 'text-accent bg-theme_transparent': active },
 				{ 'text-white border border-1 border-theme_transparent': !active },
-				'hover:bg-theme_transparent hover:text-accent_light h-12 w-12 rounded-lg flex justify-center items-center '
+				'hover:bg-theme_transparent hover:text-accent_light h-12 w-12 rounded-lg flex justify-center items-center cursor-pointer'
 			)}
-			href={link || `/`}
 		>
 			<Icon size={25} />
-		</Link>
+		</div>
 	)
 }

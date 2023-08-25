@@ -22,8 +22,8 @@ export default function SAvatar({ userData, size }: Props) {
 					// placeholder='blur'
 				/>
 				<span
-					className="bg-danger p-2 absolute rounded-full bottom-0 right-0"
-					// style={{ background: 'red', padding: '10px', position: 'absolute'}}
+					className="bg-danger absolute rounded-full bottom-0 right-0"
+					style={{ height: '15px', width: '15px'}}
 				></span>
 			</div>
 		</div>
