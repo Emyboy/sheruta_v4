@@ -1,5 +1,3 @@
-'use client'
-
 import React from 'react'
 import { SlOptions, SlLocationPin } from 'react-icons/sl'
 import {
@@ -24,6 +22,7 @@ import { renderPricingFull } from '@/packages/utils/pricing.utils'
 import { useSelector } from 'react-redux'
 import { AppStore } from '@/interface/index.interface'
 import Image from 'next/image'
+import EachRequestCommentSection from './EachRequestCommentSection'
 
 type Props = {
 	request: RoomRequest
@@ -164,93 +163,10 @@ export default function EachRequest({ request }: Props) {
 					</small>
 				</div>
 			</div>
-			<CommentSection requestData={request} />
+			<EachRequestCommentSection requestData={request} />
 		</article>
 	)
 }
 
-const CommentSection = ({ requestData }: { requestData: RoomRequest }) => {
-	const { user } = useSelector((state: AppStore) => state.app.auth)
-	return (
-		<div className="flex flex-col gap-2">
-			{requestData?.user?.id !== user?.id && (
-				<form className="flex bg-background rounded-full p-1 justify-between gap-3">
-					{user && <SAvatar userData={user} />}
-					<input
-						placeholder="Ask your question (Ex. is this available?)"
-						className="bg-background w-full outline-none text-sm md:text-md"
-					/>
-					<button className="bg-dark text-white rounded-full px-3 py-1">
-						Send
-					</button>
-				</form>
-			)}
-			<div className="flex flex-col gap-5">
-				<EachComment />
-			</div>
-		</div>
-	)
-}
 
-export const EachComment = () => {
-	return (
-		<>
-			<div className="flex gap-3 items-center">
-				<small className="text-dark_lighter text-xs">Questions</small>
-				<hr className="my-2 flex-1" />
-			</div>
-			<div className="flex items-center">
-				<article className="flex gap-2">
-					<img
-						src="/assets/img/user.jpg"
-						alt="avatar"
-						className="w-9 h-9 rounded-full"
-					/>
-					<div>
-						<div className="flex justify-between">
-							<h6 className="font-medium">The person name</h6>
-							<button className="text-dark_lighter">
-								<SlOptions />
-							</button>
-						</div>
-						<p className="text-dark_lighter mb-4 text-sm">
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint
-							voluptates quidem deleniti eaq ullam?
-						</p>
-						<div className="flex flex-col gap-2">
-							<EachReply />
-						</div>
-					</div>
-				</article>
-			</div>
-			<Link href={'/'} className="text-theme text-center text-sm">
-				Show More
-			</Link>
-		</>
-	)
-}
 
-const EachReply = () => {
-	return (
-		<article className="flex gap-2 ml-3">
-			<img
-				src="/assets/img/user.jpg"
-				alt="avatar"
-				className="w-9 h-9 rounded-full"
-			/>
-			<div>
-				<div className="flex justify-between">
-					<h6 className="font-medium">The person name</h6>
-					<button className="text-dark_lighter">
-						<SlOptions />
-					</button>
-				</div>
-
-				<p className="text-dark_lighter text-sm">
-					Lorem text-sm ipsum dolor sit amet consectetur adipisicing elit. Sint
-					voluptates quidem deleniti eaq ullam?
-				</p>
-			</div>
-		</article>
-	)
-}
