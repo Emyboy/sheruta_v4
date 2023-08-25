@@ -37,15 +37,15 @@ export default function MainNavbar({ activePage, className }: Props) {
 
 			<header className="h-16 bg-dark fixed top-0 right-0 left-0 z-50">
 				<div className="flex w-screen mx-auto md:w-5/6 xl:w-2/3 h-full justify-between px-3 md:px-0">
-					<div className="md:w-60 sticky top-16 h-full md:items-center justify-between flex gap-4 w-full">
 						<div
-							className="md:hidden visible rounded-lg text-gray-400 text-3xl flex-col flex justify-center"
+							className="lg:hidden visible rounded-lg text-gray-400 text-3xl flex-col flex justify-center"
 							onClick={() =>
 								dispatch(setViewState({ show_left_panel: !show_left_panel }))
 							}
 						>
 							{show_left_panel ? <HiXMark /> : <HiBars3CenterLeft />}
 						</div>
+					<div className="md:w-60 sticky top-16 h-full md:items-center lg:justify-between justify-center flex gap-4 w-full">
 						<Link href={`/`} className="flex items-center gap-2">
 							<img alt="brand" src={`/icon_green.png`} className="w-6 md:w-7" />
 							<img alt="brand" src={`/logo_text_white.png`} className="w-24" />
@@ -70,7 +70,7 @@ export default function MainNavbar({ activePage, className }: Props) {
 							active={activePage === 'search'}
 						/>
 					</div>
-					<div className="w-60 sticky top-16 h-full items-center flex justify-end">
+					<div className="lg:w-60 sticky top-16 h-full items-center flex justify-end">
 						{user ? (
 							<Link href={'/wallet'}>
 								<div>

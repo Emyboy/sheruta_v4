@@ -3,8 +3,6 @@ import Link from 'next/link'
 import React from 'react'
 import {
 	HiOutlineArrowRightOnRectangle,
-	HiOutlineBanknotes,
-	HiOutlineBookmark,
 	HiOutlinePlayCircle,
 	HiOutlineRocketLaunch,
 	HiOutlineVideoCamera,
@@ -48,17 +46,6 @@ export default function MainLeftNav({ activePage }: Props) {
 						Icon={(p: IconBaseProps) => <HiOutlineVideoCamera {...p} />}
 						active={activePage === 'inspections'}
 						name="Inspections"
-					/>
-					<EachNav
-						link="/inspections"
-						Icon={(p: IconBaseProps) => <HiOutlineBookmark {...p} />}
-						active={activePage === 'bookmarks'}
-						name="Bookmarks"
-					/>
-					<EachNav
-						Icon={(p: IconBaseProps) => <HiOutlineBanknotes {...p} />}
-						active={false}
-						name="Buy Tokens"
 					/>
 					<EachNav
 						Icon={(p: IconBaseProps) => <HiOutlineWallet {...p} />}
