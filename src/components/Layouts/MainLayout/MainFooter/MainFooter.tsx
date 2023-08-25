@@ -7,17 +7,17 @@ import {
 	HiBellAlert,
 	HiChatBubbleOvalLeftEllipsis,
 	HiHome,
+	HiMagnifyingGlass,
 	HiOutlineBell,
 	HiOutlineChatBubbleOvalLeftEllipsis,
 	HiOutlineChevronUp,
 	HiOutlineHome,
-	HiOutlineUser,
 	HiPlus,
-	HiUser,
 } from 'react-icons/hi2'
 import FooterUploadOptions from './FooterUploadOptions'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setMessagingState } from '@/redux/features/message.slice'
+import { AppStore } from '@/interface/index.interface'
 
 
 type Props = {
@@ -28,6 +28,7 @@ export default function MainFooter({ activePage }: Props) {
 	// const [activePage, setActivePage] = useState<string>('home')
 	const router = useRouter()
 	const [showUploadMenu, setShowUploadMenu] = useState(false)
+	const { user } = useSelector((state:AppStore) => state.app.auth);
 	const dispatch = useDispatch()
 
 	return (
@@ -84,13 +85,13 @@ export default function MainFooter({ activePage }: Props) {
 					count={8}
 				/>
 				<EachNav
-					title="Profile"
+					title="Search"
 					onClick={() => {
-						router.push('/user/johnDoe')
+						router.push('/search')
 					}}
 					active={activePage === 'profile'}
-					ActiveIcon={(p: IconBaseProps) => <HiUser {...p} />}
-					Icon={(p: IconBaseProps) => <HiOutlineUser {...p} />}
+					ActiveIcon={(p: IconBaseProps) => <HiMagnifyingGlass {...p} />}
+					Icon={(p: IconBaseProps) => <HiMagnifyingGlass {...p} />}
 				/>
 			</footer>
 		</div>

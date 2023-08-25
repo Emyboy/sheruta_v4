@@ -17,12 +17,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { AppStore } from '@/interface/index.interface'
 import SAvatar from '@/packages/ui/SAvatar'
 import { logout } from '@/redux/features/auth.slice'
+import { setViewState } from '@/redux/features/view.slice'
 
 type Props = { activePage?: string }
 
 export default function MainLeftNav({ activePage }: Props) {
-	const { user } = useSelector((state: AppStore) => state.app.auth);
-	const dispatch = useDispatch();
+	const { user } = useSelector((state: AppStore) => state.app.auth)
+	const dispatch = useDispatch()
 	return (
 		<div className="px-3">
 			{user && (
@@ -95,26 +96,40 @@ const EachNav = ({
 	active,
 	Icon,
 	link,
+	onClick,
 }: {
 	name: string
 	active: boolean
 	Icon: any
 	link?: string
+	onClick?: () => void
 }) => {
+	const dispatch = useDispatch()
+
 	return (
-		<li className='cursor-pointer'>
-			<span
-				className={classnames(
-					{
-						'font-medium border border-1 bg-theme_transparent border-theme_light':
-							active,
-					},
-					{ 'text-dark_light': !active },
-					'flex gap-2 items-center hover:bg-theme_transparent hover:font-medium  p-2 rounded-lg mb-3'
-				)}
-			>
-				<Icon size={25} /> <p>{name}</p>
-			</span>
+		<li
+			className="cursor-pointer"
+			onClick={() => {
+				dispatch(setViewState({ show_left_panel: false }))
+				if (onClick) {
+					onClick()
+				}
+			}}
+		>
+			<Link href={link || '/'}>
+				<span
+					className={classnames(
+						{
+							'font-medium border border-1 bg-theme_transparent border-theme_light':
+								active,
+						},
+						{ 'text-dark_light': !active },
+						'flex gap-2 items-center hover:bg-theme_transparent hover:font-medium  p-2 rounded-lg mb-3'
+					)}
+				>
+					<Icon size={25} /> <p>{name}</p>
+				</span>
+			</Link>
 		</li>
 	)
 }

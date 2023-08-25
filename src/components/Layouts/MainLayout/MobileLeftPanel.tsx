@@ -19,6 +19,7 @@ export default function MobileLeftPanel() {
 					left: show_left_panel ? 0 : -2500,
 				}}
 				className="fixed bg-white pt-16 shadow-lg"
+				
 			>
 				<MainLeftNav />
 			</div>

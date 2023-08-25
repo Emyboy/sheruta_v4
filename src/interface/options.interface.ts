@@ -31,3 +31,4 @@ export interface Amenity extends Option {
 export interface Category extends Option {
 	
 }
+

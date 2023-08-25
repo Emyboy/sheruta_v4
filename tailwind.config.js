@@ -45,11 +45,12 @@ module.exports = {
 			danger: '#FF4949',
 			danger_light: '#F2E1E1',
 
-			background: '#f4f4f4bd',
+			background: '#f4f4f624',
 			// background: '#F4F4F4',
 		},
 	},
-	plugins: [require('flowbite/plugin'), 
-	// require('daisyui')
-],
+	plugins: [
+		require('flowbite/plugin'),
+		// require('daisyui')
+	],
 }

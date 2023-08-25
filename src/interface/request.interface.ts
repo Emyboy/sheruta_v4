@@ -1,5 +1,5 @@
 import { User, UserInfo } from "./auth.interface";
-import { Amenity, Category, Facility, PayFrequency, Service, State } from "./options.interface";
+import { Amenity, Category, Facility, LocationKeyword, PayFrequency, Service, State } from "./options.interface";
 
 
 export interface RoomRequest {
@@ -38,6 +38,7 @@ export interface RoomRequest {
 	pay_frequency: PayFrequency
 	amenities: Amenity[]
 	category: Category
+	location_keyword: LocationKeyword
 	question_count: number
 }
 

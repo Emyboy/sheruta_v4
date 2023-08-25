@@ -13,8 +13,8 @@ import { useRouter } from 'next/navigation'
 import VerifyEmail from './VerifyEmail'
 import { NewUser } from './SignupForm'
 import { UserInfoService } from '@/services/user-info.service'
-import SSpinner from '@/packages/ui/SSpinner'
 import { setWalletState } from '@/redux/features/wallet.slice'
+import { Spinner } from '@/components/ChakraUi'
 
 type Props = {}
 
@@ -89,7 +89,7 @@ export default function LoginForm({}: Props) {
 	if (loading) {
 		return (
 			<center>
-				<SSpinner size={30} />
+				<Spinner size={'md'} />
 			</center>
 		)
 	}

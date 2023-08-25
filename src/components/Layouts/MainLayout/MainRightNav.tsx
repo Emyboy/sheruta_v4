@@ -7,7 +7,7 @@ type Props = {}
 export default function ffMainRightNav({ }: Props) {
     return (
 			<div>
-				<div className="mt-[64px]">
+				<div>
 					<div className="border-b border-1 px-4 h-14 flex flex-col justify-center">
 						<div className="text-dark_light flex items-center gap-2 font-medium">
 							<HiOutlineChatBubbleBottomCenterText

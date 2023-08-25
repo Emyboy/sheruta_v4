@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import React, { ReactNode } from 'react'
-import SSpinner from './SSpinner'
+import { Spinner } from '@/components/ChakraUi'
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	children: ReactNode
@@ -22,7 +22,7 @@ export default function _Button(props: Props) {
 		>
 			<span className="flex w-full justify-center gap-3 items-center">
 				{children}
-				{isLoading && <SSpinner />}{' '}
+				{isLoading && <Spinner size='sm' />}{' '}
 			</span>
 			{/* {isLoading && <span className="loading loading-dots loading-xs" style={{ fontSize: '10px'}}></span>} */}
 		</button>
