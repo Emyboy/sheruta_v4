@@ -14,7 +14,7 @@ import {
 	HiOutlineHome,
 	HiPlus,
 } from 'react-icons/hi2'
-import FooterUploadOptions from './FooterUploadOptions'
+import FooterUploadOptions from '../../../Upload/UploadOptions'
 import { useDispatch, useSelector } from 'react-redux'
 import { setMessagingState } from '@/redux/features/message.slice'
 import { AppStore } from '@/interface/index.interface'
@@ -27,7 +27,6 @@ type Props = {
 export default function MainFooter({ activePage }: Props) {
 	// const [activePage, setActivePage] = useState<string>('home')
 	const router = useRouter()
-	const [showUploadMenu, setShowUploadMenu] = useState(false)
 	const { user } = useSelector((state: AppStore) => state.app.auth)
 	const { show_upload_menu } = useSelector((state: AppStore) => state.view)
 	const dispatch = useDispatch()
@@ -36,7 +35,7 @@ export default function MainFooter({ activePage }: Props) {
 		<div className="lg:hidden block">
 			<div
 				style={{ bottom: show_upload_menu ? 70 : -893 }}
-				onClick={() => setViewState({ show_upload_menu: false })}
+				onClick={() => dispatch(setViewState({ show_upload_menu: false }))}
 				className={classNames(
 					'fixed p-1 bottom-16 z-50 w-screen h-screen flex flex-col justify-end  animate__animated'
 				)}
@@ -68,8 +67,10 @@ export default function MainFooter({ activePage }: Props) {
 				/>
 				<EachNav
 					title="Upload"
-					onClick={() => setShowUploadMenu(!showUploadMenu)}
-					active={showUploadMenu}
+					onClick={() =>
+						dispatch(setViewState({ show_upload_menu: !show_upload_menu }))
+					}
+					active={show_upload_menu}
 					ActiveIcon={(p: IconBaseProps) => <HiOutlineChevronUp {...p} />}
 					Icon={(p: IconBaseProps) => <HiPlus {...p} />}
 				/>

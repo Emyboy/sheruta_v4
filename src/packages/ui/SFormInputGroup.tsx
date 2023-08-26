@@ -6,10 +6,10 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
 	rightAddon?: any
 }
 
-export default function _FormInputGroup(props: Props) {
+export default function SFormINputGroup(props: Props) {
 	const { label, leftAddon, rightAddon, ...rest } = props
 	return (
-		<div>
+		<div className='w-full'>
 			{label && (
 				<label htmlFor={rest.id} className="text-sm text-dark_lighter">
 					{label}

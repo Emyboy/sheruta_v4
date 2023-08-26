@@ -18,7 +18,7 @@ import { setViewState } from '@/redux/features/view.slice'
 import { AppStore } from '@/interface/index.interface'
 import MobileLeftPanel from './MobileLeftPanel'
 import { renderPricingFull } from '@/packages/utils/pricing.utils'
-import FooterUploadOptions from './MainFooter/FooterUploadOptions'
+import FooterUploadOptions from '../../Upload/UploadOptions'
 import { useRouter } from 'next/navigation'
 
 type Props = {
@@ -46,9 +46,15 @@ export default function MainNavbar({ activePage, className }: Props) {
 					{ 'top-[-163px] min:h-[0px]': !show_upload_menu }
 				)}
 			>
-				<div className="bg-dark rounded-xl shadow-lg md:w-[500px]">
+				<div className="bg-dark rounded-xl shadow-lg md:w-[500px] z-40">
 					<FooterUploadOptions />
 				</div>
+				{show_upload_menu && (
+					<div
+						className="fixed top-0 bottom-0 left-0 right-0 z-[10px]"
+						onClick={() => dispatch(setViewState({ show_upload_menu: false }))}
+					/>
+				)}
 			</div>
 
 			<header className="h-16 bg-dark fixed top-0 right-0 left-0 z-50">
@@ -78,7 +84,9 @@ export default function MainNavbar({ activePage, className }: Props) {
 							onClick={() =>
 								dispatch(setViewState({ show_upload_menu: !show_upload_menu }))
 							}
-							Icon={(p: IconBaseProps) => show_upload_menu ? <HiChevronDown {...p} /> :  <HiPlus {...p} />}
+							Icon={(p: IconBaseProps) =>
+								show_upload_menu ? <HiChevronDown {...p} /> : <HiPlus {...p} />
+							}
 							active={activePage === 'upload'}
 						/>
 						<EachNav

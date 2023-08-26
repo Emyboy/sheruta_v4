@@ -41,6 +41,7 @@ import { setupListeners } from '@reduxjs/toolkit/dist/query'
 import { authApi } from './services/auth.service'
 import { userInfoApi } from './services/user-info.service'
 import walletSlice from './features/wallet.slice'
+import uploadSlice from './features/upload.slice'
 
 const persistConfig = {
 	key: 'root',
@@ -51,6 +52,7 @@ const rootReducer = combineReducers({
 	auth: authSlice,
 	message: messageSlice,
 	wallet: walletSlice,
+	upload: uploadSlice,
 })
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
@@ -58,6 +60,7 @@ export const store: any = configureStore({
 	reducer: {
 		app: persistedReducer,
 		view: viewSlice,
+		upload: uploadSlice,
 		// upload: uploadReducer,
 		// category: categoryReducer,
 		[authApi.reducerPath]: authApi.reducer,
@@ -68,7 +71,7 @@ export const store: any = configureStore({
 			serializableCheck: {
 				ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
 			},
-		}).concat([authApi.middleware, userInfoApi.middleware])
+		}).concat([authApi.middleware, userInfoApi.middleware]),
 })
 
 setupListeners(store.dispatch)

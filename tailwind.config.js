@@ -45,6 +45,9 @@ module.exports = {
 			danger: '#FF4949',
 			danger_light: '#F2E1E1',
 
+			muted: '#52678E',
+			muted_light: '#F4F4F6',
+
 			background: '#f4f4f624',
 			// background: '#F4F4F4',
 		},
