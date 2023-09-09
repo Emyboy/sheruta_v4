@@ -5,18 +5,19 @@ import SFormINputGroup from '@/packages/ui/SFormInputGroup'
 import SInput from '@/packages/ui/SInput'
 import SQuantityInput from '@/packages/ui/SQuantityInput'
 import { DebounceInput } from 'react-debounce-input'
-import type { DebounceInputProps } from 'react-debounce-input'
+import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
+import SSelect from '@/packages/ui/SSelect'
 
 type Props = {}
 
 export default function PortRoomForm({ next }: EachStepProps) {
-	const [bedrooms, setBedrooms] = useState(1)
-	const [bathrooms, setBathrooms] = useState(1)
-	const [toilets, setToilets] = useState(1)
-	const [number_of_flatmate, setFlatmateCount] = useState(1)
+	const [bedrooms, setBedrooms] = useState(0)
+	const [bathrooms, setBathrooms] = useState(0)
+	const [toilets, setToilets] = useState(0)
+	const [number_of_flatmate, setFlatmateCount] = useState(0)
 	const [request_text, setRequestText] = useState('')
-
-
+	const [total_rent, setTotalRent] = useState<any>('')
+	const [room_rent, setRoomRent] = useState<any>('')
 
 	const progressPercentage = (request_text.length / 240) * 100
 	const colors =
@@ -29,7 +30,7 @@ export default function PortRoomForm({ next }: EachStepProps) {
 	return (
 		<>
 			<div className="flex flex-col gap-4 md:w-[600px] w-[90vw]">
-				<div className="grid gap-4 grid-cols-2">
+				<div className="grid gap-4 grid-cols-2 md:grid-cols-3">
 					<SQuantityInput
 						label="Bedrooms"
 						onChange={(value) => setBedrooms(value)}
@@ -44,8 +45,6 @@ export default function PortRoomForm({ next }: EachStepProps) {
 						id="bathrooms"
 						required
 					/>
-				</div>
-				<div className="grid gap-4 grid-cols-2">
 					<SQuantityInput
 						label="Toilets"
 						onChange={(value) => setToilets(value)}
@@ -61,23 +60,45 @@ export default function PortRoomForm({ next }: EachStepProps) {
 						required
 					/>
 				</div>
-				<div className="flex gap-3 w-full md:flex-row flex-col">
+				<hr />
+				<div className="grid gap-4 md:grid-cols-2 grid-cols-1">
 					<SInput
-						label="Bedrooms"
-						id="bedrooms"
+						label="Total Rent"
+						id="total_rent"
 						required
-						type="number"
-						onChange={() => {}}
-						placeholder="Bedroom"
+						type="currency"
+						onChange={(val) => setTotalRent(val)}
+						placeholder="Total Rent"
+						value={total_rent}
 					/>
 					<SInput
-						label="Bathrooms"
-						id="bathrooms"
+						label="Room Rent"
+						id="room_rent"
 						required
-						type="number"
-						onChange={() => {}}
-						placeholder="Bathroom"
+						type="currency"
+						onChange={(currency) => console.log(currency)}
+						placeholder="Room Rent"
+						value={room_rent}
 					/>
+				</div>
+				<hr />
+				<div className="w-full">
+					<div className="flex flex-col gap-2 w-100 flex-1">
+						<label htmlFor={'location'} className="text-dark_light text-sm">
+							Location <span className="text-danger font-bold">*</span>
+						</label>
+						<GooglePlacesAutocomplete
+							apiKey={process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY}
+							apiOptions={{ region: 'ng' }}
+							selectProps={{ placeholder: 'Select Location' }}
+						/>
+					</div>
+				</div>
+				<hr />
+				<div className="grid gap-4 md:grid-cols-3 grid-cols-1">
+					<SSelect label="Service" placeholder="Select Service" />
+					<SSelect label="Category" placeholder="Select Category" />
+					<SSelect label="Pay Frequency" placeholder="Weekly, Monthly" />
 				</div>
 				<div className="flex gap-3 w-full md:flex-row flex-col">
 					<div className="flex flex-col gap-2 w-100 flex-1">

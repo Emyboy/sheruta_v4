@@ -9,7 +9,6 @@ export default async function page() {
 		try {
 			const res = await fetch(backend_url + '/room-request/recent')
 			let data = await res.json()
-			// setList(data)
 			return data
 		} catch (error) {
 			console.log('DATA ERROR --', error)

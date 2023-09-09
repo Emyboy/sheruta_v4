@@ -19,21 +19,14 @@ export default function SQuantityInput({
 	defaultValue,
 	disabled,
 }: Props) {
-	// const [value, setValue] = useState(defaultValue || 1) // Initialize value with 1
 	const handleDecrement = () => {
 		if (defaultValue > 1) {
 			onChange(defaultValue - 1)
-			// const event = new Event('input', { bubbles: true })
-			// @ts-ignore
-			// event.target = { value: value - 1 }
 		}
 	}
 
 	const handleIncrement = () => {
 		onChange(defaultValue + 1)
-		// const event = new Event('input', { bubbles: true })
-		// @ts-ignore
-		// event.target = { value: value + 1 }
 	}
 
 	return (
@@ -58,7 +51,7 @@ export default function SQuantityInput({
 					-
 				</button>
 				<input
-					className="font-bold border-0 outline-none h-full w-full text-center"
+					className="border-0 outline-none h-full w-full text-center"
 					disabled
 					value={defaultValue}
 					required={required}
