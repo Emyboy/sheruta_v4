@@ -1,27 +1,30 @@
 // 'use client'
 import MainLayout from '@/components/Layouts/MainLayout/MainLayout'
 import FeedPage from '@/components/Pages/Feed/FeedPage'
-import { APICall } from '@/services/index.service'
+import { backend_url } from '@/constants/app.constrant'
 import React from 'react'
 
-let getRecentRequests = async () => {
-	try {
-		const res = await APICall({
-			path: '/room-request/recent',
-			options: { method: 'GET' },
-		})
-		return res.data
-	} catch (error) {
-		return Promise.reject(error)
+export default async function page() {
+	const getRecentRequests = async () => {
+		try {
+			const res = await fetch(backend_url + '/room-request/recent')
+			let data = await res.json()
+			// setList(data)
+			return data
+		} catch (error) {
+			console.log('DATA ERROR --', error)
+			return error
+		}
 	}
-}
 
-export default async function Home() {
-	let recentRequests = await getRecentRequests()
+	let data = await getRecentRequests()
+
 	return (
-		<MainLayout
-			activePage="home"
-			centerComponent={<FeedPage requests={recentRequests} />}
-		/>
+		<>
+			<MainLayout
+				activePage="home"
+				centerComponent={<FeedPage requests={data} />}
+			/>
+		</>
 	)
 }

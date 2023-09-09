@@ -12,11 +12,11 @@ export default function FeedPage({requests}: Props) {
 	return (
 		<>
 			<div className="flex flex-col gap-4">
-				{requests.map((data, i) => {
+				{requests && requests.map((data, i) => {
 					return (
 						<>
 							{i === 2 && <MeetTheFounders />}
-							<EachRequest request={data} key={`feed-${i}`}  />
+							<EachRequest request={data} key={`feed-${i}`} />
 						</>
 					)
 				})}

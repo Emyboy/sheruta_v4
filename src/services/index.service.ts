@@ -11,6 +11,7 @@ export let APICall = ({
 	options: AxiosRequestConfig
 	isAuth?: boolean
 }): Promise<AxiosResponse> => {
+	// console.log('API CALL::', backend_url+path)
 	return axios(backend_url + path, {
 		...options,
 		headers: isAuth

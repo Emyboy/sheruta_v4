@@ -24,7 +24,7 @@ export default function PortRoomForm({ next }: EachStepProps) {
 			? 'red'
 			: progressPercentage >= 60 && progressPercentage <= 100
 			? 'orange'
-			: 'green'
+			: '#1eb21e'
 
 	return (
 		<>
@@ -81,10 +81,24 @@ export default function PortRoomForm({ next }: EachStepProps) {
 				</div>
 				<div className="flex gap-3 w-full md:flex-row flex-col">
 					<div className="flex flex-col gap-2 w-100 flex-1">
-						<label htmlFor={'request_text'} className="text-dark_light text-sm">
-							{'About this listing'}{' '}
-							<span className="text-danger font-bold">*</span>
-						</label>
+						<div className="flex justify-between">
+							<label
+								htmlFor={'request_text'}
+								className="text-dark_light text-sm"
+							>
+								{'About this listing'}{' '}
+								<span className="text-danger font-bold">*</span>
+							</label>
+							<div className="flex">
+								<span style={{ color: colors }}>
+									{progressPercentage < 60
+										? 'Too short 😭'
+										: progressPercentage >= 60 && progressPercentage <= 100
+										? 'A bit better 🫥'
+										: 'Good enough 👍🏽'}
+								</span>
+							</div>
+						</div>
 						<div className="flex flex-col">
 							<div className="h-1 bg-green-200 overflow-hidden">
 								<div
