@@ -9,6 +9,7 @@ import PostRoomImageSelector from './Steps/PostRoomImageSelector'
 import PostRoomVideoSelector from './Steps/PostRoomVideoSelector'
 import PortRoomForm from './Steps/PortRoomForm'
 import PostRoomPriceBreakdown from './Steps/PostRoomPriceBreakdown'
+import FacilitiesAndAmenities from './Steps/FacilitiesAndAmenities'
 
 type Props = {}
 export type EachStepProps = {
@@ -18,9 +19,9 @@ export type EachStepProps = {
 export default function PostRoom({}: Props) {
 	const { type } = useSelector((state: AppStore) => state.upload)
 	const { user } = useSelector((state: AppStore) => state.app.auth)
-	let length = 5
+	let length = 6
 	let _type = type && type.replaceAll('-', ' ')
-	const [step, setStep] = useState(3)
+	const [step, setStep] = useState(5)
 	const dispatch = useDispatch()
 	const navHeadings = ['Post Your Room'][step]
 	const headings = [
@@ -28,6 +29,7 @@ export default function PostRoom({}: Props) {
 		'Upload Images',
 		'Upload A Video',
 		`${_type} Information`,
+		`Amenities and Facilities`,
 		`Payment Breakdown`,
 	][step]
 	const subHeadings = [
@@ -37,6 +39,7 @@ export default function PostRoom({}: Props) {
 		` Add at least 4 pictures of the ${_type}. Including the toilet/bath room, sitting room, bedroom.`,
 		`Upload video containing visuals of the room and  toilets/bath and sitting room. (optional)`,
 		`Tell us more about the ${_type}.`,
+		`Select multiple facilities and amenities.`,
 		`let prospects know what the rent and other fees covers.`,
 	][step]
 
@@ -59,6 +62,7 @@ export default function PostRoom({}: Props) {
 					<PostRoomImageSelector next={() => setStep(step + 1)} />,
 					<PostRoomVideoSelector next={() => setStep(step + 1)} />,
 					<PortRoomForm next={() => setStep(step + 1)} />,
+					<FacilitiesAndAmenities next={() => setStep(step + 1)} />,
 					<PostRoomPriceBreakdown next={() => setStep(step + 1)} />,
 				][step]
 			}

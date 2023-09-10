@@ -4,9 +4,15 @@ import classNames from 'classnames'
 import React from 'react'
 import { IconBaseProps } from 'react-icons'
 import { BiSolidBed } from 'react-icons/bi'
-import { HiEyeSlash, HiMiniCheckCircle, HiMiniHomeModern, HiUsers } from 'react-icons/hi2'
+import {
+	HiEyeSlash,
+	HiMiniCheckCircle,
+	HiMiniHomeModern,
+	HiUsers,
+} from 'react-icons/hi2'
 import { useDispatch, useSelector } from 'react-redux'
 import { EachStepProps } from '../PostRoom'
+import NextButtonContainer from '../NextButtonContainer'
 
 export default function PostRoomTypeSelector({ next }: EachStepProps) {
 	const { type } = useSelector((state: AppStore) => state.upload)
@@ -33,17 +39,19 @@ export default function PostRoomTypeSelector({ next }: EachStepProps) {
 					Icon={(p) => <HiUsers {...p} />}
 				/>
 			</div>
-			<button
-				disabled={!type}
-				onClick={next}
-				className={classNames(
-					' text-white rounded-md font-bold w-[90vw] md:w-[400px] py-3',
-					{ 'bg-dark': type !== null },
-					{ 'bg-muted': type === null }
-				)}
-			>
-				Continue
-			</button>
+			<NextButtonContainer>
+				<button
+					disabled={!type}
+					onClick={next}
+					className={classNames(
+						' text-white rounded-md font-bold w-[90vw] md:w-[400px] py-3',
+						{ 'bg-dark': type !== null },
+						{ 'bg-muted': type === null }
+					)}
+				>
+					Continue
+				</button>
+			</NextButtonContainer>
 		</>
 	)
 }

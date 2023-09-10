@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { EachStepProps } from '../PostRoom'
 import { HiMiniVideoCamera } from 'react-icons/hi2'
 import classNames from 'classnames'
+import NextButtonContainer from '../NextButtonContainer'
 
 export default function PostRoomVideoSelector({ next }: EachStepProps) {
 	const [videoData, setVideoData] = useState()
@@ -14,15 +15,16 @@ export default function PostRoomVideoSelector({ next }: EachStepProps) {
 					<p className="">80 MB max</p>
 				</div>
 			</div>
-
-			<button
-				onClick={next}
-				className={classNames(
-					' text-white bg-dark rounded-md font-bold w-[90vw] md:w-[400px] py-3'
-				)}
-			>
-				Continue
-			</button>
+			<NextButtonContainer>
+				<button
+					onClick={next}
+					className={classNames(
+						' text-white bg-dark rounded-md font-bold w-[90vw] md:w-[400px] py-3'
+					)}
+				>
+					Continue
+				</button>
+			</NextButtonContainer>
 		</>
 	)
 }

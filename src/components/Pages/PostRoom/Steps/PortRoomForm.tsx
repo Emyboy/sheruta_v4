@@ -7,6 +7,7 @@ import SQuantityInput from '@/packages/ui/SQuantityInput'
 import { DebounceInput } from 'react-debounce-input'
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
 import SSelect from '@/packages/ui/SSelect'
+import NextButtonContainer from '../NextButtonContainer'
 
 type Props = {}
 
@@ -152,15 +153,17 @@ export default function PortRoomForm({ next }: EachStepProps) {
 					</div>
 				</div>
 			</div>
-			<button
-				type="submit"
-				onClick={next}
-				className={classNames(
-					' text-white bg-dark rounded-md font-bold w-[90vw] md:w-[400px] py-3'
-				)}
-			>
-				Continue
-			</button>
+			<NextButtonContainer>
+				<button
+					type="submit"
+					onClick={next}
+					className={classNames(
+						' text-white bg-dark rounded-md font-bold w-[90vw] md:w-[400px] py-3'
+					)}
+				>
+					Continue
+				</button>
+			</NextButtonContainer>
 		</>
 	)
 }

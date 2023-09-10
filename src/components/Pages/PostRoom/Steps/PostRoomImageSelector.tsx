@@ -3,15 +3,16 @@ import { HiOutlineTrash } from 'react-icons/hi2'
 import { RiImageAddFill } from 'react-icons/ri'
 import { EachStepProps } from '../PostRoom'
 import classNames from 'classnames'
+import NextButtonContainer from '../NextButtonContainer'
 
 type ImageDataDTO = {
-  url: string,
-  description: string
-} 
+	url: string
+	description: string
+}
 
-export default function PostRoomImageSelector({next}: EachStepProps) {
+export default function PostRoomImageSelector({ next }: EachStepProps) {
 	const [selectedImages, setSelectedImages] = useState<ImageDataDTO[]>([])
-  const isReady = selectedImages.length < 4;
+	const isReady = selectedImages.length < 4
 
 	return (
 		<>
@@ -23,17 +24,19 @@ export default function PostRoomImageSelector({next}: EachStepProps) {
 				<SelectedImage />
 				{selectedImages.length < 8 && <ImageSelector />}
 			</div>
-			<button
-				// disabled={isReady}
-				onClick={next}
-				className={classNames(
-					' text-white rounded-md font-bold w-[90vw] md:w-[400px] py-3',
-					{ 'bg-dark': isReady },
-					{ 'bg-muted': !isReady }
-				)}
-			>
-				Continue
-			</button>
+			<NextButtonContainer>
+				<button
+					// disabled={isReady}
+					onClick={next}
+					className={classNames(
+						' text-white rounded-md font-bold w-[90vw] md:w-[400px] py-3',
+						{ 'bg-dark': isReady },
+						{ 'bg-muted': !isReady }
+					)}
+				>
+					Continue
+				</button>
+			</NextButtonContainer>
 		</>
 	)
 }
