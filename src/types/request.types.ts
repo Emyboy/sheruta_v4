@@ -5,3 +5,8 @@ export interface EachPayFrequency {
 	price: number
 	frequency: string
 }
+
+export interface CreateRoomRequestDTO {
+	bedrooms: number;
+	bathrooms: number;
+}

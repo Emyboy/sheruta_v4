@@ -10,10 +10,12 @@ import PostRoomVideoSelector from './Steps/PostRoomVideoSelector'
 import PortRoomForm from './Steps/PortRoomForm'
 import PostRoomPriceBreakdown from './Steps/PostRoomPriceBreakdown'
 import FacilitiesAndAmenities from './Steps/FacilitiesAndAmenities'
+import { CreateRoomRequestDTO } from '@/types/request.types'
 
 type Props = {}
 export type EachStepProps = {
 	next: () => void
+	roomRequestData?: CreateRoomRequestDTO | null
 }
 
 export default function PostRoom({}: Props) {
@@ -43,6 +45,8 @@ export default function PostRoom({}: Props) {
 		`let prospects know what the rent and other fees covers.`,
 	][step]
 
+	const [roomRequestData, setRoomRequestData] = useState<CreateRoomRequestDTO | null>(null);
+
 	const goBack = () => {
 		setStep(step - 1)
 	}
@@ -63,7 +67,7 @@ export default function PostRoom({}: Props) {
 					<PostRoomVideoSelector next={() => setStep(step + 1)} />,
 					<PortRoomForm next={() => setStep(step + 1)} />,
 					<FacilitiesAndAmenities next={() => setStep(step + 1)} />,
-					<PostRoomPriceBreakdown next={() => setStep(step + 1)} />,
+					<PostRoomPriceBreakdown next={() => setStep(step + 1)} roomRequestData={roomRequestData} />,
 				][step]
 			}
 		</PostRoomLayout>
