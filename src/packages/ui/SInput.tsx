@@ -51,10 +51,10 @@ export default function SInput({
 					name={id}
 					placeholder={placeholder}
 					className={className}
-					defaultValue={value}
+					value={value}
 					decimalsLimit={2}
 					required={required}
-					onValueChange={(value, name) => console.log(value, name)}
+					onValueChange={(value, name) => onChange(value)}
 				/>
 			)}
 		</div>

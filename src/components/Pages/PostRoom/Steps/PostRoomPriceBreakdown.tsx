@@ -2,42 +2,73 @@ import React, { useState } from 'react'
 import { EachStepProps } from '../PostRoom'
 import classNames from 'classnames'
 import SInput from '@/packages/ui/SInput'
-import { currencySymbol } from '@/constants/app.constrant'
 import { HiXMark } from 'react-icons/hi2'
-import SSelect from '@/packages/ui/SSelect'
+import SSelect, { SSelectData } from '@/packages/ui/SSelect'
 import { EachPayFrequency } from '@/types/request.types'
 import NextButtonContainer from '../NextButtonContainer'
+import { toast } from 'react-hot-toast'
+import { renderPricingFull } from '@/packages/utils/pricing.utils'
+
+type CreateFrequencyDTO = {
+	id?: number | string
+	name: string
+	price: number
+	frequency: SSelectData | null
+}
 
 export default function PostRoomPriceBreakdown({ next }: EachStepProps) {
-	const [frequencies, setFrequencies] = useState<EachPayFrequency[]>([])
+	const [frequencies, setFrequencies] = useState<CreateFrequencyDTO[]>([])
 
 	const defaultState = {
-		frequency: '',
+		frequency: null,
 		name: '',
 		price: 0,
 	}
-	const [frequency, setFrequency] = useState<EachPayFrequency>(defaultState)
+	const [frequency, setFrequency] = useState<CreateFrequencyDTO>(defaultState)
 
 	const removeItem = (id?: number | string) => {
+		console.log('THE ID --', id)
 		if (id) {
-			let data = frequencies
-			data.filter((x) => x.id === id)
+			let data = frequencies.filter((x) => x.id !== id)
 			setFrequencies(data)
+		}
+	}
+
+	const addFrequency = () => {
+		const { name, price } = frequency
+		console.log(frequency)
+
+		if (name && price && frequency.frequency) {
+			let data = frequencies
+			data.push({ ...frequency, id: Date.now() })
+			setFrequency(defaultState)
+			toast.success('New item added')
+		} else {
+			toast('Please fill out the form', { icon: '⚠️' })
 		}
 	}
 
 	return (
 		<div className="flex flex-col gap-4 md:w-[600px] w-[90vw]">
 			<div className="flex flex-col gap-2">
-				{frequencies.map((data, index) => {
-					return (
-						<EachFrequency
-							key={data.name}
-							data={data}
-							onRemove={() => removeItem(data?.id)}
-						/>
-					)
-				})}
+				{frequencies.length > 0 ? (
+					frequencies.map((data, index) => {
+						return (
+							<EachFrequency
+								key={data.name}
+								data={data}
+								onRemove={() => removeItem(data?.id)}
+							/>
+						)
+					})
+				) : (
+					<center>
+						<p>No item added</p>
+						<small className="font-light">
+							Fill the form and press Add+ to add <br /> an item.
+						</small>
+					</center>
+				)}
 			</div>
 			<hr />
 			<div className="flex flex-col gap-3 ">
@@ -67,29 +98,21 @@ export default function PostRoomPriceBreakdown({ next }: EachStepProps) {
 					id="pay_frequency"
 					label="Pay Frequency"
 					placeholder="Select Frequency"
-					onChange={(data) =>
-						setFrequency({ ...frequency, frequency: data.value })
-					}
+					onChange={(data) => setFrequency({ ...frequency, frequency: data })}
 					options={[
 						{ label: 'Monthly', value: 'monthly' },
 						{ label: 'Annually', value: 'annually' },
 						{ label: 'Bi Annually', value: 'bi-annually' },
 					]}
-					value={''}
+					value={frequency?.frequency}
+					required
 				/>
 				<br />
-				<button
-					type="button"
-					className="text-lg"
-					onClick={() => {
-						console.log(frequency)
-						let data = frequencies
-						data.push({ ...frequency, id: Date.now() })
-						setFrequency(defaultState)
-					}}
-				>
+				<button type="button" className="text-lg" onClick={addFrequency}>
 					Add +
 				</button>
+				<br />
+				<br />
 			</div>
 			<NextButtonContainer>
 				<button
@@ -101,6 +124,8 @@ export default function PostRoomPriceBreakdown({ next }: EachStepProps) {
 					Upload Listing
 				</button>
 			</NextButtonContainer>
+			<br />
+			<br />
 		</div>
 	)
 }
@@ -109,22 +134,23 @@ const EachFrequency = ({
 	data,
 	onRemove,
 }: {
-	data: EachPayFrequency
+	data: CreateFrequencyDTO
 	onRemove: () => void
 }) => {
 	return (
-		<div className="border min-h-[50px] px-3 py-1 flex gap-1 bg-white rounded-lg justify-between items-center hover:shadow-md cursor-pointer">
-			<div className="flex flex-col gap-1">
-				<h4 className="text-sm text-gray-500">{data.name}</h4>
+		<div className="border min-h-[50px] px-3 py-1 flex gap-1 bg-white rounded-lg justify-between items-center hover:shadow-md cursor-pointer animate__animated animate__fadeIn">
+			<div className="flex flex-col gap-1 flex-1 max-w-[80%]">
+				<h4 className="text-sm text-gray-500 truncate">{data.name}</h4>
 				<h6 className="text-md font-bold text-gray-600">
-					{currencySymbol} 45,000 <small className='font-light'>/{data.frequency}</small>
+					{renderPricingFull(data.price)}{' '}
+					<small className="font-light">/{data.frequency?.value}</small>
 				</h6>
 			</div>
 			<div
 				className="cursor-pointer text-gray-500 hover:text-danger"
 				onClick={onRemove}
 			>
-				<HiXMark className="" size={25} />
+				<HiXMark size={25} />
 			</div>
 		</div>
 	)
