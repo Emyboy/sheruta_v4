@@ -17,3 +17,6 @@ export function capitalizeFirstName(name?: string): string {
 	}
 }
 
+export function generateNumberFromRange(min:number, max:number) {
+	return Math.random() * (max - min) + min
+}

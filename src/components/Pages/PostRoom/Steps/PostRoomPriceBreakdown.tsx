@@ -17,7 +17,7 @@ type CreateFrequencyDTO = {
 }
 
 export default function PostRoomPriceBreakdown({ next }: EachStepProps) {
-	const [startUpload, setStartUpload] = useState(true)
+	const [startUpload, setStartUpload] = useState(false)
 	const [frequencies, setFrequencies] = useState<CreateFrequencyDTO[]>([])
 
 	const defaultState = {
@@ -120,7 +120,7 @@ export default function PostRoomPriceBreakdown({ next }: EachStepProps) {
 				{!startUpload && (
 					<NextButtonContainer>
 						<button
-							onClick={next}
+							onClick={() => setStartUpload(true)}
 							className={classNames(
 								' text-white bg-dark rounded-md font-bold w-[90vw] md:w-[400px] py-3'
 							)}
