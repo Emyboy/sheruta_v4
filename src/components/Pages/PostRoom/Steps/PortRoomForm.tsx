@@ -215,7 +215,7 @@ export default function PortRoomForm({
 					type="submit"
 					onClick={next}
 					className={classNames(
-						' text-white bg-dark rounded-md font-bold w-[90vw] md:w-[400px] py-3'
+						' text-white bg-dark rounded-md font-bold w-full md:w-[400px] py-3'
 					)}
 				>
 					Continue

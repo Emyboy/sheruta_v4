@@ -47,7 +47,7 @@ export default function PostRoomTypeSelector({
 					disabled={!type}
 					onClick={next}
 					className={classNames(
-						' text-white rounded-md font-bold w-[90vw] md:w-[400px] py-3',
+						' text-white rounded-md font-bold w-full md:w-[400px] py-3',
 						{ 'bg-dark': type !== null },
 						{ 'bg-muted': !	type }
 					)}

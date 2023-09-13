@@ -1,21 +1,3 @@
-// import { configureStore } from '@reduxjs/toolkit'
-// import authSlice from './features/auth.slice'
-// import viewSlice from './features/view.slice'
-// import messageSlice from './features/message.slice'
-
-// export const store = configureStore({
-// 	reducer: {
-// 		view: viewSlice,
-// 		auth: authSlice,
-// 		message: messageSlice
-// 	},
-// })
-
-// export type RootState = ReturnType<typeof store.getState>
-
-// export type AppDispatch = typeof store.dispatch
-
-
 import {
 	FLUSH,
 	PAUSE,
@@ -52,7 +34,6 @@ const rootReducer = combineReducers({
 	auth: authSlice,
 	message: messageSlice,
 	wallet: walletSlice,
-	upload: uploadSlice,
 })
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
@@ -60,7 +41,6 @@ export const store: any = configureStore({
 	reducer: {
 		app: persistedReducer,
 		view: viewSlice,
-		upload: uploadSlice,
 		// upload: uploadReducer,
 		// category: categoryReducer,
 		[authApi.reducerPath]: authApi.reducer,
