@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { EachStepProps } from '../PostRoom'
 import classNames from 'classnames'
 import SFormINputGroup from '@/packages/ui/SFormInputGroup'
@@ -11,14 +11,28 @@ import NextButtonContainer from '../NextButtonContainer'
 
 type Props = {}
 
-export default function PortRoomForm({ next }: EachStepProps) {
-	const [bedrooms, setBedrooms] = useState(0)
-	const [bathrooms, setBathrooms] = useState(0)
-	const [toilets, setToilets] = useState(0)
-	const [number_of_flatmate, setFlatmateCount] = useState(0)
-	const [request_text, setRequestText] = useState('')
-	const [total_rent, setTotalRent] = useState<any>('')
-	const [room_rent, setRoomRent] = useState<any>('')
+export default function PortRoomForm({
+	next,
+	onChange,
+	roomRequestData,
+}: EachStepProps) {
+	const [bedrooms, setBedrooms] = useState(roomRequestData?.bedrooms || 0)
+	const [bathrooms, setBathrooms] = useState(roomRequestData?.bathrooms || 0)
+	const [toilets, setToilets] = useState(roomRequestData?.toilets || 0)
+	const [number_of_flatmate, setFlatmateCount] = useState(
+		roomRequestData?.number_of_flatmate || 0
+	)
+	const [request_text, setRequestText] = useState(
+		roomRequestData?.request_text || ''
+	)
+	const [total_rent, setTotalRent] = useState<any>(
+		roomRequestData?.total_rent || ''
+	)
+	const [room_rent, setRoomRent] = useState<any>(
+		roomRequestData?.room_rent || ''
+	)
+	const [location_text, setLocationText] = useState('')
+	const [location_object, setLocationObject] = useState(null)
 
 	const progressPercentage = (request_text.length / 240) * 100
 	const colors =
@@ -27,6 +41,36 @@ export default function PortRoomForm({ next }: EachStepProps) {
 			: progressPercentage >= 60 && progressPercentage <= 100
 			? 'orange'
 			: '#1eb21e'
+
+	useEffect(() => {
+		let data = {
+			bedrooms,
+			bathrooms,
+			toilets,
+			number_of_flatmate,
+			request_text,
+			total_rent,
+			room_rent,
+			location_object,
+			location_text,
+		}
+
+		console.log('THE DATA --', data)
+
+		if (onChange) {
+			onChange(data)
+		}
+	}, [
+		bedrooms,
+		bathrooms,
+		toilets,
+		number_of_flatmate,
+		request_text,
+		total_rent,
+		room_rent,
+		location_object,
+		location_text,
+	])
 
 	return (
 		<>
@@ -77,7 +121,7 @@ export default function PortRoomForm({ next }: EachStepProps) {
 						id="room_rent"
 						required
 						type="currency"
-						onChange={(currency) => console.log(currency)}
+						onChange={(currency) => setRoomRent(currency)}
 						placeholder="Room Rent"
 						value={room_rent}
 					/>
@@ -91,15 +135,28 @@ export default function PortRoomForm({ next }: EachStepProps) {
 						<GooglePlacesAutocomplete
 							apiKey={process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY}
 							apiOptions={{ region: 'ng' }}
-							selectProps={{ placeholder: 'Select Location' }}
+							selectProps={{
+								placeholder: 'Select Location',
+								styles: {
+									control: (baseStyles, state) => ({
+										...baseStyles,
+										height: '50px',
+									}),
+								},
+								onChange: (e: any) => {
+									setLocationText(e?.label)
+									setLocationObject(e)
+								},
+								value: location_object
+							}}
 						/>
 					</div>
 				</div>
 				<hr />
 				<div className="grid gap-4 md:grid-cols-3 grid-cols-1">
-					<SSelect label="Service" placeholder="Select Service" />
-					<SSelect label="Category" placeholder="Select Category" />
-					<SSelect label="Pay Frequency" placeholder="Weekly, Monthly" />
+					<SSelect onChange={e => {}} label="Service" placeholder="Select Service" />
+					<SSelect onChange={e => {}} label="Category" placeholder="Select Category" />
+					<SSelect onChange={e => {}} label="Pay Frequency" placeholder="Weekly, Monthly" />
 				</div>
 				<div className="flex gap-3 w-full md:flex-row flex-col">
 					<div className="flex flex-col gap-2 w-100 flex-1">

@@ -1,4 +1,6 @@
+import MasterControl from '@/components/MasterControl'
 import Providers from './providers'
+import AppLoading from '@/components/AppLoading'
 
 export const metadata = {
 	title: 'Sheruta NG',
@@ -20,7 +22,11 @@ export default function RootLayout({
 					/>
 				</head>
 				<body className="bg-background">
-					<Providers>{children}</Providers>
+					<Providers>
+						<MasterControl />
+						<AppLoading />
+						{children}
+					</Providers>
 				</body>
 			</html>
 		</>

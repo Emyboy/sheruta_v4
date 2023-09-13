@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import PostRoomLayout from '../../Upload/UploadRequestLayout'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { AppStore } from '@/interface/index.interface'
 import PostRoomTypeSelector from './Steps/PostRoomTypeSelector'
 import { capitalizeFirstName } from '@/packages/utils/text.utils'
@@ -20,12 +20,13 @@ export type EachStepProps = {
 }
 
 export default function PostRoom({}: Props) {
-	const { type } = useSelector((state: AppStore) => state.upload)
 	const { user } = useSelector((state: AppStore) => state.app.auth)
 	let length = 6
-	let _type = type && type.replaceAll('-', ' ')
-	const [step, setStep] = useState(1)
-	const dispatch = useDispatch()
+	const [roomRequestData, setRoomRequestData] =
+		useState<CreateRoomRequestDTO | null>(null)
+	let _type = roomRequestData?.type && roomRequestData.type.replaceAll('-', ' ')
+	const [step, setStep] = useState(3)
+
 	const navHeadings = ['Post Your Room'][step]
 	const headings = [
 		'Type Of Space.',
@@ -46,8 +47,6 @@ export default function PostRoom({}: Props) {
 		`let prospects know what the rent and other fees covers.`,
 	][step]
 
-	const [roomRequestData, setRoomRequestData] =
-		useState<CreateRoomRequestDTO | null>(null)
 
 	const goBack = () => {
 		setStep(step - 1)

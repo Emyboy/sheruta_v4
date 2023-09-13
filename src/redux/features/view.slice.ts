@@ -5,12 +5,14 @@ export interface ViewState {
 	show_login: boolean
 	show_left_panel: boolean
 	show_upload_menu: boolean
+	app_loading: boolean
 }
 
 const initialState: ViewState = {
 	show_login: false,
 	show_left_panel: false,
 	show_upload_menu: false,
+	app_loading: false,
 }
 
 export const viewSlice = createSlice({

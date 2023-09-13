@@ -10,6 +10,12 @@ export interface EachPayFrequency {
 export interface CreateRoomRequestDTO {
 	bedrooms: number
 	bathrooms: number
+	toilets: number
+	number_of_flatmate: number
 	type: 'private-room' | 'shared-room' | 'entire-space' | null
 	image_urls: ImageSelectorData[]
+	video_url: string | null
+	request_text: string
+	total_rent: string
+	room_rent: string
 }
