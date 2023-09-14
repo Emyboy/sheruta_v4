@@ -34,10 +34,16 @@ export default function PortRoomForm({
 		roomRequestData?.room_rent || ''
 	)
 	const [location_text, setLocationText] = useState('')
-	const [location_object, setLocationObject] = useState(null)
-	const [pay_frequency, setPayFrequency] = useState<SSelectData | null>(null)
-	const [category, setCategory] = useState<SSelectData | null>(null)
-	const [service, setService] = useState<SSelectData | null>(null)
+	const [location_object, setLocationObject] = useState(roomRequestData?.location_object || null)
+	const [pay_frequency, setPayFrequency] = useState<SSelectData | null>(
+		roomRequestData?.pay_frequency || null
+	)
+	const [category, setCategory] = useState<SSelectData | null>(
+		roomRequestData?.category || null
+	)
+	const [service, setService] = useState<SSelectData | null>(
+		roomRequestData?.service || null
+	)
 
 	const progressPercentage = (request_text.length / 240) * 100
 	const colors =

@@ -12,8 +12,9 @@ type Props = {
 	onChange: (data: SSelectData) => void
 	required?: boolean
 	label?: string
-	value: SSelectData | null
+	value: SSelectData | SSelectData[] | null
 	options: SSelectData[]
+	isMulti?: boolean
 }
 
 export default function SSelect({
@@ -23,7 +24,8 @@ export default function SSelect({
 	placeholder,
 	options,
 	onChange,
-	value
+	value,
+	isMulti
 }: Props) {
 	return (
 		<div className="flex flex-col gap-2 w-100 flex-1">
@@ -33,6 +35,7 @@ export default function SSelect({
 				</label>
 			)}
 			<Select
+				isMulti={isMulti}
 				value={value}
 				// @ts-ignore
 				onChange={onChange}
@@ -41,7 +44,7 @@ export default function SSelect({
 				styles={{
 					control: (baseStyles, state) => ({
 						...baseStyles,
-						height: '50px',
+						minHeight: '50px',
 					}),
 				}}
 			/>

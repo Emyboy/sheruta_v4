@@ -25,7 +25,7 @@ export default function PostRoom({}: Props) {
 	const [roomRequestData, setRoomRequestData] =
 		useState<CreateRoomRequestDTO | null>(null)
 	let _type = roomRequestData?.type && roomRequestData.type.replaceAll('-', ' ')
-	const [step, setStep] = useState(4)
+	const [step, setStep] = useState(0)
 
 	const navHeadings = ['Post Your Room'][step]
 	const headings = [

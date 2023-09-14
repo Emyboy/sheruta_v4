@@ -1,4 +1,4 @@
-import { Category, Facility, Habit, LocationKeyword, PayFrequency, Service, State } from '@/interface/options.interface'
+import { Amenity, Category, Facility, Habit, LocationKeyword, PayFrequency, Service, State } from '@/interface/options.interface'
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
@@ -7,6 +7,7 @@ export interface OptionState {
 	services: Service[]
 	location_keywords: LocationKeyword[]
 	facilities: Facility[]
+	amenities: Amenity[]
 	habits: Habit[]
 	pay_frequencies: PayFrequency[]
 	states: State[]
@@ -19,7 +20,8 @@ const initialState: OptionState = {
 	location_keywords: [],
 	pay_frequencies: [],
 	services: [],
-	states: []
+	states: [],
+	amenities: []
 }
 
 export const optionSlice = createSlice({

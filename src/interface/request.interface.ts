@@ -1,6 +1,8 @@
+import { SSelectData } from "@/packages/ui/SSelect";
 import { User, UserInfo } from "./auth.interface";
 import { Amenity, Category, Facility, LocationKeyword, PayFrequency, Service, State } from "./options.interface";
 import { ImageSelectorData } from '@/components/Pages/PostRoom/Steps/PostRoomImageSelector/ImageSelector'
+import { CreateFrequencyDTO } from "@/components/Pages/PostRoom/Steps/PostRoomPriceBreakdown";
 
 export interface EachPayFrequency {
 	id?: number | string
@@ -20,6 +22,13 @@ export interface CreateRoomRequestDTO {
 	request_text: string
 	total_rent: string
 	room_rent: string
+	amenities: SSelectData[]
+	facilities: SSelectData[]
+	service_charge_breakdown: CreateFrequencyDTO[]
+	location_object: any
+	pay_frequency: SSelectData
+	category: SSelectData
+	service: SSelectData
 }
 
 

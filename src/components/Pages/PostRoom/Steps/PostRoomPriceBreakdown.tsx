@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { EachStepProps } from '../PostRoom'
 import classNames from 'classnames'
 import SInput from '@/packages/ui/SInput'
@@ -9,16 +9,24 @@ import { toast } from 'react-hot-toast'
 import { renderPricingFull } from '@/packages/utils/pricing.utils'
 import UploadRoomRequestPopup from './UploadRoomRequestPopup'
 
-type CreateFrequencyDTO = {
+export type CreateFrequencyDTO = {
 	id?: number | string
 	name: string
 	price: number
 	frequency: SSelectData | null
 }
 
-export default function PostRoomPriceBreakdown({ next }: EachStepProps) {
+export default function PostRoomPriceBreakdown({
+	next,
+	onChange,
+	roomRequestData,
+}: EachStepProps) {
 	const [startUpload, setStartUpload] = useState(false)
-	const [frequencies, setFrequencies] = useState<CreateFrequencyDTO[]>([])
+	const [frequencies, setFrequencies] = useState<CreateFrequencyDTO[]>(
+		roomRequestData?.service_charge_breakdown
+			? roomRequestData?.service_charge_breakdown
+			: []
+	)
 
 	const defaultState = {
 		frequency: null,
@@ -49,9 +57,21 @@ export default function PostRoomPriceBreakdown({ next }: EachStepProps) {
 		}
 	}
 
+	let disabled = frequencies.length === 0
+
+	useEffect(() => {
+		onChange({ service_charge_breakdown: frequencies })
+	}, [frequencies])
+
 	return (
 		<>
-			{startUpload && <UploadRoomRequestPopup />}
+			{startUpload && (
+				<UploadRoomRequestPopup
+					roomRequestData={roomRequestData}
+					onError={() => {}}
+					onUploadComplete={() => {}}
+				/>
+			)}
 			<div className="flex flex-col gap-4 md:w-[600px] w-[90vw]">
 				<div className="flex flex-col gap-2">
 					{frequencies.length > 0 ? (
@@ -122,10 +142,12 @@ export default function PostRoomPriceBreakdown({ next }: EachStepProps) {
 						<button
 							onClick={() => setStartUpload(true)}
 							className={classNames(
-								' text-white bg-dark rounded-md font-bold w-full md:w-[400px] py-3'
+								' text-white rounded-md font-bold w-full md:w-[400px] py-3',
+								{ 'bg-dark': !disabled },
+								{ 'bg-muted': disabled }
 							)}
 						>
-							Upload Listing
+							Upload Space
 						</button>
 					</NextButtonContainer>
 				)}

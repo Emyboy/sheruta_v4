@@ -1,9 +1,15 @@
 import React from 'react'
 import { ImSpinner2 } from 'react-icons/im'
+import { EachStepProps } from '../PostRoom'
+import { CreateRoomRequestDTO } from '@/interface/request.interface'
 
-type Props = {}
-
-export default function UploadRoomRequestPopup({}: Props) {
+export default function UploadRoomRequestPopup({
+	roomRequestData,
+}: {
+	roomRequestData: CreateRoomRequestDTO | null | undefined;
+	onUploadComplete: (data:any) => void;
+	onError: (error:any) => void;
+}) {
 	return (
 		<div className="z-50 bg-white fixed top-0 left-0 right-0 bottom-0 flex justify-center items-center animate__animated animate__fadeIn animate__faster">
 			<div className="flex flex-col text-center items-center">
