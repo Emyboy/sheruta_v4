@@ -1,5 +1,26 @@
 import { User, UserInfo } from "./auth.interface";
 import { Amenity, Category, Facility, LocationKeyword, PayFrequency, Service, State } from "./options.interface";
+import { ImageSelectorData } from '@/components/Pages/PostRoom/Steps/PostRoomImageSelector/ImageSelector'
+
+export interface EachPayFrequency {
+	id?: number | string
+	name: string
+	price: number
+	frequency: string
+}
+
+export interface CreateRoomRequestDTO {
+	bedrooms: number
+	bathrooms: number
+	toilets: number
+	number_of_flatmate: number
+	type: 'private-room' | 'shared-room' | 'entire-space' | null
+	image_urls: ImageSelectorData[]
+	video_url: string | null
+	request_text: string
+	total_rent: string
+	room_rent: string
+}
 
 
 export interface RoomRequest {

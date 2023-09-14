@@ -6,8 +6,10 @@ import SInput from '@/packages/ui/SInput'
 import SQuantityInput from '@/packages/ui/SQuantityInput'
 import { DebounceInput } from 'react-debounce-input'
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
-import SSelect from '@/packages/ui/SSelect'
+import SSelect, { SSelectData } from '@/packages/ui/SSelect'
 import NextButtonContainer from '../NextButtonContainer'
+import { useSelector } from 'react-redux'
+import { AppStore } from '@/interface/index.interface'
 
 type Props = {}
 
@@ -33,6 +35,9 @@ export default function PortRoomForm({
 	)
 	const [location_text, setLocationText] = useState('')
 	const [location_object, setLocationObject] = useState(null)
+	const [pay_frequency, setPayFrequency] = useState<SSelectData | null>(null)
+	const [category, setCategory] = useState<SSelectData | null>(null)
+	const [service, setService] = useState<SSelectData | null>(null)
 
 	const progressPercentage = (request_text.length / 240) * 100
 	const colors =
@@ -41,6 +46,10 @@ export default function PortRoomForm({
 			: progressPercentage >= 60 && progressPercentage <= 100
 			? 'orange'
 			: '#1eb21e'
+
+	const { services, categories, pay_frequencies } = useSelector(
+		(state: AppStore) => state.app.option
+	)
 
 	useEffect(() => {
 		let data = {
@@ -53,6 +62,9 @@ export default function PortRoomForm({
 			room_rent,
 			location_object,
 			location_text,
+			pay_frequency,
+			category,
+			service,
 		}
 
 		console.log('THE DATA --', data)
@@ -70,7 +82,25 @@ export default function PortRoomForm({
 		room_rent,
 		location_object,
 		location_text,
+		pay_frequency,
+		category,
+		service,
 	])
+
+	let disabled =
+		!bedrooms ||
+		!bathrooms ||
+		!toilets ||
+		!number_of_flatmate ||
+		!request_text ||
+		!total_rent ||
+		!room_rent ||
+		!location_object ||
+		!location_text ||
+		!pay_frequency ||
+		!category ||
+		!service ||
+		Math.floor(progressPercentage) < 100
 
 	return (
 		<>
@@ -147,16 +177,49 @@ export default function PortRoomForm({
 									setLocationText(e?.label)
 									setLocationObject(e)
 								},
-								value: location_object
+								value: location_object,
 							}}
 						/>
 					</div>
 				</div>
 				<hr />
 				<div className="grid gap-4 md:grid-cols-3 grid-cols-1">
-					<SSelect onChange={e => {}} label="Service" placeholder="Select Service" />
-					<SSelect onChange={e => {}} label="Category" placeholder="Select Category" />
-					<SSelect onChange={e => {}} label="Pay Frequency" placeholder="Weekly, Monthly" />
+					<SSelect
+						id="services"
+						onChange={(e) => setService(e)}
+						label="Service"
+						placeholder="Select Service"
+						options={services.map((services) => ({
+							label: services.name,
+							value: services.id,
+						}))}
+						required
+						value={service}
+					/>
+					<SSelect
+						id="categories"
+						onChange={(e) => setCategory(e)}
+						label="Category"
+						placeholder="Select Category"
+						options={categories.map((category) => ({
+							label: category.name,
+							value: category.id,
+						}))}
+						required
+						value={category}
+					/>
+					<SSelect
+						id="pay_frequency"
+						onChange={(e) => setPayFrequency(e)}
+						label="Pay Frequency"
+						placeholder="Weekly, Monthly"
+						options={pay_frequencies.map((frequency) => ({
+							label: frequency.name,
+							value: frequency.id,
+						}))}
+						required
+						value={pay_frequency}
+					/>
 				</div>
 				<div className="flex gap-3 w-full md:flex-row flex-col">
 					<div className="flex flex-col gap-2 w-100 flex-1">
@@ -215,8 +278,11 @@ export default function PortRoomForm({
 					type="submit"
 					onClick={next}
 					className={classNames(
-						' text-white bg-dark rounded-md font-bold w-full md:w-[400px] py-3'
+						' text-white  rounded-md font-bold w-full md:w-[400px] py-3',
+						{ 'bg-dark': !disabled },
+						{ 'bg-muted': disabled }
 					)}
+					disabled={disabled}
 				>
 					Continue
 				</button>

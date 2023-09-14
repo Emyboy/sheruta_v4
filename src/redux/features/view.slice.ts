@@ -12,7 +12,7 @@ const initialState: ViewState = {
 	show_login: false,
 	show_left_panel: false,
 	show_upload_menu: false,
-	app_loading: false,
+	app_loading: true,
 }
 
 export const viewSlice = createSlice({

@@ -24,6 +24,7 @@ import { authApi } from './services/auth.service'
 import { userInfoApi } from './services/user-info.service'
 import walletSlice from './features/wallet.slice'
 import uploadSlice from './features/upload.slice'
+import optionSlice from './features/option.slice'
 
 const persistConfig = {
 	key: 'root',
@@ -34,6 +35,7 @@ const rootReducer = combineReducers({
 	auth: authSlice,
 	message: messageSlice,
 	wallet: walletSlice,
+	option: optionSlice
 })
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 

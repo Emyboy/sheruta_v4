@@ -10,7 +10,7 @@ import PostRoomVideoSelector from './Steps/PostRoomVideoSelector'
 import PortRoomForm from './Steps/PortRoomForm'
 import PostRoomPriceBreakdown from './Steps/PostRoomPriceBreakdown'
 import FacilitiesAndAmenities from './Steps/FacilitiesAndAmenities'
-import { CreateRoomRequestDTO } from '@/types/request.types'
+import { CreateRoomRequestDTO } from '@/interface/request.interface'
 
 type Props = {}
 export type EachStepProps = {
@@ -25,7 +25,7 @@ export default function PostRoom({}: Props) {
 	const [roomRequestData, setRoomRequestData] =
 		useState<CreateRoomRequestDTO | null>(null)
 	let _type = roomRequestData?.type && roomRequestData.type.replaceAll('-', ' ')
-	const [step, setStep] = useState(3)
+	const [step, setStep] = useState(4)
 
 	const navHeadings = ['Post Your Room'][step]
 	const headings = [
