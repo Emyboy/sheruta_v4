@@ -7,6 +7,9 @@ type Props = {
 }
 
 export default function SContainer({ className, children }: Props) {
+	return <div className="flex w-screen md:mx-auto md:w-[95vw] xl:w-[1100px]">
+		{children}
+	</div>
 	return (
 		<div className={classNames(`w-screen  lg:w-5/6 mx-auto ${className}`)}>
 			{children}

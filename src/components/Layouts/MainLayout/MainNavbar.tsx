@@ -46,7 +46,7 @@ export default function MainNavbar({ activePage, className }: Props) {
 					{ 'top-[-163px] min:h-[0px]': !show_upload_menu }
 				)}
 			>
-				<div className="bg-dark rounded-xl shadow-lg md:w-[500px] z-40">
+				<div className="bg-dark rounded-xl shadow-lg md:w-[400px] z-40">
 					<FooterUploadOptions />
 				</div>
 				{show_upload_menu && (
@@ -58,7 +58,7 @@ export default function MainNavbar({ activePage, className }: Props) {
 			</div>
 
 			<header className="h-16 bg-dark fixed top-0 right-0 left-0 z-50">
-				<div className="flex w-screen mx-auto md:w-5/6 xl:w-2/3 h-full justify-between px-3 md:px-0">
+				<div className="flex w-screen md:mx-auto md:w-[95vw] xl:w-[1100px] h-full justify-between px-3 md:px-0">
 					<div
 						className="lg:hidden visible rounded-lg text-gray-400 text-3xl flex-col flex justify-center"
 						onClick={() =>
@@ -74,11 +74,12 @@ export default function MainNavbar({ activePage, className }: Props) {
 						</Link>
 					</div>
 					<div className="hidden flex-1 lg:flex relative shadow h-full justify-center gap-5 items-center">
-						<EachNav
-							Icon={(p: IconBaseProps) => <HiOutlineHome {...p} />}
-							active={activePage === 'home'}
-							onClick={() => router.push('/')}
-						/>
+						<Link href={`/`}>
+							<EachNav
+								Icon={(p: IconBaseProps) => <HiOutlineHome {...p} />}
+								active={activePage === 'home'}
+							/>
+						</Link>
 
 						<EachNav
 							onClick={() =>
@@ -93,10 +94,12 @@ export default function MainNavbar({ activePage, className }: Props) {
 							Icon={(p: IconBaseProps) => <HiOutlineBell {...p} />}
 							active={activePage === 'activities'}
 						/>
-						<EachNav
-							Icon={(p: IconBaseProps) => <HiMagnifyingGlass {...p} />}
-							active={activePage === 'search'}
-						/>
+						<Link href={`/search`}>
+							<EachNav
+								Icon={(p: IconBaseProps) => <HiMagnifyingGlass {...p} />}
+								active={activePage === 'search'}
+							/>
+						</Link>
 					</div>
 					<div className="lg:w-60 sticky top-16 h-full items-center flex justify-end">
 						{user ? (

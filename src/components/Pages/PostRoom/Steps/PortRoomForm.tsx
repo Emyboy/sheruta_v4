@@ -10,6 +10,7 @@ import SSelect, { SSelectData } from '@/packages/ui/SSelect'
 import NextButtonContainer from '../NextButtonContainer'
 import { useSelector } from 'react-redux'
 import { AppStore } from '@/interface/index.interface'
+import { max_request_content } from '@/constants/app.constrant'
 
 type Props = {}
 
@@ -45,7 +46,7 @@ export default function PortRoomForm({
 		roomRequestData?.service || null
 	)
 
-	const progressPercentage = (request_text.length / 240) * 100
+	const progressPercentage = (request_text.length / max_request_content) * 100
 	const colors =
 		progressPercentage < 60
 			? 'red'

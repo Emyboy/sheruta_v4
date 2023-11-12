@@ -32,7 +32,7 @@ export default function MasterControl() {
 				let appDep = await UserInfoService.getAuthDependencies()
 				let userData = await UserInfoService.getAuthData()
 				let { user_info, email_setting, wallet } = await appDep.data
-				console.log('FOUND DATA --', appDep.data)
+				
 				dispatch(
 					setAuthState({
 						user: userData.data,
