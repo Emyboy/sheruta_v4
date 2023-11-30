@@ -1,10 +1,13 @@
-import React from 'react'
+'use client'
+import React, { useEffect } from 'react'
 import _Container from '@/packages/ui/SContainer'
 import MainNavbar from './MainNavbar'
 import MainFooter from './MainFooter/MainFooter'
 import MainRightNav from './MainRightNav'
 import MainLeftNav from './MainLeftNav'
 import MessagingPopup from '@/components/Messaging/MessagingPopup'
+import { Category } from '@/interface/options.interface'
+
 
 type Props = {
 	leftComponent?: React.ReactElement
@@ -23,7 +26,7 @@ export default function MainLayout({
 		<>
 			<div className="min-h-screen flex flex-col">
 				<MainNavbar activePage={''} />
-				<div className="flex w-screen md:mx-auto md:w-5/6 xl:w-2/3">
+				<div className="flex w-screen md:mx-auto md:w-[95vw] xl:w-[1100px]">
 					<Aside>
 						{leftComponent || <MainLeftNav activePage={activePage} />}
 					</Aside>

@@ -29,6 +29,7 @@ export default function MainFooter({ activePage }: Props) {
 	const router = useRouter()
 	const { user } = useSelector((state: AppStore) => state.app.auth)
 	const { show_upload_menu } = useSelector((state: AppStore) => state.view)
+	const { show_messaging } = useSelector((state: AppStore) => state.app.message)
 	const dispatch = useDispatch()
 
 	return (
@@ -76,7 +77,7 @@ export default function MainFooter({ activePage }: Props) {
 				/>
 				<EachNav
 					title="Messages"
-					onClick={() => dispatch(setMessagingState({ show_messaging: true }))}
+					onClick={() => dispatch(setMessagingState({ show_messaging: !show_messaging }))}
 					active={activePage === 'messages'}
 					ActiveIcon={(p: IconBaseProps) => (
 						<HiChatBubbleOvalLeftEllipsis {...p} />

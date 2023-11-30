@@ -18,7 +18,8 @@ export default async function page({ params }: any) {
 			},
 		})
 	} catch (error: any) {
-		if (error.response.status === 404) {
+		console.log('CONFIRM ERROR:::', error)
+		if (error?.response?.status === 404) {
 			redirect('/')
 		} else {
 			return (

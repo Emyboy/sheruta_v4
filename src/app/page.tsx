@@ -5,24 +5,17 @@ import { backend_url } from '@/constants/app.constrant'
 import React from 'react'
 
 export default async function page() {
-	const getRecentRequests = async () => {
-		try {
-			const res = await fetch(backend_url + '/room-request/recent')
-			let data = await res.json()
-			return data
-		} catch (error) {
-			console.log('DATA ERROR --', error)
-			return error
-		}
-	}
 
-	let data = await getRecentRequests()
+	// Requests
+	const getRequest = await fetch(backend_url + '/room-request/recent')
+	let requests = await getRequest.json()
+
 
 	return (
 		<>
 			<MainLayout
 				activePage="home"
-				centerComponent={<FeedPage requests={data} />}
+				centerComponent={<FeedPage requests={requests} />}
 			/>
 		</>
 	)

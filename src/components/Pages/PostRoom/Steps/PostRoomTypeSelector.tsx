@@ -1,39 +1,42 @@
-import { AppStore } from '@/interface/index.interface'
 import { setUploadState } from '@/redux/features/upload.slice'
 import classNames from 'classnames'
-import React from 'react'
+import React, { useState } from 'react'
 import { IconBaseProps } from 'react-icons'
-import { BiSolidBed } from 'react-icons/bi'
 import {
 	HiEyeSlash,
 	HiMiniCheckCircle,
 	HiMiniHomeModern,
 	HiUsers,
 } from 'react-icons/hi2'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { EachStepProps } from '../PostRoom'
 import NextButtonContainer from '../NextButtonContainer'
 
-export default function PostRoomTypeSelector({ next }: EachStepProps) {
-	const { type } = useSelector((state: AppStore) => state.upload)
+export default function PostRoomTypeSelector({
+	next,
+	roomRequestData,
+	onChange,
+}: EachStepProps) {
 	const dispatch = useDispatch()
+	let type = roomRequestData?.type
+
 	return (
 		<>
 			<div className="flex flex-col lg:flex-row gap-4 items-center justify-center h-full">
 				<RoomUploadOptions
-					onClick={() => dispatch(setUploadState({ type: 'entire-space' }))}
+					onClick={() => onChange({ type: 'entire-space' })}
 					heading="Entire space"
 					active={type === 'entire-space'}
 					Icon={(p) => <HiMiniHomeModern {...p} />}
 				/>
 				<RoomUploadOptions
-					onClick={() => dispatch(setUploadState({ type: 'private-room' }))}
+					onClick={() => onChange({ type: 'private-room' })}
 					heading="Private room"
 					active={type === 'private-room'}
 					Icon={(p) => <HiEyeSlash {...p} />}
 				/>
 				<RoomUploadOptions
-					onClick={() => dispatch(setUploadState({ type: 'shared-room' }))}
+					onClick={() => onChange({ type: 'shared-room' })}
 					heading="Shared room"
 					active={type === 'shared-room'}
 					Icon={(p) => <HiUsers {...p} />}
@@ -44,9 +47,9 @@ export default function PostRoomTypeSelector({ next }: EachStepProps) {
 					disabled={!type}
 					onClick={next}
 					className={classNames(
-						' text-white rounded-md font-bold w-[90vw] md:w-[400px] py-3',
+						' text-white rounded-md font-bold w-full md:w-[400px] py-3',
 						{ 'bg-dark': type !== null },
-						{ 'bg-muted': type === null }
+						{ 'bg-muted': !	type }
 					)}
 				>
 					Continue
@@ -70,7 +73,7 @@ const RoomUploadOptions = ({
 		<div
 			onClick={onClick}
 			className={classNames(
-				'relative border h-[200px] w-[90vw] md:h-[300px] lg:w-[300px] rounded-md hover:bg-white hover:shadow-lg  cursor-pointer  flex flex-col justify-center items-center gap-4',
+				'relative border h-[100px] w-[90vw] md:h-[300px] lg:w-[300px] rounded-md hover:bg-white hover:shadow-lg  cursor-pointer  flex md:flex-col justify-center items-center gap-4',
 				{ 'bg-white shadow-lg border-gray-700 text-gray-700': active },
 				{ 'bg-none border-muted text-muted': !active }
 			)}

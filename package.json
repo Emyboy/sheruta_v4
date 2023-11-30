@@ -26,6 +26,7 @@
     "framer-motion": "^10.16.0",
     "js-cookie": "^3.0.5",
     "next": "^13.4.19",
+    "next13-progressbar": "^1.0.3",
     "nextjs-progressbar": "^0.0.16",
     "postcss": "8.4.23",
     "rc-menu": "^9.11.1",

@@ -5,12 +5,15 @@
 
 * {
 	font-family: 'Poppins', sans-serif;
-	transition: all 0.2s ease-in-out !important;
 }
 
 html,
 body {
 	height: 100%;
+}
+
+.slow_transition {
+	transition: all 0.2s ease-in-out !important;
 }
 
 /* #__next {
@@ -47,4 +50,23 @@ input[type="number"] {
 	min-height: 35px !important;
 	outline: none !important;
 	border: none !important;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f193; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #8181813b; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #55555594; 
 }

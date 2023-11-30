@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import React from 'react'
+import React, { Suspense } from 'react'
 import {
 	HiOutlineArrowRightOnRectangle,
 	HiOutlinePlayCircle,
@@ -22,17 +22,26 @@ type Props = { activePage?: string }
 export default function MainLeftNav({ activePage }: Props) {
 	const { user } = useSelector((state: AppStore) => state.app.auth)
 	const dispatch = useDispatch()
+
+	const _logout = () => {
+		dispatch(logout());
+		//@ts-ignore
+		window.location = `/`
+	}
+
 	return (
 		<div className="px-3">
-			{user && (
-				<Link href={`/user/${user?.username}`} className="flex gap-2">
-					<SAvatar userData={user} />
-					<div className="flex flex-col gap-0">
-						<p className="font-medium">{user?.first_name}</p>
-						<small className="text-dark_lighter">@{user?.username}</small>
-					</div>
-				</Link>
-			)}
+			<Suspense fallback="Loading...">
+				{user && (
+					<Link href={`/user/${user?.username}`} className="flex gap-2">
+						<SAvatar userData={user} />
+						<div className="flex flex-col gap-0">
+							<p className="font-medium">{user?.first_name}</p>
+							<small className="text-dark_lighter">@{user?.username}</small>
+						</div>
+					</Link>
+				)}
+			</Suspense>
 			<div className="my-8">
 				<ul>
 					<EachNav
@@ -63,7 +72,7 @@ export default function MainLeftNav({ activePage }: Props) {
 						name="Settings"
 					/>
 					<hr className="mb-3" />
-					<a href="/" onClick={() => dispatch(logout())}>
+					<a href="/" onClick={_logout}>
 						<EachNav
 							Icon={(p: IconBaseProps) => (
 								<HiOutlineArrowRightOnRectangle {...p} />

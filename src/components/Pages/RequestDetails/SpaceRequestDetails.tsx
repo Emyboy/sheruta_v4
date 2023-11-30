@@ -1,13 +1,17 @@
+'use client'
 import React from 'react'
 import RequestDetailsLeft from './RequestDetailsLeft'
 import RequestDetailsRight from './RequestDetailsRight/RequestDetailsRight'
+import { RequestData } from 'next/dist/server/web/types'
 
-type Props = {}
+type Props = {
+    requestData: RequestData
+}
 
-export default function RequestDetails({ }: Props) {
+export default function SpaceRequestDetails({ }: Props) {
     return (
         <>
-            <div className='h-screen- flex-col lg:flex-row' style={{ display: 'flex' }}>
+            <div className='h-screen- flex-col lg:flex-row bg-black' style={{ display: 'flex' }}>
                 <RequestDetailsLeft images={[
                     'https://media.tenor.com/nR7090FSI7oAAAAC/apartment-renovation.gif',
                     'https://genhq.com/wp-content/uploads/2018/01/MillenialsvsBBR.gif',

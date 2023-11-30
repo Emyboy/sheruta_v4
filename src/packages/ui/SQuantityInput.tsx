@@ -45,7 +45,7 @@ export default function SQuantityInput({
 				<button
 					disabled={disabled}
 					type="button"
-					className="bg-gray-300 text-lg font-bold w-14 px-5 h-full text-gray-400"
+					className="bg-gray-400 text-lg font-bold w-14 px-5 h-full text-gray-400"
 					onClick={handleDecrement}
 				>
 					-

@@ -1,28 +1,32 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PostRoomLayout from '../../Upload/UploadRequestLayout'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { AppStore } from '@/interface/index.interface'
 import PostRoomTypeSelector from './Steps/PostRoomTypeSelector'
 import { capitalizeFirstName } from '@/packages/utils/text.utils'
-import PostRoomImageSelector from './Steps/PostRoomImageSelector'
+import PostRoomImageSelector from './Steps/PostRoomImageSelector/PostRoomImageSelector'
 import PostRoomVideoSelector from './Steps/PostRoomVideoSelector'
 import PortRoomForm from './Steps/PortRoomForm'
 import PostRoomPriceBreakdown from './Steps/PostRoomPriceBreakdown'
 import FacilitiesAndAmenities from './Steps/FacilitiesAndAmenities'
+import { CreateRoomRequestDTO } from '@/interface/request.interface'
 
 type Props = {}
 export type EachStepProps = {
 	next: () => void
+	roomRequestData?: CreateRoomRequestDTO | null
+	onChange: (data: any) => void
 }
 
 export default function PostRoom({}: Props) {
-	const { type } = useSelector((state: AppStore) => state.upload)
 	const { user } = useSelector((state: AppStore) => state.app.auth)
 	let length = 6
-	let _type = type && type.replaceAll('-', ' ')
-	const [step, setStep] = useState(5)
-	const dispatch = useDispatch()
+	const [roomRequestData, setRoomRequestData] =
+		useState<CreateRoomRequestDTO | null>(null)
+	let _type = roomRequestData?.type && roomRequestData.type.replaceAll('-', ' ')
+	const [step, setStep] = useState(0)
+
 	const navHeadings = ['Post Your Room'][step]
 	const headings = [
 		'Type Of Space.',
@@ -43,9 +47,22 @@ export default function PostRoom({}: Props) {
 		`let prospects know what the rent and other fees covers.`,
 	][step]
 
+
 	const goBack = () => {
 		setStep(step - 1)
 	}
+
+	const addData = (data: any) => {
+		if (roomRequestData) {
+			setRoomRequestData({ ...roomRequestData, ...data })
+		}else {
+			setRoomRequestData(data)
+		}
+	}
+
+	useEffect(() => {
+		console.log('DATA UPDATE ---', roomRequestData)
+	}, [roomRequestData])
 
 	return (
 		<PostRoomLayout
@@ -58,12 +75,36 @@ export default function PostRoom({}: Props) {
 		>
 			{
 				[
-					<PostRoomTypeSelector next={() => setStep(step + 1)} />,
-					<PostRoomImageSelector next={() => setStep(step + 1)} />,
-					<PostRoomVideoSelector next={() => setStep(step + 1)} />,
-					<PortRoomForm next={() => setStep(step + 1)} />,
-					<FacilitiesAndAmenities next={() => setStep(step + 1)} />,
-					<PostRoomPriceBreakdown next={() => setStep(step + 1)} />,
+					<PostRoomTypeSelector
+						next={() => setStep(step + 1)}
+						roomRequestData={roomRequestData}
+						onChange={(e) => addData(e)}
+					/>,
+					<PostRoomImageSelector
+						next={() => setStep(step + 1)}
+						roomRequestData={roomRequestData}
+						onChange={(e) => addData(e)}
+					/>,
+					<PostRoomVideoSelector
+						next={() => setStep(step + 1)}
+						roomRequestData={roomRequestData}
+						onChange={(e) => addData(e)}
+					/>,
+					<PortRoomForm
+						next={() => setStep(step + 1)}
+						roomRequestData={roomRequestData}
+						onChange={(e) => addData(e)}
+					/>,
+					<FacilitiesAndAmenities
+						next={() => setStep(step + 1)}
+						roomRequestData={roomRequestData}
+						onChange={(e) => addData(e)}
+					/>,
+					<PostRoomPriceBreakdown
+						next={() => setStep(step + 1)}
+						roomRequestData={roomRequestData}
+						onChange={(e) => addData(e)}
+					/>,
 				][step]
 			}
 		</PostRoomLayout>

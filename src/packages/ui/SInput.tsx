@@ -1,3 +1,4 @@
+'use client'
 import { currencySymbol } from '@/constants/app.constrant'
 import React from 'react'
 import CurrencyInput from 'react-currency-input-field'

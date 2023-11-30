@@ -21,11 +21,10 @@ export default function MessagingPopup() {
 	return (
 		<div
 			className={classNames(
-				'fixed hidden- lg:block  right-0 md:right-5 w-screen md:w-[25rem]',
-				{ '-bottom-16 md:bottom-0': !show_messaging },
-				{ 'bottom-0': show_messaging }
+				'fixed hidden- lg:block  right-0 md:right-5 w-screen md:w-[25rem] z-50',
+				{ 'md:bottom-0': !show_messaging },
+				{ 'bottom-16 lg:bottom-0': show_messaging }
 			)}
-			style={{ zIndex: 80 }}
 		>
 			<div
 				onClick={() => {
@@ -55,7 +54,7 @@ export default function MessagingPopup() {
 			<div
 				className={classNames(
 					'bg-white flex-1 bottom-0 border-x shadow-lg overflow-y-auto',
-					{ 'h-[75vh] md:h-[70vh]': show_messaging },
+					{ 'h-[65vh] md:h-[70vh]': show_messaging },
 					{ 'h-[0vh]': !show_messaging }
 				)}
 				// style={{ height: height, maxHeight: height }}

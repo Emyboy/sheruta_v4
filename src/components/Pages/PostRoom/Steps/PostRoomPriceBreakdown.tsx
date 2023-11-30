@@ -1,23 +1,32 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { EachStepProps } from '../PostRoom'
 import classNames from 'classnames'
 import SInput from '@/packages/ui/SInput'
 import { HiXMark } from 'react-icons/hi2'
 import SSelect, { SSelectData } from '@/packages/ui/SSelect'
-import { EachPayFrequency } from '@/types/request.types'
 import NextButtonContainer from '../NextButtonContainer'
 import { toast } from 'react-hot-toast'
 import { renderPricingFull } from '@/packages/utils/pricing.utils'
+import UploadRoomRequestPopup from './UploadRoomRequestPopup'
 
-type CreateFrequencyDTO = {
+export type CreateFrequencyDTO = {
 	id?: number | string
 	name: string
 	price: number
 	frequency: SSelectData | null
 }
 
-export default function PostRoomPriceBreakdown({ next }: EachStepProps) {
-	const [frequencies, setFrequencies] = useState<CreateFrequencyDTO[]>([])
+export default function PostRoomPriceBreakdown({
+	next,
+	onChange,
+	roomRequestData,
+}: EachStepProps) {
+	const [startUpload, setStartUpload] = useState(false)
+	const [frequencies, setFrequencies] = useState<CreateFrequencyDTO[]>(
+		roomRequestData?.service_charge_breakdown
+			? roomRequestData?.service_charge_breakdown
+			: []
+	)
 
 	const defaultState = {
 		frequency: null,
@@ -48,85 +57,104 @@ export default function PostRoomPriceBreakdown({ next }: EachStepProps) {
 		}
 	}
 
+	let disabled = frequencies.length === 0
+
+	useEffect(() => {
+		onChange({ service_charge_breakdown: frequencies })
+	}, [frequencies])
+
 	return (
-		<div className="flex flex-col gap-4 md:w-[600px] w-[90vw]">
-			<div className="flex flex-col gap-2">
-				{frequencies.length > 0 ? (
-					frequencies.map((data, index) => {
-						return (
-							<EachFrequency
-								key={data.name}
-								data={data}
-								onRemove={() => removeItem(data?.id)}
-							/>
-						)
-					})
-				) : (
-					<center>
-						<p>No item added</p>
-						<small className="font-light">
-							Fill the form and press Add+ to add <br /> an item.
-						</small>
-					</center>
-				)}
-			</div>
-			<hr />
-			<div className="flex flex-col gap-3 ">
-				<SInput
-					label="Payment Name"
-					id="name"
-					required
-					type="text"
-					onChange={(val: any) =>
-						setFrequency({ ...frequency, name: val?.target?.value })
-					}
-					placeholder="Ex. Electric Bill, Security Bill"
-					value={frequency?.name || ''}
+		<>
+			{startUpload && (
+				<UploadRoomRequestPopup
+					roomRequestData={roomRequestData}
+					onError={() => {}}
+					onUploadComplete={() => {}}
 				/>
-				<SInput
-					label="Price"
-					id="price"
-					required
-					type="currency"
-					onChange={(currency: any) =>
-						setFrequency({ ...frequency, price: currency })
-					}
-					placeholder="Payment Price"
-					value={frequency?.price || ''}
-				/>
-				<SSelect
-					id="pay_frequency"
-					label="Pay Frequency"
-					placeholder="Select Frequency"
-					onChange={(data) => setFrequency({ ...frequency, frequency: data })}
-					options={[
-						{ label: 'Monthly', value: 'monthly' },
-						{ label: 'Annually', value: 'annually' },
-						{ label: 'Bi Annually', value: 'bi-annually' },
-					]}
-					value={frequency?.frequency}
-					required
-				/>
-				<br />
-				<button type="button" className="text-lg" onClick={addFrequency}>
-					Add +
-				</button>
-				<br />
-				<br />
-			</div>
-			<NextButtonContainer>
-				<button
-					onClick={next}
-					className={classNames(
-						' text-white bg-dark rounded-md font-bold w-[90vw] md:w-[400px] py-3'
+			)}
+			<div className="flex flex-col gap-4 md:w-[600px] w-[90vw]">
+				<div className="flex flex-col gap-2">
+					{frequencies.length > 0 ? (
+						frequencies.map((data, index) => {
+							return (
+								<EachFrequency
+									key={data.name}
+									data={data}
+									onRemove={() => removeItem(data?.id)}
+								/>
+							)
+						})
+					) : (
+						<center>
+							<p>No item added</p>
+							<small className="font-light">
+								Fill the form and press Add+ to add <br /> an item.
+							</small>
+						</center>
 					)}
-				>
-					Upload Listing
-				</button>
-			</NextButtonContainer>
-			<br />
-			<br />
-		</div>
+				</div>
+				<hr />
+				<div className="flex flex-col gap-3 ">
+					<SInput
+						label="Payment Name"
+						id="name"
+						required
+						type="text"
+						onChange={(val: any) =>
+							setFrequency({ ...frequency, name: val?.target?.value })
+						}
+						placeholder="Ex. Electric Bill, Security Bill"
+						value={frequency?.name || ''}
+					/>
+					<SInput
+						label="Price"
+						id="price"
+						required
+						type="currency"
+						onChange={(currency: any) =>
+							setFrequency({ ...frequency, price: currency })
+						}
+						placeholder="Payment Price"
+						value={frequency?.price || ''}
+					/>
+					<SSelect
+						id="pay_frequency"
+						label="Pay Frequency"
+						placeholder="Select Frequency"
+						onChange={(data) => setFrequency({ ...frequency, frequency: data })}
+						options={[
+							{ label: 'Monthly', value: 'monthly' },
+							{ label: 'Annually', value: 'annually' },
+							{ label: 'Bi Annually', value: 'bi-annually' },
+						]}
+						value={frequency?.frequency}
+						required
+					/>
+					<br />
+					<button type="button" className="text-lg" onClick={addFrequency}>
+						Add +
+					</button>
+					<br />
+					<br />
+				</div>
+				{!startUpload && (
+					<NextButtonContainer>
+						<button
+							onClick={() => setStartUpload(true)}
+							className={classNames(
+								' text-white rounded-md font-bold w-full md:w-[400px] py-3',
+								{ 'bg-dark': !disabled },
+								{ 'bg-muted': disabled }
+							)}
+						>
+							Upload Space
+						</button>
+					</NextButtonContainer>
+				)}
+				<br />
+				<br />
+			</div>
+		</>
 	)
 }
 

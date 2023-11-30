@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { EmailSettings, PersonalInfo, User } from '@/interface/auth.interface'
+import { EmailSettings, PersonalInfo, User, UserInfo } from '@/interface/auth.interface'
 import Cookies from 'js-cookie'
 
 // Define a type for the slice state
 export interface AuthState {
 	user: User | null
-	user_info: PersonalInfo | null
+	user_info: UserInfo | null
 	email_setting: EmailSettings | null
 }
 
