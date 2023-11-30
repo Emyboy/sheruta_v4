@@ -16,12 +16,12 @@ export const requestApi = createApi({
 	}),
 	tagTypes: ['UserInfo'],
 	endpoints: (builder) => ({
-		postRequest: builder.query<any, any>({
-			query: () => ({
-				url: `/user-info/auth/dependencies`,
-				method: 'GET',
+		requestAtRoom: builder.mutation<any, { data: any }>({
+			query: (data) => ({
+				url: `/room-request/request/flat`,
+				method: 'POST', 
+				body: data, 
 			}),
-			providesTags: ['UserInfo'],
 		}),
 	}),
 })
