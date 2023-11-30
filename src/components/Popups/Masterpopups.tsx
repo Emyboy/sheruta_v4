@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import IntentionsPopup from './IntentionsPopup'
+import IntentionsPopup from './IntentionsPopup/IntentionsPopup'
 import { useSelector } from 'react-redux'
 import { AppStore } from '@/interface/index.interface'
 // import LoginPopup from './LoginPopup'
@@ -13,7 +13,6 @@ export default function MasterPopups() {
 				<>
 					<IntentionsPopup
 						isOpen
-						onClose={() => {}}
 						user={user}
 						user_info={user_info}
 					/>

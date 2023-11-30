@@ -1,4 +1,5 @@
 import { backend_url } from '@/constants/app.constrant'
+import { UserInfo } from '@/interface/auth.interface'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import Cookies from 'js-cookie'
 
@@ -23,7 +24,14 @@ export const userInfoApi = createApi({
 			}),
 			providesTags: ['UserInfo'],
 		}),
+		updateUserInfo: builder.mutation<any, Partial<UserInfo>>({
+			query: (data) => ({
+				url: `/user-info/update`,
+				method: 'PUT',
+				body: data, 
+			}),
+		}),
 	}),
 })
 
-export const { useGetAuthDependenciesQuery } = userInfoApi
+export const { useGetAuthDependenciesQuery, useUpdateUserInfoMutation } = userInfoApi

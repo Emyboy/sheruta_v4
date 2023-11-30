@@ -105,7 +105,8 @@ export default function MainNavbar({ activePage, className }: Props) {
 						{user ? (
 							<Link href={'/wallet'}>
 								<div>
-									<span className="text-theme">
+									<span className="text-theme flex gap-2">
+										{/* <img src={`/assets/img/widget/coin.webp`} alt='coin' width={10} style={{ width: '20px' }} />  */}
 										{renderPricingFull(parseFloat(walletTotal || '0'))}
 									</span>
 								</div>

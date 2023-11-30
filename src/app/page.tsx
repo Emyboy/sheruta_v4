@@ -10,7 +10,6 @@ export default async function page() {
 	const getRequest = await fetch(backend_url + '/room-request/recent')
 	let requests = await getRequest.json()
 
-
 	return (
 		<>
 			<MainLayout

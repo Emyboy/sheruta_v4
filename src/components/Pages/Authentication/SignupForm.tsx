@@ -47,7 +47,6 @@ export default function RegisterForm({onRegister}: Props) {
 				username: `user` + String(Date.now()).slice(5),
 				last_seen: new Date().toJSON(),
 			}
-			console.log(data)
 
 			const res: any = await register(data)
 			if ('data' in res) {

@@ -11,7 +11,7 @@ export function capitalizeFirstName(name?: string): string {
 			return words.join(' ')
 		}
 
-		return name // Return the original name if no first name is found
+		return name
 	}else {
 		return ''
 	}

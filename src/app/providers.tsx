@@ -8,8 +8,10 @@ import { Toaster } from 'react-hot-toast'
 import '../styles/globals.css'
 import { CacheProvider, ChakraProvider } from '@/components/ChakraUi'
 import { Next13ProgressBar } from 'next13-progressbar'
+import { extendTheme } from '@chakra-ui/react'
 
 const queryClient = new QueryClient()
+
 
 export default function providers({ children }: any) {
 	return (
