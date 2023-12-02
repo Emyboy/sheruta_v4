@@ -3,6 +3,7 @@ interface Option {
 	id: number;
 	name: string;
 	slug: string
+	description?: string;
 }
 
 export interface Habit extends Option {

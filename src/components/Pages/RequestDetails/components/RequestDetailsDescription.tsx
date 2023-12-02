@@ -1,13 +1,17 @@
+'use client'
 import React from 'react'
-import { HiOutlineBookmark, HiOutlineChatBubbleOvalLeftEllipsis, HiOutlineEnvelope, HiOutlineMapPin, HiOutlinePhone, HiOutlineQuestionMarkCircle, HiOutlineShare, HiOutlineCheckCircle, HiEllipsisVertical } from 'react-icons/hi2'
+import { HiOutlineChatBubbleOvalLeftEllipsis, HiOutlineEnvelope, HiOutlineMapPin, HiOutlinePhone, HiOutlineQuestionMarkCircle, HiOutlineShare, HiOutlineCheckCircle, HiEllipsisVertical, HiOutlineEye } from 'react-icons/hi2'
 import { SpaceRequestData } from '../HostRequestDetails'
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 type Props = {
     requestData: SpaceRequestData
+    seeking: boolean
 }
 
 
-export default function RequestDetailsDescription({ requestData }: Props) {
+export default function RequestDetailsDescription({ requestData, seeking }: Props) {
 
     let request = requestData['room_request'];
     let user_info = requestData['user_info'];
@@ -30,23 +34,31 @@ export default function RequestDetailsDescription({ requestData }: Props) {
                 <div className="flex items-center text-theme text-sm">
                     <HiOutlineMapPin /> <address className='max-w-[90%] truncate'>{request.location_text}</address>
                 </div>
-                <p className=' text-sm'>{request.request_text}</p>
+                <ReactMarkdown remarkPlugins={[remarkGfm]} className='markdown'>
+                    {request.request_text}
+                </ReactMarkdown>
+                {/* <p className=' text-sm'>{request.request_text}</p> */}
             </div>
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                    <button className='text-dark_lighter flex gap-1 items-center hover:text-theme'><HiOutlinePhone size={20} /><small>34.4k</small></button>
-                    <button className='text-dark_lighter flex gap-1 items-center hover:text-theme'><HiOutlineChatBubbleOvalLeftEllipsis size={20} /><small>22</small></button>
-                    <button className='text-dark_lighter flex gap-1 items-center hover:text-theme'><HiOutlineShare size={20} /><small>73</small></button>
+                    <button className='text-dark_lighter flex gap-1 items-center hover:text-theme'><HiOutlinePhone size={20} /><small>
+                        {request.call_count || 0}
+                    </small></button>
+                    <button className='text-dark_lighter flex gap-1 items-center hover:text-theme'><HiOutlineChatBubbleOvalLeftEllipsis size={20} /><small>
+                        {request.question_count || 0}
+                    </small></button>
+                    <button className='text-dark_lighter flex gap-1 items-center hover:text-theme'><HiOutlineEye size={20} /><small>
+                        {request.view_count || 0}
+                    </small></button>
                 </div>
                 <button className='text-dark_lighter flex gap-1 items-center hover:text-theme'>
-                    <HiOutlineEnvelope size={25} />
-                    <small>73</small>
+                    <HiOutlineShare size={25} />
                 </button>
             </div>
             <hr />
             <div className='flex justify-between items-center'>
                 <div className="flex items-center gap-2">
-                    <div className='bg-orange-100 text-orange-500 px-2 rounded-lg text-sm'>{request.service.name}</div>
+                    <div className='bg-purple-100 text-purple-500 px-2 rounded-lg text-sm'>{request.service.name}</div>
                     <div className='bg-green-100 text-green-500 px-2 rounded-lg text-sm'>{request.category.name}</div>
                 </div>
                 {request.private_room && <div className='px-2 rounded-lg border-1 border text-sm text-dark_light'>Private Room</div>}
@@ -57,17 +69,18 @@ export default function RequestDetailsDescription({ requestData }: Props) {
                         <HiOutlineQuestionMarkCircle className='text-orange-400' size={20} />
                         <h6 className='text-sm font-semibold'>How It Works</h6>
                     </div>
-                    <p className='text-xs'>Join Paddy allows apartment seekers find
-                        and share apartments/room by splitting bills.</p>
+                    <p className='text-xs'>
+                        {request.service?.description}
+                    </p>
                 </div>
-                <div className="lg:w-1/2 p-3 bg-theme_transparent rounded-sm flex gap-2 flex-col">
+                {!seeking && <div className="lg:w-1/2 p-3 bg-theme_transparent rounded-sm flex gap-2 flex-col">
                     <div className="flex gap-2 items-center">
                         <HiOutlineCheckCircle className='text-theme' size={20} />
                         <h6 className='text-sm font-semibold'>Available</h6>
                     </div>
                     <p className='text-xs'>View Payment Summary and what to do before making payments.
                         view Details</p>
-                </div>
+                </div>}
             </div>
         </section>
     )

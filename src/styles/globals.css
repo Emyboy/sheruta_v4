@@ -70,3 +70,22 @@ input[type="number"] {
 ::-webkit-scrollbar-thumb:hover {
   background: #55555594; 
 }
+
+.markdown h1 {
+	margin-bottom: 25px;
+	font-size: 24px;
+}
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.markdown p, .markdown ol, .markdown li {
+	margin-bottom: 15px;
+	font-size: 0.875rem !important;
+}
