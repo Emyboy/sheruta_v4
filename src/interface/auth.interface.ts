@@ -37,4 +37,5 @@ export interface UserInfo {
 	place_of_work: string | null
 	date_of_birth: string | null
 	budget: number | null
+	user: User
 }

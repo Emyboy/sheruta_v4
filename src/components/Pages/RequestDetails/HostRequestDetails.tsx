@@ -2,13 +2,24 @@
 import React from 'react'
 import RequestDetailsLeft from './RequestDetailsLeft'
 import RequestDetailsRight from './RequestDetailsRight/RequestDetailsRight'
-import { RequestData } from 'next/dist/server/web/types'
+import { UserInfo } from '@/interface/auth.interface'
+import { MessageData } from '@/interface/message.interface'
+import { RoomRequest } from '@/interface/request.interface'
 
-type Props = {
-    requestData: RequestData
+export type SpaceRequestData = {
+    room_request: RoomRequest;
+    user_info: UserInfo;
+    comments: MessageData[]
 }
 
-export default function SpaceRequestDetails({ }: Props) {
+type Props = {
+    requestData: SpaceRequestData
+}
+
+export default function HostRequestDetails(props: Props) {
+
+    const { requestData } = props;
+
     return (
         <>
             <div className='h-screen- flex-col lg:flex-row bg-black' style={{ display: 'flex' }}>
@@ -24,7 +35,7 @@ export default function SpaceRequestDetails({ }: Props) {
                     'https://99designs-blog.imgix.net/blog/wp-content/uploads/2020/03/slower.gif?auto=format&q=60&fit=max&w=930',
                     'https://i.pinimg.com/originals/cd/59/d6/cd59d626dc86397fe45080e6e9c7027d.gif'
                 ]} />
-                <RequestDetailsRight />
+                <RequestDetailsRight requestData={requestData} />
             </div>
         </>
     )

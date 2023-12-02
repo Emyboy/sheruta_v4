@@ -4,10 +4,13 @@ import _ChatInput from '@/packages/ui/SChatInput'
 import SummaryTab from './Tabs/SummaryTab'
 import DiscussionTab from './Tabs/DiscussionTab'
 import { HiChevronRight } from 'react-icons/hi2'
+import { SpaceRequestData } from '../HostRequestDetails'
 
-type Props = {}
+type Props = {
+    requestData: SpaceRequestData
+}
 
-export default function RequestDetailsRight({ }: Props) {
+export default function RequestDetailsRight({ requestData }: Props) {
     const tabs: TabUIBaseProps[] = [
         {
             id: 'summary',
@@ -32,7 +35,7 @@ export default function RequestDetailsRight({ }: Props) {
                 </div>
                 <div className="flex-1 px-5 pt-5  h-full- pb-20">
                     {[
-                        <SummaryTab />,
+                        <SummaryTab requestData={requestData} />,
                         <DiscussionTab />
                     ][activeTab]}
                 </div>

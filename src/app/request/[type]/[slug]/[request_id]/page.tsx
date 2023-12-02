@@ -1,20 +1,24 @@
 import React from 'react'
-import SpaceRequestDetails from '@/components/Pages/RequestDetails/SpaceRequestDetails'
+import HostRequestDetails, { SpaceRequestData } from '@/components/Pages/RequestDetails/HostRequestDetails'
 import { backend_url } from '@/constants/app.constrant';
-import axios from 'axios';
-
+import GuestRequestDetails from '@/components/Pages/RequestDetails/GuestRequestDetails';
 
 
 export default async function DetailsPage(props: any) {
-  console.log(props)
   const { request_id } = props.params;
 
   let url = backend_url + `/room-request/listing/${request_id}`
-  console.log('THE URL --', url)
-  const roomRequest = await axios(url)
-  // const result = await roomRequest.json()
+  const roomRequest = await fetch(url)
+  const result: SpaceRequestData = await roomRequest.json();
 
-  return (
-    <SpaceRequestDetails requestData={roomRequest.data} />
-  )
+  const { room_request } = result;
+
+  if (room_request.image_urls && room_request.image_urls.length > 0) {
+    return (
+      <HostRequestDetails requestData={result} />
+    )
+  } else {
+    return <GuestRequestDetails requestData={result} />
+  }
+
 } 

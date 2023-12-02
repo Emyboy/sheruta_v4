@@ -2,7 +2,6 @@
 import React from 'react'
 import { SlOptions, SlLocationPin } from 'react-icons/sl'
 import {
-	HiOutlineBookmark,
 	HiOutlineChat,
 	HiOutlinePhone,
 } from 'react-icons/hi'
@@ -19,9 +18,6 @@ import {
 	MenuList,
 } from '@/components/ChakraUi'
 import { renderPricingFull } from '@/packages/utils/pricing.utils'
-import { useSelector } from 'react-redux'
-import { AppStore } from '@/interface/index.interface'
-import Image from 'next/image'
 import EachRequestCommentSection from './EachRequestCommentSection'
 import { Divider } from '@chakra-ui/react'
 
@@ -33,9 +29,8 @@ export default function EachRequest({ request }: Props) {
 	let link = `/request/${request.type}/${request.slug}/${request.id}`
 
 	let author = request.user
-	let authorInfo = request.user_info
+	// let authorInfo = request.user_info
 
-	console.log(request)
 
 	return (
 		<article className="bg-white py-4 border-b border-1 rounded-sm flex flex-col gap-4 px-3 lg:px-5">
