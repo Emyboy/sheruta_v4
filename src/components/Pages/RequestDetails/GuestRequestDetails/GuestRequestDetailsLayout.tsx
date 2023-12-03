@@ -8,7 +8,7 @@ type Props = {
 
 export default function GuestRequestDetailsLayout({ children, leftComponent }: Props) {
     return (
-        <div className='border md:rounded-xl min-h-[100vh] max-h-[100vh] md:min-h-[90vh] md:max-h-[90vh] w-full  lg:w-[1200px] flex overflow-hidden shadow-sm'>
+        <div className='border md:rounded-xl min-h-[100vh] max-h-[100vh] md:min-h-[90vh] md:max-h-[90vh] w-full  lg:w-[1200px] flex overflow-hidden shadow-md'>
             <div className='bg-white flex-1 min-h-[90vh] p-4 overflow-y-auto'>
                 {children}
             </div>

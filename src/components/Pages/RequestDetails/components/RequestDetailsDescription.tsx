@@ -1,9 +1,11 @@
 'use client'
 import React from 'react'
-import { HiOutlineChatBubbleOvalLeftEllipsis, HiOutlineEnvelope, HiOutlineMapPin, HiOutlinePhone, HiOutlineQuestionMarkCircle, HiOutlineShare, HiOutlineCheckCircle, HiEllipsisVertical, HiOutlineEye } from 'react-icons/hi2'
+import { HiOutlineChatBubbleOvalLeftEllipsis, HiOutlineMapPin, HiOutlinePhone, HiOutlineQuestionMarkCircle, HiOutlineShare, HiOutlineCheckCircle, HiEllipsisVertical, HiOutlineEye } from 'react-icons/hi2'
 import { SpaceRequestData } from '../HostRequestDetails'
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import Link from 'next/link';
+import classNames from 'classnames';
 
 type Props = {
     requestData: SpaceRequestData
@@ -15,17 +17,18 @@ export default function RequestDetailsDescription({ requestData, seeking }: Prop
 
     let request = requestData['room_request'];
     let user_info = requestData['user_info'];
+    let disable = request.availability_status === 'unavailable';
 
     return (
         <section className='flex-col gap-5 flex'>
             <div className="flex justify-between">
-                <div className="flex gap-2 items-center flex-1">
+                <Link href={`/user/${user_info.user.username}`} className="flex gap-2 items-center flex-1">
                     <img src={'/assets/img/user.jpg'} alt='avatar' className='h-10 w-10 rounded-full' />
                     <div className="flex flex-col justify-center flex-1">
                         <h6 className='capitalize truncate max-w-[90%]'>{user_info.user.first_name}</h6>
                         <small className='text-dark_lighter'>@{user_info.user.username}</small>
                     </div>
-                </div>
+                </Link>
                 <button className='text-dark_lighter'>
                     <HiEllipsisVertical size={25} />
                 </button>
@@ -39,7 +42,7 @@ export default function RequestDetailsDescription({ requestData, seeking }: Prop
                 </ReactMarkdown>
                 {/* <p className=' text-sm'>{request.request_text}</p> */}
             </div>
-            <div className="flex items-center justify-between">
+            {!disable && <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
                     <button className='text-dark_lighter flex gap-1 items-center hover:text-theme'><HiOutlinePhone size={20} /><small>
                         {request.call_count || 0}
@@ -54,7 +57,7 @@ export default function RequestDetailsDescription({ requestData, seeking }: Prop
                 <button className='text-dark_lighter flex gap-1 items-center hover:text-theme'>
                     <HiOutlineShare size={25} />
                 </button>
-            </div>
+            </div>}
             <hr />
             <div className='flex justify-between items-center'>
                 <div className="flex items-center gap-2">
@@ -73,10 +76,18 @@ export default function RequestDetailsDescription({ requestData, seeking }: Prop
                         {request.service?.description}
                     </p>
                 </div>
-                {!seeking && <div className="lg:w-1/2 p-3 bg-theme_transparent rounded-sm flex gap-2 flex-col">
+                {!seeking && <div className={classNames("lg:w-1/2 p-3  rounded-sm flex gap-2 flex-col", {
+                    "bg-theme_transparent": request.availability_status === "available",
+                    "bg-red-100": request.availability_status === "unavailable",
+                })}>
                     <div className="flex gap-2 items-center">
-                        <HiOutlineCheckCircle className='text-theme' size={20} />
-                        <h6 className='text-sm font-semibold'>Available</h6>
+                        <HiOutlineCheckCircle className={classNames({
+                            'text-theme': request.availability_status === 'available',
+                            'text-danger': request.availability_status === 'unavailable'
+                        })}
+                            size={20}
+                        />
+                        <h6 className='text-sm font-semibold capitalize'>{request.availability_status}</h6>
                     </div>
                     <p className='text-xs'>View Payment Summary and what to do before making payments.
                         view Details</p>

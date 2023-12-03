@@ -1,9 +1,11 @@
 import React from 'react'
 import DiscussionBubble from '../../components/DiscussionBubble'
 
-type Props = {}
+type Props = {
+    isDisabled: boolean
+}
 
-export default function DiscussionTab({ }: Props) {
+export default function DiscussionTab({ isDisabled }: Props) {
     return (
         <div className="flex flex-col gap-10 min-h-screen">
             <div className="flex flex-col gap-3">

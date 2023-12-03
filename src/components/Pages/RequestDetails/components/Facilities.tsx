@@ -1,9 +1,12 @@
 import React from 'react'
 import { EachAmenity } from './Amenities'
+import { Facility } from '@/interface/options.interface'
 
-type Props = {}
+type Props = {
+  facilities: Facility[]
+}
 
-export default function Facilities({ }: Props) {
+export default function Facilities({ facilities }: Props) {
   return (
     <section className='flex flex-col gap-5'>
       <div className="flex flex-col gap-5">
@@ -11,10 +14,10 @@ export default function Facilities({ }: Props) {
           <h6 className='mb-1'>Facilities</h6>
           <hr />
         </div>
-        <div className="flex flex-wrap gap-3 justify-between">
+        <div className="flex flex-wrap gap-3 ">
           {
-            Array(8).fill(null).map(val => {
-              return <EachAmenity />
+            facilities.map(val => {
+              return <EachAmenity key={`facility-${val.id}`} data={val} />
             })
           }
         </div>

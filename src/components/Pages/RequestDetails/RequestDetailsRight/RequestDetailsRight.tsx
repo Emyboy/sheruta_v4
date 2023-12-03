@@ -5,6 +5,8 @@ import SummaryTab from './Tabs/SummaryTab'
 import DiscussionTab from './Tabs/DiscussionTab'
 import { HiChevronRight } from 'react-icons/hi2'
 import { SpaceRequestData } from '../HostRequestDetails'
+import { renderPricingFull } from '@/packages/utils/pricing.utils'
+import { Button } from '@chakra-ui/react'
 
 type Props = {
     requestData: SpaceRequestData
@@ -26,7 +28,10 @@ export default function RequestDetailsRight({ requestData }: Props) {
             name: 'Breakdown',
         }
     ];
-    const [activeTab, setActiveTab] = useState<number>(0)
+    const [activeTab, setActiveTab] = useState<number>(0);
+
+    const disable = requestData.room_request.availability_status === 'unavailable';
+
     return (
         <>
             <div className="bg-white w-screen lg:w-1/3 lg:max-h-screen lg:overflow-auto">
@@ -36,7 +41,7 @@ export default function RequestDetailsRight({ requestData }: Props) {
                 <div className="flex-1 px-5 pt-5  h-full- pb-20">
                     {[
                         <SummaryTab requestData={requestData} />,
-                        <DiscussionTab />
+                        <DiscussionTab isDisabled={disable} />
                     ][activeTab]}
                 </div>
                 <div className="bg-white px-2 h-16 shadow-lg border-1 border-t lg:sticky fixed w-screen lg:w-full bottom-0 ">
@@ -45,12 +50,12 @@ export default function RequestDetailsRight({ requestData }: Props) {
                             <div className="flex justify-between items-center h-full">
                                 <div className="flex flex-col">
                                     <small className='text-dark_lighter'>Rent per room</small>
-                                    <figure className='font-bold text-lg'>N45,000,000</figure>
+                                    <figure className='font-bold text-lg'>{renderPricingFull(requestData.room_request?.room_rent)}</figure>
                                 </div>
-                                <button className='bg-dark text-white px-6 py-3 rounded-md' onClick={() => setActiveTab(tabs.length - 1)}>Reserve Room</button>
+                                <Button isDisabled={disable} className='bg-dark text-white px-6 py-3 rounded-md' onClick={() => setActiveTab(tabs.length - 1)}>Reserve Room</Button>
                             </div>
                         </>,
-                        <_ChatInput />,
+                        <_ChatInput isDisabled={disable} />,
                         <div className="flex justify-between items-center h-full">
                             <div className="flex flex-col">
                                 <small className='text-dark_lighter'>Total Payment is</small>

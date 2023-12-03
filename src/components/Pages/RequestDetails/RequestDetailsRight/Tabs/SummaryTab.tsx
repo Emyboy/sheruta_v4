@@ -13,10 +13,10 @@ type Props = {
 export default function SummaryTab({ requestData }: Props) {
     return (
         <div className="flex flex-col gap-10 min-h-screen">
-            <RequestDetailsDescription requestData={requestData} />
-            <Amenities />
-            <Facilities />
-            <HouseRules />
+            <RequestDetailsDescription requestData={requestData} seeking={false} />
+            <Amenities amenities={requestData.room_request.amenities} />
+            <Facilities facilities={requestData.room_request.facilities} />
+            <HouseRules rules={requestData.room_request.house_rules} />
             <MapDetails />
         </div>
     )

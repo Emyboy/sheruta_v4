@@ -19,7 +19,7 @@ export default function ProfilePage({profile}: Props) {
 				<hr className="mt-4" />
 				<ProfileAbout profile={profile} />
 				<hr className="mt-4" />
-				<ProfileInfo profile={profile} />
+				<ProfileInfo user_info={profile.user_info} />
 				<hr className="mt-4" />
 				<ProfileSocials profile={profile} />
 				<hr className="mt-4" />

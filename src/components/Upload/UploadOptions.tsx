@@ -15,16 +15,16 @@ export default function UploadOptions() {
 	return (
 		<div className="flex flex-col gap-5 p-4">
 			<EachAddOptions
-				title="Post A Room"
+				title="Post A Space"
 				Icon={(p) => <BiSolidBed {...p} />}
 				link="/request/new/host"
-				subHeading="List vacant room, or property for seekers to see."
+				subHeading="List vacant space, or property for seekers to see."
 			/>
 			<EachAddOptions
-				title="Request A Room"
+				title="Request A Space"
 				Icon={(p) => <HiChatBubbleOvalLeftEllipsis {...p} />}
 				link="/request/new/seeker"
-				subHeading="Make a room vacancy request for hosts to see."
+				subHeading="Make a space vacancy request for hosts to see."
 			/>
 		</div>
 	)
