@@ -30,9 +30,9 @@ export default function RequestDetailsLeft({ images, onFullScreenToggle, fullScr
                 <div className='bg-dark shadow h-10 w-10 rounded-full absolute right-2 top-2 text-white flex md:hidden justify-center items-center' onClick={onFullScreenToggle}>
                     {
                         fullScreen ?
-                        <HiArrowsPointingIn />
-                        :
-                        <HiOutlineArrowsPointingOut />
+                            <HiArrowsPointingIn />
+                            :
+                            <HiOutlineArrowsPointingOut />
                     }
                 </div>
                 <div className='p-2 flex flex-col items-center justify-center h-64 lg:h-5/6 flex-1 w-full' >
