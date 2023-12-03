@@ -35,7 +35,7 @@ export default function RequestDetailsRight({ requestData }: Props) {
     return (
         <>
             <div className="bg-white w-screen lg:w-1/3 lg:max-h-screen lg:overflow-auto">
-                <div className="bg-background shadow-sm h-12 border-b  sticky top-0">
+                <div className="bg-gray-100 shadow-sm h-12 border-b  sticky top-0">
                     <_Tab tabs={tabs} activeTab={tabs[activeTab].id} onTabChange={tab => setActiveTab(tab)} />
                 </div>
                 <div className="flex-1 px-5 pt-5  h-full- pb-20">
