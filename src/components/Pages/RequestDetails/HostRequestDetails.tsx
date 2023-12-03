@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import RequestDetailsLeft from './RequestDetailsLeft'
 import RequestDetailsRight from './RequestDetailsRight/RequestDetailsRight'
 import { UserInfo } from '@/interface/auth.interface'
@@ -17,14 +17,18 @@ type Props = {
 }
 
 export default function HostRequestDetails(props: Props) {
-
+    const [fullScreen, setFullScreen] = useState(false);
     const { requestData } = props;
 
     return (
         <>
             <div className='h-screen- flex-col lg:flex-row bg-black' style={{ display: 'flex' }}>
-                <RequestDetailsLeft images={requestData.room_request.image_urls} />
-                <RequestDetailsRight requestData={requestData} />
+                <RequestDetailsLeft 
+                    images={requestData.room_request.image_urls} 
+                    onFullScreenToggle={() => setFullScreen(!fullScreen)} 
+                    fullScreen={fullScreen} 
+                />
+                {!fullScreen && <RequestDetailsRight requestData={requestData} />}
             </div>
         </>
     )
