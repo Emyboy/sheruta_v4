@@ -41,7 +41,7 @@ export default function EachRequest({ request }: Props) {
 				>
 					<SAvatar userData={author} />
 					<div>
-						<h6 className="font-medium">{author.first_name}</h6>
+						<h6 className="font-medium capitalize">{author.first_name}</h6>
 						<small className="text-dark_lighter">@{author.username}</small>
 					</div>
 				</Link>

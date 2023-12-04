@@ -31,6 +31,7 @@ export default function IntentionWelcomeMessage({ onClick }: Props) {
                         </div>
                     </div>
                     <div>
+
                         <p className='mt-5'>
                             {`
                             Welcome to Sheruta,  I am delighted to have you here as a new member of our community..                           
@@ -38,11 +39,9 @@ export default function IntentionWelcomeMessage({ onClick }: Props) {
                         </p>
                         <p className='mt-5'>
                             The idea of Sheruta came from our observation of the deep need for a safe and transparent apartment hunting community where room seekers can connect directly to apartment providers and room subletters with the best room deals in a secured environment.
-
-                            
                         </p>
                         <p className='mt-5'>
-                            We will work towards making sure your request does meet the right prospects. Help us share the word to get more good room deals for community members
+                            Post your request, we will work towards making sure your request does meet the right prospects. Help us share the word to get more good room deals for community members.
                         </p>
                     </div>
                     <br />

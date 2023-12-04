@@ -15,6 +15,7 @@ import IntentionWelcomeMessage from './IntentionWelcomeMessage'
 import { useDispatch } from 'react-redux'
 import { setAuthState } from '@/redux/features/auth.slice'
 import toast from 'react-hot-toast'
+import MobileModal from '../MobileModal'
 
 type Props = {
 	isOpen: boolean
@@ -37,66 +38,60 @@ export default function IntentionsPopup({ isOpen, user, user_info }: Props) {
 	}
 
 	useEffect(() => {
-		if(data){
-			console.log(data)
+		if (data) {
 			dispatch(setAuthState({ user_info: data }))
 		}
-		if(isError){
+		if (isError) {
 			toast.error("Error, please try again")
 		}
-	},[isError, data])
+	}, [isError, data])
 
 	if (user_info.seeking !== null) {
 		return null
 	}
 
 	return (
-		<Modal isOpen={isOpen} onClose={() => { }} size={'3xl'} >
-			<ModalOverlay />
-			<ModalContent position={'absolute'} bottom={[-20, 40]}>
-				<ModalBody>
-					{[
-						<IntentionWelcomeMessage onClick={() => setStep(step + 1)} />,
-						<>
-							<center className="flex flex-col gap-3 my-5">
-								<h1 className="capitalize font-bold text-2xl truncate">
-									Hi, {user?.first_name}
-								</h1>
-								<h5 className="text-dark_lighter text-sm ">
-									To get you started quickly, let us know what <br /> brings you to
-									Sheruta.
-								</h5>
-							</center>
-							<br />
-							<br />
-							<div className="flex justify-center gap-8">
-								<EachSelector
-									heading="I'm A Host"
-									subHeading="Linked me up with seekers"
-									active={seeking === false}
-									onClick={() => setSeeking(false)}
-									img={"url('/assets/img/ai/44.jpeg')"}
-								/>
-								<EachSelector
-									heading="I'm A Seeker"
-									subHeading="Link me up with available hosts"
-									active={seeking === true}
-									onClick={() => setSeeking(true)}
-									img={"url('/assets/img/ai/11.jpeg')"}
-								/>
-							</div>
-							<br />
-							<br />
-							<center className="mt-5 mb-7">
-								<Button isLoading={isLoading} isDisabled={seeking === undefined} className="bg-dark disabled:opacity-5 text-white w-full md:w-[50%] py-3 hover:bg-black rounded-md" onClick={handleUpdateUserInfo}>
-									Finish
-								</Button>
-							</center>
-						</>
-					][step]}
-				</ModalBody>
-			</ModalContent>
-		</Modal>
+		<MobileModal isOpen onClose={() => { }}>
+			{[
+				<IntentionWelcomeMessage onClick={() => setStep(step + 1)} />,
+				<>
+					<center className="flex flex-col gap-3 my-5">
+						<h1 className="capitalize font-bold text-2xl truncate">
+							Hi, {user?.first_name}
+						</h1>
+						<h5 className="text-dark_lighter text-sm ">
+							To get you started quickly, let us know what <br /> brings you to
+							Sheruta.
+						</h5>
+					</center>
+					<br />
+					<br />
+					<div className="flex justify-center gap-8">
+						<EachSelector
+							heading="I'm A Host"
+							subHeading="Linked me up with seekers"
+							active={seeking === false}
+							onClick={() => setSeeking(false)}
+							img={"url('/assets/img/ai/44.jpeg')"}
+						/>
+						<EachSelector
+							heading="I'm A Seeker"
+							subHeading="Link me up with available hosts"
+							active={seeking === true}
+							onClick={() => setSeeking(true)}
+							img={"url('/assets/img/ai/11.jpeg')"}
+						/>
+					</div>
+					<br />
+					<br />
+					<center className="mt-5 mb-7">
+						<Button isLoading={isLoading} isDisabled={seeking === undefined} className="bg-dark disabled:opacity-5 text-white w-full md:w-[50%] py-3 hover:bg-black rounded-md" onClick={handleUpdateUserInfo}>
+							Finish
+						</Button>
+					</center>
+				</>
+			][step]}
+		</MobileModal>
 	)
 }
 

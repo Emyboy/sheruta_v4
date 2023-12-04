@@ -10,16 +10,29 @@ import { HiOutlineArrowLeft } from 'react-icons/hi2'
 import { useSelector } from 'react-redux'
 import NextButtonContainer from './NextButtonContainer'
 import classNames from 'classnames'
+import LocationKeywordPopup from '@/components/Popups/LocationKeywordPopup'
+// import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
+import dynamic from 'next/dynamic';
+
+const GooglePlacesAutocomplete = dynamic(
+    () => import('react-google-places-autocomplete'),
+    { ssr: false } // Disable server-side rendering for this component
+);
+
+import { RequestTypeList } from '@/interface/options.interface'
+import { slugify } from '@/packages/utils/text.utils'
+import { usePostGuestRequestMutation } from '@/redux/services/request.service'
 
 type Props = {
-    roomRequestData?: any //todo: fix this
+    roomRequestData?: any;
 }
 
 export default function PostRoomRequest({ roomRequestData }: Props) {
-    const { user } = useSelector((state:AppStore) => state.app.auth)
+    const { user, user_info } = useSelector((state: AppStore) => state.app.auth)
     const [request_text, setRequestText] = useState(
         roomRequestData?.request_text || ''
     )
+    const [private_room, setPrivateRoom] = useState<boolean | null>(null);
     const [category, setCategory] = useState<SSelectData | null>(
         roomRequestData?.category || null
     )
@@ -32,7 +45,8 @@ export default function PostRoomRequest({ roomRequestData }: Props) {
     const [pay_frequency, setPayFrequency] = useState<SSelectData | null>(
         roomRequestData?.pay_frequency || null
     );
-
+    const [type, setType] = useState<SSelectData | null>(null);
+    const [googleLocation, setGoogleLocation] = useState<any>(null)
     const progressPercentage = (request_text.length / max_request_content) * 100
     const colors =
         progressPercentage < 60
@@ -50,27 +64,42 @@ export default function PostRoomRequest({ roomRequestData }: Props) {
         !category ||
         !service ||
         !room_rent ||
-        Math.floor(progressPercentage) < 100
+        !googleLocation ||
+        !type ||
+        private_room === null ||
+        Math.floor(progressPercentage) < 100;
+
+    const [uploadGuestRequest, {isLoading, data, isError}] = usePostGuestRequestMutation()
 
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         try {
             e.preventDefault();
+            let location_text = googleLocation?.label || user_info?.location_keyword?.name;
             let data = {
-                service,
-                pay_frequencies,
-                category,
+                service: service?.value,
+                pay_frequency: pay_frequency?.value,
+                category: category?.value,
                 request_text,
-                user: user?.id
+                state: user_info?.state?.id,
+                location_text,
+                location_object: googleLocation,
+                slug: slugify(`looking-a-${type?.value}-to-share-in-${location_text}`),
+                location_keyword: user_info?.location_keyword?.id,
+                type: type?.value,
+                room_rent,
+                private_room
             }
             console.log('SENDING --', data);
+            uploadGuestRequest(data)
         } catch (error) {
-            
+
         }
-    }
+    };
 
     return (
         <>
+            {!user_info?.state && !user_info?.location_keyword && <LocationKeywordPopup isOpen />}
             <header className='bg-white h-16 fixed left-0 right-0 top-0 border-b flex flex-col items-start justify-center lg:px-10 px-5 z-50'>
                 <div className="flex gap-5 items-center">
                     <Link href={'/'}>
@@ -130,6 +159,61 @@ export default function PostRoomRequest({ roomRequestData }: Props) {
                             placeholder="Room Rent"
                             value={room_rent}
                         />
+                        <SSelect
+                            id="type"
+                            onChange={(e) => setType(e)}
+                            label="Request Type"
+                            placeholder="Room or Flat?"
+                            options={RequestTypeList}
+                            required
+                            value={type}
+                        />
+                        <SInput
+                            label="Private Space?"
+                            id="private_room"
+                            required
+                            type="boolean"
+                            onChange={(isPrivate) => setPrivateRoom(isPrivate as boolean)}
+                            value={private_room}
+                        />
+                        {/* <div className="flex flex-col gap-2 w-100 flex-1">
+                            <label className="text-dark_light text-sm">
+                                Private Space?
+                            </label>
+                            <div className='bg-gray-200 h-full w-full rounded-lg p-1 flex'>
+                                <div className='h-full w-full bg-white border shadow cursor-pointer rounded-tl-md rounded-bl-md'>
+
+                                </div>
+                                <div className='h-full w-full bg-white border shadow cursor-pointer rounded-tr-md rounded-br-md'>
+
+                                </div>
+                            </div>
+                        </div> */}
+                    </div>
+                    <div className="w-full">
+                        <div className="flex flex-col gap-2 w-100 flex-1">
+                            <label htmlFor={'location'} className="text-dark_light text-sm">
+                                Location <span className="text-danger font-bold">*</span>
+                            </label>
+                            <GooglePlacesAutocomplete
+                                apiKey={process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY}
+                                apiOptions={{ region: 'ng' }}
+                                selectProps={{
+                                    placeholder: 'Select Location',
+                                    styles: {
+                                        control: (baseStyles, state) => ({
+                                            ...baseStyles,
+                                            height: '50px',
+                                        }),
+                                    },
+                                    onChange: (e: any) => {
+                                        console.log(e)
+                                        setGoogleLocation(e)
+                                    },
+                                    value: googleLocation
+                                }}
+                            />
+                        </div>
                     </div>
                     <div className="flex gap-3 w-full md:flex-row flex-col">
                         <div className="flex flex-col gap-2 w-100 flex-1">

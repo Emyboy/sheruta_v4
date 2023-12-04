@@ -13,23 +13,29 @@ export interface State extends Option {
 }
 export interface LocationKeyword extends Option {
 	image_url: string;
+	state: State
 }
 
 export interface PayFrequency extends Option {
-	
+
 }
 
 export interface Service extends Option {
-	
+
 }
 export interface Facility extends Option {
-	
+
 }
 export interface Amenity extends Option {
-	
+
 }
 
 export interface Category extends Option {
-	
+
 }
 
+
+export const RequestTypeList = [
+	{ label: "Entire Flat", value: 'flat' },
+	{ label: "Just A Room", value: 'room' }
+]

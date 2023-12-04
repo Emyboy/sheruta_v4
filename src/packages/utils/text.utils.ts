@@ -20,3 +20,13 @@ export function capitalizeFirstName(name?: string): string {
 export function generateNumberFromRange(min:number, max:number):number {
 	return Math.floor(Math.random() * (max - min) + min)
 }
+
+export const slugify = (text: string): string => {
+	return text
+		.toLowerCase()
+		.replace(/[^\w\s-]/g, '') // Remove non-word characters
+		.replace(/\s+/g, '-') // Replace spaces with a hyphen
+		.replace(/--+/g, '-') 
+		.trim(); // Trim leading and trailing spaces
+
+};

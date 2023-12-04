@@ -14,10 +14,11 @@ export default function _Button(props: Props) {
 		<button
 			disabled={isLoading}
 			className={classNames(
-				`rounded-md px-2 py-3 w-full flex items-center justify-center gap-3 text-sm flex-row`,
+				`rounded-md px-2 py-3 w-full flex items-center justify-center gap-3 text-sm flex-row `,
 				{ 'bg-theme text-white': !variant },
-				{ 'bg-dark text-white': variant === 'dark' }
+				{ 'bg-dark text-white': variant === 'dark' },
 			)}
+			style={{ opacity: props.disabled ? 0.5 : 100 }}
 			{...props}
 		>
 			<span className="flex w-full justify-center gap-3 items-center">

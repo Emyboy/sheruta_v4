@@ -16,7 +16,7 @@ export const requestApi = createApi({
 	}),
 	tagTypes: ['UserInfo'],
 	endpoints: (builder) => ({
-		requestAtRoom: builder.mutation<any, { data: any }>({
+		postGuestRequest: builder.mutation<any, { data: any }>({
 			query: (data) => ({
 				url: `/room-request/request/flat`,
 				method: 'POST', 
@@ -26,4 +26,4 @@ export const requestApi = createApi({
 	}),
 })
 
-export const {  } = requestApi
+export const {  usePostGuestRequestMutation } = requestApi

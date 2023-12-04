@@ -1,18 +1,19 @@
 'use client'
 import { currencySymbol } from '@/constants/app.constrant'
+import classNames from 'classnames'
 import React from 'react'
 import CurrencyInput from 'react-currency-input-field'
 
 type Props = {
 	id: string
-	placeholder: string
+	placeholder?: string
 	onChange: (
-		e: React.FormEvent<HTMLInputElement> | number | string | undefined
+		e: React.FormEvent<HTMLInputElement> | number | string | undefined | boolean
 	) => void
-	type: 'number' | 'text' | 'email' | null | 'currency'
+	type: 'number' | 'text' | 'email' | null | 'currency' | 'boolean'
 	required?: boolean
 	label?: string
-	value: string | number
+	value: string | number | boolean | null
 }
 
 export default function SInput({
@@ -34,7 +35,23 @@ export default function SInput({
 					{label} {required && <span className="text-danger font-bold">*</span>}
 				</label>
 			)}
-			{type !== 'currency' ? (
+			{
+				type === 'currency' &&
+				<CurrencyInput
+					prefix={`${currencySymbol} `}
+					id={id}
+					name={id}
+					placeholder={placeholder}
+					className={className}
+					value={value as string}
+					decimalsLimit={2}
+					required={required}
+					onValueChange={(value, name) => onChange(value)}
+				/>
+			}
+
+			{
+				type !== 'currency' && type !== 'boolean' &&
 				<input
 					id={id}
 					name={id}
@@ -43,21 +60,27 @@ export default function SInput({
 					onChange={onChange}
 					type={type || 'text'}
 					required={required}
-					value={value}
+					value={value as string}
 				/>
-			) : (
-				<CurrencyInput
-					prefix={`${currencySymbol} `}
-					id={id}
-					name={id}
-					placeholder={placeholder}
-					className={className}
-					value={value}
-					decimalsLimit={2}
-					required={required}
-					onValueChange={(value, name) => onChange(value)}
-				/>
-			)}
+			}
+			{
+				type === 'boolean' && <div className='bg-gray-200 h-full w-full rounded-lg p-1 flex'>
+					<div className={classNames('h-full w-full cursor-pointer rounded-tl-md rounded-bl-md flex justify-center items-center hover:bg-white hover:border hover:shadow-md', {
+						"bg-white shadow border": value as boolean
+					})}
+						onClick={() => onChange(true)}
+					>
+						<p className='text-sm'>Yes</p>
+					</div>
+					<div className={classNames('h-full w-full  cursor-pointer rounded-tr-md rounded-br-md flex justify-center items-center hover:bg-white hover:border hover:shadow-md', {
+						"bg-white shadow border": value === false as boolean
+					})}
+						onClick={() => onChange(false)}
+					>
+						<p className='text-sm'>No</p>
+					</div>
+				</div>
+			}
 		</div>
 	)
 }
