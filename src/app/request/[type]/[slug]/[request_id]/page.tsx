@@ -5,29 +5,27 @@ import GuestRequestDetails from '@/components/Pages/RequestDetails/GuestRequestD
 
 
 export default async function DetailsPage(props: any) {
-  try {
-    const { request_id } = props.params;
+  const { request_id } = props.params;
 
-    let url = backend_url + `/room-request/listing/${request_id}`
-    const roomRequest = await fetch(url, {
-      next: {
-        revalidate: 10,
-      },
-    })
-    const result: SpaceRequestData = await roomRequest.json();
+  let url = backend_url + `/room-request/listing/${request_id}`
+  const roomRequest = await fetch(url, {
+    next: {
+      revalidate: 15,
+    },
+  })
+  const result: SpaceRequestData = await roomRequest.json();
 
-    const { room_request } = result;
+  const { room_request } = result;
 
-    if (room_request.image_urls && room_request.image_urls.length > 0) {
-      return (
-        <HostRequestDetails requestData={result} />
-      )
-    } else {
-      return <GuestRequestDetails requestData={result} />
-    }
-  } catch (error) {
-    console.log("Request details error::",error)
+  console.log('THE RESULT::', result);
 
+  if (room_request && room_request?.image_urls && room_request?.image_urls?.length > 0) {
+    return (
+      <HostRequestDetails requestData={result} />
+    )
+  } else {
+    return <GuestRequestDetails requestData={result} />
   }
+
 
 } 
