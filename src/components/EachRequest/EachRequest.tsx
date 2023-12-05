@@ -39,7 +39,7 @@ export default function EachRequest({ request }: Props) {
 					href={`/user/${author?.username}`}
 					className="flex items-center gap-2"
 				>
-					<SAvatar userData={author} />
+					<SAvatar userData={author} size='md' />
 					<div>
 						<h6 className="font-medium capitalize">{author.first_name}</h6>
 						<small className="text-dark_lighter">@{author.username}</small>
@@ -147,7 +147,7 @@ export default function EachRequest({ request }: Props) {
 				<div className="flex items-center gap-4">
 					<button className="text-dark_lighter flex gap-1 items-center hover:text-theme">
 						<HiOutlinePhone size={20} />
-						<small>{request?.call_count}</small>
+						<small>{request?.call_count || 0}</small>
 					</button>
 					<button className="text-dark_lighter flex gap-1 items-center hover:text-theme">
 						<HiOutlineChat size={20} />

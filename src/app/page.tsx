@@ -7,7 +7,11 @@ import React from 'react'
 export default async function page() {
 
 	// Requests
-	const getRequest = await fetch(backend_url + '/room-request/recent')
+	const getRequest = await fetch(backend_url + '/room-request/recent', {
+		next: {
+			revalidate: 10,
+		},
+	})
 	let requests = await getRequest.json()
 
 	return (

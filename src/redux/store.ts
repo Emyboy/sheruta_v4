@@ -25,6 +25,7 @@ import { userInfoApi } from './services/user-info.service'
 import walletSlice from './features/wallet.slice'
 import uploadSlice from './features/upload.slice'
 import optionSlice from './features/option.slice'
+import { requestApi } from './services/request.service'
 
 const persistConfig = {
 	key: 'root',
@@ -47,13 +48,14 @@ export const store: any = configureStore({
 		// category: categoryReducer,
 		[authApi.reducerPath]: authApi.reducer,
 		[userInfoApi.reducerPath]: userInfoApi.reducer,
+		[requestApi.reducerPath]: requestApi.reducer,
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware({
 			serializableCheck: {
 				ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
 			},
-		}).concat([authApi.middleware, userInfoApi.middleware]),
+		}).concat([authApi.middleware, userInfoApi.middleware, requestApi.middleware]),
 })
 
 setupListeners(store.dispatch)

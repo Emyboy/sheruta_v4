@@ -33,7 +33,6 @@ export default function LocationKeywordPopup({ isOpen }: Props) {
 
     useEffect(() => {
         if(data){
-            console.log('THE DATA::', data)
             dispatch(setAuthState({
                 user_info: data
             }))

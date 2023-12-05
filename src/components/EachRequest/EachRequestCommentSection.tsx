@@ -19,7 +19,7 @@ export default function EachRequestCommentSection({
 		<div className="flex flex-col gap-2">
 			{requestData?.user?.id !== user?.id  && user && (
 				<form className="flex bg-background rounded-full p-1 justify-between gap-3">
-					{user && <SAvatar userData={user} />}
+					{user && <SAvatar userData={user} size={'sm'} />}
 					<input
 						placeholder="Ask your question (Ex. is this available?)"
 						className="bg-background w-full outline-none text-sm md:text-md"

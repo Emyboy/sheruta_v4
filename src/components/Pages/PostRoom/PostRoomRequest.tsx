@@ -4,7 +4,7 @@ import { AppStore } from '@/interface/index.interface'
 import SInput from '@/packages/ui/SInput'
 import SSelect, { SSelectData } from '@/packages/ui/SSelect'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { DebounceInput } from 'react-debounce-input'
 import { HiOutlineArrowLeft } from 'react-icons/hi2'
 import { useSelector } from 'react-redux'
@@ -13,6 +13,7 @@ import classNames from 'classnames'
 import LocationKeywordPopup from '@/components/Popups/LocationKeywordPopup'
 // import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
 import dynamic from 'next/dynamic';
+import _Button from '@/packages/ui/SButton'
 
 const GooglePlacesAutocomplete = dynamic(
     () => import('react-google-places-autocomplete'),
@@ -22,12 +23,15 @@ const GooglePlacesAutocomplete = dynamic(
 import { RequestTypeList } from '@/interface/options.interface'
 import { slugify } from '@/packages/utils/text.utils'
 import { usePostGuestRequestMutation } from '@/redux/services/request.service'
+import toast from 'react-hot-toast'
+import { useRouter } from 'next/navigation'
 
 type Props = {
     roomRequestData?: any;
 }
 
 export default function PostRoomRequest({ roomRequestData }: Props) {
+    const router = useRouter();
     const { user, user_info } = useSelector((state: AppStore) => state.app.auth)
     const [request_text, setRequestText] = useState(
         roomRequestData?.request_text || ''
@@ -69,33 +73,40 @@ export default function PostRoomRequest({ roomRequestData }: Props) {
         private_room === null ||
         Math.floor(progressPercentage) < 100;
 
-    const [uploadGuestRequest, {isLoading, data, isError}] = usePostGuestRequestMutation()
+    const [uploadGuestRequest, { isLoading, data, isError }] = usePostGuestRequestMutation()
+
+    let slug = slugify(`looking-a-${type?.value}-to-share-in-${googleLocation?.label || user_info?.location_keyword?.name}`)
 
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        try {
-            e.preventDefault();
-            let location_text = googleLocation?.label || user_info?.location_keyword?.name;
-            let data = {
-                service: service?.value,
-                pay_frequency: pay_frequency?.value,
-                category: category?.value,
-                request_text,
-                state: user_info?.state?.id,
-                location_text,
-                location_object: googleLocation,
-                slug: slugify(`looking-a-${type?.value}-to-share-in-${location_text}`),
-                location_keyword: user_info?.location_keyword?.id,
-                type: type?.value,
-                room_rent,
-                private_room
-            }
-            console.log('SENDING --', data);
-            uploadGuestRequest(data)
-        } catch (error) {
-
+        e.preventDefault();
+        let location_text = googleLocation?.label || user_info?.location_keyword?.name;
+        let data = {
+            service: service?.value,
+            pay_frequency: pay_frequency?.value,
+            category: category?.value,
+            request_text,
+            state: user_info?.state?.id,
+            location_text,
+            location_object: googleLocation,
+            slug,
+            location_keyword: user_info?.location_keyword?.id,
+            type: type?.value,
+            room_rent,
+            private_room
         }
+        uploadGuestRequest(data as any)
     };
+
+    useEffect(() => {
+        if (isError) {
+            toast.error("Error, please try again")
+        }
+        if (data) {
+            toast.success("Request posted successfully")
+            router.push(`/request/${type?.value}/${slug}/${data.id}`)
+        }
+    }, [isError, data])
 
     return (
         <>
@@ -111,7 +122,7 @@ export default function PostRoomRequest({ roomRequestData }: Props) {
                     </div>
                 </div>
             </header>
-            <form className='bg-gray-100 min-h-screen flex flex-col items-center py-[150px]' onSubmit={handleSubmit}>
+            <form className='bg-gray-100 min-h-screen flex flex-col items-center md:py-[150px] py-[100px] border shadow-lg' onSubmit={handleSubmit}>
                 <div className='p-5 bg-white w-full md:w-[700px] xl:w-[800px] rounded-lg flex flex-col gap-4'>
                     <div className="grid gap-4 md:grid-cols-3 grid-cols-1">
                         <SSelect
@@ -207,7 +218,6 @@ export default function PostRoomRequest({ roomRequestData }: Props) {
                                         }),
                                     },
                                     onChange: (e: any) => {
-                                        console.log(e)
                                         setGoogleLocation(e)
                                     },
                                     value: googleLocation
@@ -265,17 +275,18 @@ export default function PostRoomRequest({ roomRequestData }: Props) {
                             </div>
                             <br />
                             <NextButtonContainer>
-                                <button
+                                <_Button
                                     type="submit"
                                     className={classNames(
                                         ' text-white  rounded-md font-bold w-full md:w-[400px] py-3',
                                         { 'bg-dark': !disabled },
-                                        { 'bg-muted': disabled }
+                                        { 'bg-dark_transparent': disabled }
                                     )}
                                     disabled={disabled}
+                                    isLoading={isLoading}
                                 >
-                                    Continue
-                                </button>
+                                    Submit
+                                </_Button>
                             </NextButtonContainer>
                         </div>
                     </div>

@@ -64,7 +64,7 @@ export default function SInput({
 				/>
 			}
 			{
-				type === 'boolean' && <div className='bg-gray-200 h-full w-full rounded-lg p-1 flex'>
+				type === 'boolean' && <div className='bg-gray-200 w-full rounded-lg p-1 flex' style={{ minHeight: '50px', maxHeight: '100%' }}>
 					<div className={classNames('h-full w-full cursor-pointer rounded-tl-md rounded-bl-md flex justify-center items-center hover:bg-white hover:border hover:shadow-md', {
 						"bg-white shadow border": value as boolean
 					})}
